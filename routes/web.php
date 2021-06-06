@@ -39,5 +39,6 @@ Route::group(['namespace'=>'User'],function () {
 Route::group(['prefix'=>'Admin','namespace'=>'Ajax','middleware'=>'admin'],function () {
     Route::post('searchuser','ajaxController@searchuser')->name('ajax.searchuser');   
     Route::post('searchproduct','ajaxController@searchproduct')->name('ajax.searchproduct');   
-    Route::post('searchxeploai','ajaxController@searchxeploai')->name('ajax.searchxeploai');   
+    Route::post('searchxeploai','ajaxController@searchxeploai')->name('ajax.searchxeploai');    
+    Route::post('searchxeploai','ajaxController@searchcomment')->name('ajax.searchcomment');   
 });

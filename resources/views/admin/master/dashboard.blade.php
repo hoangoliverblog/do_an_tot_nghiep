@@ -39,7 +39,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                <img src="{{asset('img/1617259535_IMG_2517.jpg')}}" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
@@ -170,7 +170,7 @@
                 <ul class=" navbar-right">
                   <li class="nav-item dropdown open" style="padding-left: 15px;">
                     <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                      <img src="images/img.jpg" alt="">{{$user->name}}
+                      <img src="{{asset('img/1617259535_IMG_2517.jpg')}}" alt="">{{$user->name}}
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item"  href="javascript:;"> Profile</a>
@@ -314,12 +314,24 @@
       CKEDITOR.replace('edittor_desc');
 
       function edit(){
-        confirm("Bạn có muốn sửa sản phẩm?");
-        // alert('Bạn có muốn sửa sản phẩm?');
+        if(confirm("Bạn có muốn sửa sản phẩm?"))
+        {
+          return true;
+        }
+        else
+        {
+          return false;
+        }
       }
       function xoa(){
-        confirm("Bạn đang muốn xóa sản phẩm?");
-         //alert('Bạn có muốn sửa sản phẩm?');
+        if(confirm("Bạn có muốn xóa sản phẩm?"))
+        {
+          return true;
+        }
+        else
+        {
+          return false;
+        }
       }
     </script>
       <script>

@@ -18,7 +18,7 @@ class userController extends Controller
      */
     public function index()
     {
-        $lus = User::paginate(5);
+        $lus = User::paginate(10);
         $user = Auth::user();
         return view('admin.layout.user',['lus'=>$lus,'user'=>$user]);
     }

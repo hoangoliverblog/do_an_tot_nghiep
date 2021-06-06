@@ -46,8 +46,8 @@
                       <td>{{$lu->status}}</td>
                       <td>{{$lu->created_at}}</td>
                       <td>
-                      <span onclick="edit()"><a href="{{route('user.show',[$lu->id])}}"><i class="fas fa-edit"></i></a></span>
-                      <form action="{{route('user.destroy',[$lu->id])}}" method="POST" onsubmit="xoa()">
+                      <span><a onclick="return edit()" href="{{route('user.show',[$lu->id])}}"><i class="fas fa-edit"></i></a></span>
+                      <form action="{{route('user.destroy',[$lu->id])}}" method="POST" onsubmit="return xoa()">
                           @csrf
                           @method('DELETE')
                           <button type="submit"><span><a href=""><i class="fas fa-trash-alt"></i></a></span></button>
@@ -137,7 +137,6 @@
 @push('scripts')
     <script>
        $(document).ready(function(){
-      
         $('#search_user').keyup(function(){ //bắt sự kiện keyup khi người dùng gõ từ khóa tim kiếm
         var query = $(this).val(); //lấy gía trị ng dùng gõ
             if(query != '') //kiểm tra khác rỗng thì thực hiện đoạn lệnh bên dưới

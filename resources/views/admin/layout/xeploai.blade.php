@@ -32,17 +32,17 @@
               @foreach ($lxl as $lu)
                <tr>
                   <th scope="row">{{$lu->id}}</th>
-                      <td>{{$lu->sanpham->loaisanpham->name}}</td>
-                      <td>{{$lu->sanpham->name}}</td>
-                      <td>{{$lu->sanpham->price}}</td>
+                      {{-- <td>{{$lu->sanpham->loaisanpham->name}}</td> --}}
+                      <td>{{$lu->sanpham}}</td>
+                      {{-- <td>{{$lu->sanpham->price}}</td>
                       <td>{{$lu->level}}</td>
                       <td>
-                      <form action="{{route('xeploai.destroy',[$lu->id])}}" method="POST" onsubmit="xoa()">
+                      <form action="{{route('xeploai.destroy',[$lu->id])}}" method="POST" onsubmit="return xoa()">
                           @csrf
                           @method('DELETE')
                           <button type="submit"><span><a href=""><i class="fas fa-trash-alt"></i></a></span></button>
                       </form>
-                      </td>
+                      </td> --}}
                 </tr>      
                 @endforeach
           </tbody> 
@@ -50,7 +50,7 @@
     <div><button type="button" class="btn btn-light"><span>{{$lxl->links()}}</span></button></div>
 @endsection
 @push('scripts')
-<script>
+{{-- <script>
   $(document).ready(function(){
  
    $('#search_to_xeploai').keyup(function(){ //bắt sự kiện keyup khi người dùng gõ từ khóa tim kiếm
@@ -72,4 +72,4 @@
    });
   });
 </script>
-@endpush
+@endpush --}}

@@ -19,7 +19,7 @@ class productController extends Controller
      */
     public function index()
     {
-        $lus = Product::paginate(5);
+        $lus = Product::paginate(10);
         $user = Auth::user();
         
         $lsp = DB::table('loaisanphams')->get();
@@ -101,7 +101,7 @@ class productController extends Controller
         $user = Auth::user();
         $lsp = Product::find($id);
         $list_lsp = Product::all();
-        return view('admin.layout.xeploai',['lsp'=>$lsp,'user'=>$user,'list_lsp'=>$list_lsp]);
+        return view('admin.layout.productUpdate',['lsp'=>$lsp,'user'=>$user,'list_lsp'=>$list_lsp]);
     }
 
     /**
@@ -144,13 +144,13 @@ class productController extends Controller
             else
             {      
                 
-                $name = $this->uploadimg($request,'img');
+                $name = $this->uploadimg($request,'img',$id);
                 DB::table('products')->where('id',$id)->update([
                     'name'=>$request->name,
                   'id_loaisp'=>$request->id_loaisp,
                   'price'=>$request->price,
                   'soluong'=>$request->soluong,
-                  'img'=>$name ?: 'trong',
+                  'img'=>$name ,
                   'thongtin'=>$request->thongtin ?: 'trong',
                   'desc'=>$request->desc ?: 'trong',
                   'coupe'=>$request->coupe ?: 'trong',

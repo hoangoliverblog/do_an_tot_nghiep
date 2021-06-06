@@ -8,6 +8,8 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Product;
 use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
@@ -18,8 +20,9 @@ class Controller extends BaseController
     {
               
     }
-    public function uploadimg(Request $request,$name_input_img){
+    public function uploadimg(Request $request,$name_input_img,$id){
         
+        $lsp = Product::find($id);
         if($request->hasFile($name_input_img))
         {
             $file = $request->file($name_input_img);
@@ -29,8 +32,9 @@ class Controller extends BaseController
         }
         else
         {
-             $name = 'noname.jpg';
+             $name = $lsp->img;
         }
+        
         return $name;
     }
 }

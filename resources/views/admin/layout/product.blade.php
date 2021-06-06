@@ -50,8 +50,8 @@
                       <td>{{$lu->sale}}%</td>
                       <td>{{$lu->created_at}}</td>
                       <td>
-                      <span onclick="edit()"><a href="{{route('product.show',[$lu->id])}}"><i class="fas fa-edit"></i></a></span>
-                      <form action="{{route('product.destroy',[$lu->id])}}" method="POST" onsubmit="xoa()">
+                      <span><a onclick="return edit()" href="{{route('product.show',[$lu->id])}}"><i class="fas fa-edit"></i></a></span>
+                      <form action="{{route('product.destroy',[$lu->id])}}" method="POST" onsubmit="return xoa()">
                           @csrf
                           @method('DELETE')
                           <button type="submit"><span><a href=""><i class="fas fa-trash-alt"></i></a></span></button>
