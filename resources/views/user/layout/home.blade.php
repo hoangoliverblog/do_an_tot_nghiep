@@ -14,8 +14,8 @@
                         <div class="row">
                             @foreach ($listsp as $item)
                                 <div class="col-md-3 col-sm-12 col-xs-6 product_body">
-                                    <div class="product_img">
-                                    <img src="{{asset('img')}}{{'/'.$item->img}}" alt="photo">
+                                    <div class="product_img" style="height: 10rem">
+                                        <img src="{{asset('img')}}{{'/'.$item->img}}" alt="photo">
                                     </div>
                                     <div class="product_des">
                                         <p>{{$item->desc}}</p>
@@ -36,7 +36,7 @@
                     @foreach ($listsp as $item)
                     <div class="item">
                         <div class="owl-product_body">
-                            <div class="product_img">
+                            <div class="product_img" style="height: 10rem">
                                 <img src="{{asset('img')}}{{'/'.$item->img}}" alt="photo">
                             </div>
                             <div class="product_des">
@@ -63,7 +63,7 @@
                         <div class="row">
                             @foreach ($listsp_nb as $item)
                                 <div class="col-md-3 col-sm-12 col-xs-6 product_body">
-                                    <div class="product_img">
+                                    <div class="product_img" style="height: 10rem">
                                         <img src="{{asset('img')}}{{'/'.$item->img}}" alt="photo">
                                     </div>
                                     <div class="product_des">
@@ -85,7 +85,7 @@
                     @foreach ($listsp_nb as $item)
                     <div class="item">
                         <div class="owl-product_body">
-                            <div class="product_img">
+                            <div class="product_img" style="height: 10rem">
                                 <img src="{{asset('img')}}{{'/'.$item->img}}" alt="">
                             </div>
                             <div class="product_des">

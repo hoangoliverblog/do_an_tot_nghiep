@@ -20,7 +20,7 @@ class Controller extends BaseController
     {
               
     }
-    public function uploadimg(Request $request,$name_input_img,$id){
+    public function uploadimg(Request $request,$name_input_img,$id = null){
         
         $lsp = Product::find($id);
         if($request->hasFile($name_input_img))

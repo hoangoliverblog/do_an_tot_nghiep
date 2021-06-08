@@ -17,4 +17,7 @@ class xeploai extends Model
     public function sanpham(){
         return $this->belongsTo('App\Models\Product','pr_id','id');
     }
+    public function loaisanpham(){
+        return $this->belongsTo('App\Models\loaisanpham','pr_id','id');
+    }
 }

@@ -39,7 +39,7 @@
                       <td>{{$sum = $lu->hoadon->sanpham->price * $lu->hoadon->sanpham->soluong}} vnđ</td>
                       <td>{{$lu->created_at}}</td>
                       <td>
-                      <form action="{{route('cart.destroy',[$lu->id])}}" method="POST" onsubmit="xoa()">
+                      <form action="{{route('cart.destroy',[$lu->id])}}" method="POST" onsubmit="return xoa()">
                           @csrf
                           @method('DELETE')
                           <button type="submit"><span><a href=""><i class="fas fa-trash-alt"></i></a></span></button>

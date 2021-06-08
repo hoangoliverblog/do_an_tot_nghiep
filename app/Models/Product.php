@@ -26,4 +26,5 @@ class Product extends Model
     public function hoadon(){
         return $this->belongsTo('App\Models\hoadon','pr_id','id');
     }
+
 }

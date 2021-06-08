@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Gentelella Alela! | </title>
+    <title>Quản trị</title>
     <script src="https://kit.fontawesome.com/d1bc342d1d.js" crossorigin="anonymous"></script>
     <!-- Ckeditor -->
     <script src="{{asset('ckeditor/ckeditor.js')}}"></script>
@@ -42,7 +42,7 @@
                 <img src="{{asset('img/1617259535_IMG_2517.jpg')}}" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
-                <span>Welcome,</span>
+                <span>Welcome;,</span>
               <h2>{{$user->name}}</h2>
               </div>
             </div>
