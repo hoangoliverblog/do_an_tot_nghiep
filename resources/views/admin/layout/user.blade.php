@@ -9,6 +9,9 @@
           <input type="text" id="search_user" class="form-control" placeholder="Nhập từ tìm kiếm" aria-label="Recipient's username" aria-describedby="button-addon2">
         </div>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Thêm tài khoản</button>
+        @if(isset($message_pass))
+        {{$message_pass}}
+        @endif
     </div>
       <table class="table-primary"></table>
       <table class="table-secondary"></table>
@@ -24,6 +27,7 @@
             <tr>
               <th scope="col">id</th>
               <th scope="col">Tên người dùng</th>
+              <th scope="col">Ảnh</th>
               <th scope="col">Email</th>
               <th scope="col">Loại tài khoản</th>
               <th scope="col">Địa chỉ</th>
@@ -38,6 +42,7 @@
                <tr>
                   <th scope="row">{{$lu->id}}</th>
                       <td>{{$lu->name}}</td>
+                      <td><img src="{{asset('img')}}{{'/'.$lu->image}}" style="width: 6rem;height 8rem :" alt="photo" ></td>
                       <td>{{$lu->email}}</td>
                       <td>{{$lu->role_user->role_name}}</td>
                       <td>{{$lu->address}}</td>
@@ -79,6 +84,13 @@
                         @enderror
                       </div>
                       <div class="form-group">
+                        <label for="exampleFormControlFile1">Ảnh</label>
+                        @error('img')
+                          {{$message}}
+                        @enderror
+                        <input type="file" class="form-control-file" name="img" id="exampleFormControlFile1">
+                      </div>
+                      <div class="form-group">
                         <label for="exampleInputEmail1">Email</label>
                         @error('email')
                           {{$message}}
@@ -116,7 +128,7 @@
                         <div class="form-group">
                           <label for="exampleInputEmail1">Nhập lại mật khẩu</label>
                           <input type="password" class="form-control" name="re_password" >
-                          @error('re_password')
+                          @error('massage')
                           {{$message}}
                           @enderror
                         </div>
@@ -137,18 +149,18 @@
 @push('scripts')
     <script>
        $(document).ready(function(){
-        $('#search_user').keyup(function(){ //bắt sự kiện keyup khi người dùng gõ từ khóa tim kiếm
-        var query = $(this).val(); //lấy gía trị ng dùng gõ
-            if(query != '') //kiểm tra khác rỗng thì thực hiện đoạn lệnh bên dưới
+        $('#search_user').keyup(function(){ 
+        var query = $(this).val(); 
+            if(query != '') 
             {
-            var _token = $('input[name="_token"]').val(); // token để mã hóa dữ liệu
+            var _token = $('input[name="_token"]').val(); 
             $.ajax({
-              url:"{{ route('ajax.searchuser') }}", // đường dẫn khi gửi dữ liệu đi 'search' là tên route 
-              method:"POST", // phương thức gửi dữ liệu.
+              url:"{{ route('ajax.searchuser') }}", 
+              method:"POST", 
               data:{query:query, _token:_token},
-              success:function(data){ //dữ liệu nhận về
+              success:function(data){ 
               $('#list_lu').fadeIn();  
-              $('#list_lu').html(data); //nhận dữ liệu dạng html và gán vào cặp thẻ có id là listpr
+              $('#list_lu').html(data); 
             }
           });
           }

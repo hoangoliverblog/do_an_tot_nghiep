@@ -41,6 +41,8 @@ class userController extends Controller
      */
     public function store(Request $request)
     {
+        $lus = User::paginate(10);
+        $user = Auth::user();
         
         if($request->isMethod('post'))
         {
@@ -73,10 +75,16 @@ class userController extends Controller
                         ->withErrors($validator)
                         ->withInput();
             }else
-            {      
+            {    
+                if($request->password !== $request->re_password)
+                {
+                        return view('admin.layout.user',['lus'=>$lus,'user'=>$user])->with('message_pass','Nhập lại mật khẩu chưa chính xác');
+                }
+                $name = $this->uploadimg($request,'img');
                 User::insert([
                     'name'=>$request->name,
                     'role_id'=>2,
+                    'image'=>$name ?: 'trong',
                     'address'=>$request->address,
                     'phone'=>$request->phone,
                     'gioitinh'=>$request->gioitinh,
@@ -143,9 +151,19 @@ class userController extends Controller
                         ->withInput();
             }
             else
-            {      
+            {    
+                if($request->img)
+                {
+                    $name = $this->uploadimg($request,'img',$id);
+                }else
+                {
+                    $lsp    = User::find($id);
+                    $name   = $lsp->image ; 
+                }
+                
                 DB::table('users')->where('id',$id)->update([
                     'name'=>$request->name,
+                    'image'=>$name ?: 'trong',
                     'address'=>$request->address,
                     'status' => $request->status,
                     'phone'=>$request->phone,

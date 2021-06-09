@@ -16,6 +16,8 @@ class ajaxController extends Controller
 
         if($request->get('query'))
         {
+            $token = $request->get('_token');
+
             $query = $request->get('query');
             $data = DB::table('users')
             ->where('name', 'LIKE', "%{$query}%")
@@ -35,7 +37,7 @@ class ajaxController extends Controller
                 $output .=  '<td>'.$row->created_at.'</td>';
                 $output .=  '<td>'."<span><a onclick='return edit()' href=".route('user.show',[$row->id])."><i class='fas fa-edit'></i></a></span>"
                             ."<form action=".route('user.destroy',[$row->id])." method='POST' onsubmit='return xoa()'>"
-                            ."<input type='hidden' name='_token' value='rJs3wkmON0OHvDKiTWS6WQbNAUf5bRUOEwJ7MOVX'>"
+                            ."<input type='hidden' name='_token' value='".$token."'>"
                             ."<input type='hidden' name='_method' value='DELETE'>"
                             ."<button type='submit'><span><a href=''><i class='fas fa-trash-alt'></i></a></span></button>"
                             ."</form>"
@@ -52,7 +54,7 @@ class ajaxController extends Controller
 
         if($request->get('query'))
         {
-            
+            $token = $request->get('_token');
             $query = $request->get('query');
             $data = DB::table('products')
             ->where('name', 'LIKE', "%{$query}%")
@@ -76,7 +78,7 @@ class ajaxController extends Controller
                 $output .=  '<td>'
                             ."<span><a onclick='return edit()' href=".route('product.show',[$row->id])."><i class='fas fa-edit'></i></a></span>"
                             ."<form action=".route('product.destroy',[$row->id])." method='POST' onsubmit='return xoa()'>"
-                            ."<input type='hidden' name='_token' value='rJs3wkmON0OHvDKiTWS6WQbNAUf5bRUOEwJ7MOVX'>"
+                            ."<input type='hidden' name='_token' value='".$token."'>"
                             ."<input type='hidden' name='_method' value='DELETE'>"
                             ."<button type='submit'><span><a href=''><i class='fas fa-trash-alt'></i></a></span></button>"
                             ."</form>"
@@ -91,7 +93,7 @@ class ajaxController extends Controller
 
     //     if($request->get('query'))
     //     {
-           
+             // $token = $request->get('_token');
             
     //         $query = $request->get('query');
     //         $data = DB::table('products')
@@ -117,8 +119,7 @@ class ajaxController extends Controller
 
         if($request->get('query'))
         {
-           
-            
+            $token = $request->get('_token');   
             $query = $request->get('query');
             $data = DB::table('comments')
             ->where('content', 'LIKE', "%{$query}%")
@@ -138,7 +139,7 @@ class ajaxController extends Controller
                 $output .=  '<td>'.$row->created_at.'</td>';
                 $output .=  '<td>'
                             ."<form action=".route('chitiethoadon.destroy',[$row->id])." method='POST' onsubmit='return xoa()'>"
-                            ."<input type='hidden' name='_token' value='rJs3wkmON0OHvDKiTWS6WQbNAUf5bRUOEwJ7MOVX'>"
+                            ."<input type='hidden' name='_token' value='".$token."'>"
                             ."<input type='hidden' name='_method' value='DELETE'>"
                             ."<button type='submit'><span><a href=''><i class='fas fa-trash-alt'></i></a></span></button>"
                             ."</form>"
@@ -154,7 +155,7 @@ class ajaxController extends Controller
         if($request->get('query'))
         {
            
-            
+            $token = $request->get('_token'); 
             $query = $request->get('query');
             $data = DB::table('hoadons')
             ->where('id', 'LIKE', "%{$query}%")
@@ -174,7 +175,7 @@ class ajaxController extends Controller
                 $output .=  '<td>'.$row->created_at.'</td>';
                 $output .=  '<td>'
                             ."<form action=".route('hoadon.destroy',[$row->id])." method='POST' onsubmit='return xoa()'>"
-                            ."<input type='hidden' name='_token' value='rJs3wkmON0OHvDKiTWS6WQbNAUf5bRUOEwJ7MOVX'>"
+                            ."<input type='hidden' name='_token' value='".$token."'>"
                             ."<input type='hidden' name='_method' value='DELETE'>"
                             ."<button type='submit'><span><a href=''><i class='fas fa-trash-alt'></i></a></span></button>"
                             ."</form>"

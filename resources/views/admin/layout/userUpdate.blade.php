@@ -15,6 +15,13 @@
                 @enderror
               </div>
               <div class="form-group">
+                <label for="exampleFormControlFile1">Ảnh</label>
+                @error('img')
+                  {{$message}}
+                @enderror
+                <input type="file" class="form-control-file" name="img" id="exampleFormControlFile1">
+              </div>
+              <div class="form-group">
                   <label for="exampleInputEmail1">Địa chỉ</label>
                   @error('address')
                     {{$message}}

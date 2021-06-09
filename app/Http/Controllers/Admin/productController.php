@@ -146,7 +146,7 @@ class productController extends Controller
                 
                 $name = $this->uploadimg($request,'img',$id);
                 DB::table('products')->where('id',$id)->update([
-                    'name'=>$request->name,
+                  'name'=>$request->name,
                   'id_loaisp'=>$request->id_loaisp,
                   'price'=>$request->price,
                   'soluong'=>$request->soluong,
