@@ -21,11 +21,10 @@ class productController extends Controller
     {
         $lus = Product::paginate(10);
         $user = Auth::user();
-        
+
         $lsp = DB::table('loaisanphams')->get();
 
-        return view('admin.layout.product',['lus'=>$lus,'user'=>$user,'lsp'=>$lsp]);
-        
+        return view('admin.layout.product', ['lus' => $lus, 'user' => $user, 'lsp' => $lsp]);
     }
 
     /**
@@ -46,46 +45,59 @@ class productController extends Controller
      */
     public function store(Request $request)
     {
-        
-        if($request->isMethod('post'))
-        {
-            $validator = Validator::make($request->all(),[
-                'name'  => 'required|min:3|max:30',
-                'id_loaisp'=>'required',
-                'price'=> 'required|min:4|max:10',
-                'soluong'=>'required',
-            ],
-            [
-                'name.required'=>'Tên sản phẩm không được để trống',
-                'name.min'=>'Tên người dùng lớn hơn 3 kí tự',
-                'name.max'=>'Tên người dùng ngắn hơn 30 kí tự',
-                'id_loaisp.required'=>'Chọn một loại sản phẩm thích hợp',
-                'price.required'=>'Giá sản phẩm không được để trống',
-                'price.min'=>'Giá sản phẩm lớn hơn 1000 vnđ',
-                'price.max'=>'Giá sản phẩm nhỏ hơn 1 tỷ đồng',
-                'soluong.required'=>'Nhập số lượng sản phẩm'
-            ]);
-                
-            if($validator->fails()){
+
+        if ($request->isMethod('post')) {
+            $validator = Validator::make(
+                $request->all(),
+                [
+                    'name'  => 'required|min:3|max:30',
+                    'id_loaisp' => 'required',
+                    'price' => 'required|min:4|max:10|numeric',
+                    'soluong' => 'required|numeric',
+                    'sale'  => 'numeric|min:1|max:2'
+                ],
+                [
+                    'name.required' => 'Tên sản phẩm không được để trống',
+                    'name.min' => 'Tên người dùng lớn hơn 3 kí tự',
+                    'name.max' => 'Tên người dùng ngắn hơn 30 kí tự',
+                    'id_loaisp.required' => 'Chọn một loại sản phẩm thích hợp',
+                    'price.required' => 'Giá sản phẩm không được để trống',
+                    'price.min' => 'Giá sản phẩm lớn hơn 1000 vnđ',
+                    'price.numeric' => 'Giá sản phẩm có định dạng là chữ số',
+                    'price.max' => 'Giá sản phẩm nhỏ hơn 1 tỷ đồng',
+                    'soluong.required' => 'Nhập số lượng sản phẩm',
+                    'soluong.numeric' => 'Số lượng có định dạng là kiểu chữ số',
+                    'sale.numeric' => 'Tỷ lệ giảm giá có định dạng là kiểu số'
+                ]
+            );
+
+            if ($validator->fails()) {
                 return redirect()->back()
-                        ->withErrors($validator)
-                        ->withInput();
-            }else
-            {
-                $name = $this->uploadimg($request,'img');
-              DB::table('products')->insert([
-                  'name'=>$request->name,
-                  'id_loaisp'=>$request->id_loaisp,
-                  'price'=>$request->price,
-                  'soluong'=>$request->soluong,
-                  'img'=>$name ?: 'trong',
-                  'thongtin'=>$request->thongtin ?: 'trong',
-                  'desc'=>$request->desc ?: 'trong',
-                  'coupe'=>$request->coupe ?: 'trong',
-                  'sale'=>$request->sale ?: 0,
-                  'created_at'=> new DateTime()
-              ]);
-             return redirect()->back();
+                    ->withErrors($validator)
+                    ->withInput();
+            } else {
+
+                if(isset($request->img))
+                {
+                    $name = $this->uploadimg($request, 'img');
+                }else
+                {
+                    $name = 'trong';
+                }
+                
+                DB::table('products')->insert([
+                    'name' => $request->name,
+                    'id_loaisp' => $request->id_loaisp,
+                    'price' => $request->price,
+                    'soluong' => $request->soluong,
+                    'img' => $name ?: 'trong',
+                    'thongtin' => $request->thongtin ?: 'trong',
+                    'desc' => $request->desc ?: 'trong',
+                    'coupe' => $request->coupe ?: 'trong',
+                    'sale' => $request->sale ?: 0,
+                    'created_at' => new DateTime()
+                ]);
+                return redirect()->back();
             }
         }
     }
@@ -101,7 +113,7 @@ class productController extends Controller
         $user = Auth::user();
         $lsp = Product::find($id);
         $list_lsp = Product::all();
-        return view('admin.layout.productUpdate',['lsp'=>$lsp,'user'=>$user,'list_lsp'=>$list_lsp]);
+        return view('admin.layout.productUpdate', ['lsp' => $lsp, 'user' => $user, 'list_lsp' => $list_lsp]);
     }
 
     /**
@@ -124,42 +136,54 @@ class productController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if($request->isMethod('patch'))
-        {
-            
-            $validator = Validator::make($request->all(),[
-                'name'  => 'required|min:3|max:30',
-            ],
-            [
-                'name.required'=>'Tên người dùng không được để trống',
-                'name.min'=>'Tên người dùng lớn hơn 3 kí tự',
-                'name.max'=>'Tên người dùng ngắn hơn 30 kí tự',
-            ]);
+        if ($request->isMethod('patch')) {
 
-            if($validator->fails()){
+            $validator = Validator::make(
+                $request->all(),
+                [
+                    'name'  => 'required|min:3|max:30',
+                    'id_loaisp' => 'required',
+                    'price' => 'required|min:4|numeric',
+                    'soluong' => 'required|numeric',
+                    'sale'  => 'numeric|min:1|max:100'
+                ],
+                [
+                    'name.required' => 'Tên sản phẩm không được để trống',
+                    'name.min' => 'Tên người dùng lớn hơn 3 kí tự',
+                    'name.max' => 'Tên người dùng ngắn hơn 30 kí tự',
+                    'id_loaisp.required' => 'Chọn một loại sản phẩm thích hợp',
+                    'price.required' => 'Giá sản phẩm không được để trống',
+                    'price.min' => 'Giá sản phẩm lớn hơn 1000 vnđ',
+                    'price.numeric' => 'Giá sản phẩm có định dạng là chữ số',
+                    'price.max' => 'Giá sản phẩm nhỏ hơn 1 tỷ đồng',
+                    'soluong.required' => 'Nhập số lượng sản phẩm',
+                    'soluong.numeric' => 'Số lượng có định dạng là kiểu chữ số',
+                    'sale.numeric' => 'Tỷ lệ giảm giá có định dạng là kiểu số'
+                ]
+            );
+
+            if ($validator->fails()) {
                 return redirect()->back()
-                        ->withErrors($validator)
-                        ->withInput();
-            }
-            else
-            {      
-                
-                $name = $this->uploadimg($request,'img',$id);
-                DB::table('products')->where('id',$id)->update([
-                  'name'=>$request->name,
-                  'id_loaisp'=>$request->id_loaisp,
-                  'price'=>$request->price,
-                  'soluong'=>$request->soluong,
-                  'img'=>$name ,
-                  'thongtin'=>$request->thongtin ?: 'trong',
-                  'desc'=>$request->desc ?: 'trong',
-                  'coupe'=>$request->coupe ?: 'trong',
-                  'sale'=>$request->sale ?: 0,
-                  'updated_at'=> new DateTime()
+                    ->withErrors($validator)
+                    ->withInput();
+            } else {
+
+                $name = $this->uploadimg($request, 'img', $id);
+                DB::table('products')->where('id', $id)->update([
+                    'name' => $request->name,
+                    'id_loaisp' => $request->id_loaisp,
+                    'price' => $request->price,
+                    'soluong' => $request->soluong,
+                    'img' => $name,
+                    'thongtin' => $request->thongtin ?: 'trong',
+                    'desc' => $request->desc ?: 'trong',
+                    'coupe' => $request->coupe ?: 'trong',
+                    'sale' => $request->sale ?: 0,
+                    'updated_at' => new DateTime()
                 ]);
-               return redirect() ->route('product.index');    
+                return redirect()->route('product.index');
             }
-         }
+        }
     }
 
     /**
@@ -170,8 +194,7 @@ class productController extends Controller
      */
     public function destroy($id)
     {
-        Product::where('id',$id)->delete();
+        Product::where('id', $id)->delete();
         return redirect()->back();
     }
-
 }

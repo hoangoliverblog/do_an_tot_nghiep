@@ -30,9 +30,10 @@
               <th scope="col">Số điện thoại</th>
               <th scope="col">Tổng thanh toán</th>
               <th scope="col">Ngày tạo</th>
+              <th scope="col">Thao tác</th>
             </tr>
           </thead>
-          <tbody id="list_hd">
+          <tbody id="list_chitiethd">
                 @foreach ($lus as $lu)
                 <tr>
                     <th scope="row">{{$lu->id}}</th>
@@ -59,3 +60,25 @@
           <div><button type="button" class="btn btn-light"><span>{{$lus->links()}}</span></button></div>
       
 @endsection
+@push('scripts')
+    <script>
+       $(document).ready(function(){
+        $('#search_chitiethoadon').keyup(function(){ //bắt sự kiện keyup khi người dùng gõ từ khóa tim kiếm
+        var query = $(this).val(); //lấy gía trị ng dùng gõ
+            if(query != '') //kiểm tra khác rỗng thì thực hiện đoạn lệnh bên dưới
+            {
+            var _token = $('input[name="_token"]').val(); // token để mã hóa dữ liệu
+            $.ajax({
+              url:"{{ route('ajax.searchchitiethoadon') }}", // đường dẫn khi gửi dữ liệu đi 'search' là tên route 
+              method:"POST", // phương thức gửi dữ liệu.
+              data:{query:query, _token:_token},
+              success:function(data){ //dữ liệu nhận về
+              $('#list_chitiethd').fadeIn();  
+              $('#list_chitiethd').html(data); //nhận dữ liệu dạng html và gán vào cặp thẻ có id là listpr
+            }
+          });
+          }
+        });
+       });
+    </script>
+@endpush

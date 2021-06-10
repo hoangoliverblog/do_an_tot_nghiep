@@ -48,10 +48,10 @@ class userController extends Controller
         {
             $validator = Validator::make($request->all(),[
                 'name'  => 'required|min:3|max:30',
-//                'role_id' => 'required',
                 'email'=>'required|min:9|max:30|email:rfc,dns',
                 'password'=> 'required|min:8|max:50',
-                're_password'=> 'required|min:8|max:50'
+                're_password'=> 'required|min:8|max:50',
+                'phone' => 'numeric'
             ],
             [
                 'email.required'=>'Email không được để trống',
@@ -68,6 +68,7 @@ class userController extends Controller
                 'name.required'=>'Tên người dùng không được để trống',
                 'name.min'=>'Tên người dùng lớn hơn 3 kí tự',
                 'name.max'=>'Tên người dùng ngắn hơn 30 kí tự',
+                'phone.numeric' => 'Số điện thoại có định dạng kiểu số'
             ]);
 
             if($validator->fails()){
@@ -80,7 +81,13 @@ class userController extends Controller
                 {
                         return view('admin.layout.user',['lus'=>$lus,'user'=>$user])->with('message_pass','Nhập lại mật khẩu chưa chính xác');
                 }
-                $name = $this->uploadimg($request,'img');
+                if(isset($request->img))
+                {
+                    $name = $this->uploadimg($request, 'img');
+                }else
+                {
+                    $name = 'trong';
+                }
                 User::insert([
                     'name'=>$request->name,
                     'role_id'=>2,
@@ -136,13 +143,30 @@ class userController extends Controller
         if($request->isMethod('patch'))
         {
             
-            $validator = Validator::make($request->all(),[
+            $validator = Validator::make($request->all(),
+            [
                 'name'  => 'required|min:3|max:30',
+                'email'=>'required|min:9|max:30|email:rfc,dns',
+                'password'=> 'required|min:8|max:50',
+                're_password'=> 'required|min:8|max:50',
+                'phone' => 'numeric'
             ],
             [
+                'email.required'=>'Email không được để trống',
+                'email.min'=>'Email có độ dài từ 9 đến 30 kí tự',
+                'email.max'=>'Email có độ dài từ 9 đến 30 kí tự',
+                'email.email'=>'Định dạng nhập vào có dạng abc@gmail.com',
+                'password.required'=>'Mật khẩu không được để trống',
+                'password.min'=>'Mật khẩu dài hơn 8 kí tự',
+                'password.max'=>'Mật khẩu ngắn hơn 30 kí tự',
+                're_password.required'=>'Mật khẩu không được để trống',
+                're_password.min'=>'Mật khẩu dài hơn 8 kí tự',
+                're_password.max'=>'Mật khẩu ngắn hơn 30 kí tự',
+                'role_id.required'=>'loại tài khoản là bắt buộc',
                 'name.required'=>'Tên người dùng không được để trống',
                 'name.min'=>'Tên người dùng lớn hơn 3 kí tự',
                 'name.max'=>'Tên người dùng ngắn hơn 30 kí tự',
+                'phone.numeric' => 'Số điện thoại có định dạng kiểu số'
             ]);
 
             if($validator->fails()){

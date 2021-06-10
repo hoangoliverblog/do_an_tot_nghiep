@@ -32,10 +32,10 @@
               @foreach ($lxl as $lu)
                <tr>
                   <th scope="row">{{$lu->id}}</th>
-                      <td>{{$lu->loaisanpham->name}}</td>
+                      <td>{{$lu->sanpham}}</td>
+                      <td>{{$lu->sanpham}}</td>
+                      <td>{{$lu->sanpham}}</td>
                       <td>{{$lu->level}}</td>
-                      <td>{{$lu->sanpham}}</td>
-                      <td>{{$lu->sanpham}}</td>
                 </tr>      
                 @endforeach
           </tbody> 
