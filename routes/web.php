@@ -28,13 +28,19 @@ Route::group(['prefix'=>'Admin','namespace'=>'Admin','middleware'=>'admin'],func
     Route::resource('xeploai','xeploaiController')->only(['index','destroy']);
     Route::resource('chitiethoadon','chitiethoadonController')->only(['index','destroy']);
     Route::resource('comment','commentController')->only(['index','destroy']);
-    Route::get('language/{language}','languageController@index')->name('admin.language')->middleware('language');
+    Route::get('language/{language}',function ($language) {
+        App::setlocale($language);
+        return redirect()->back();
+    })->name('admin.language');
     
 });
 // user home
 Route::group(['namespace'=>'User'],function () {
     Route::get('/','userController@index');
     Route::get('sanham/{id}','userController@sanpham')->name('user.sanpham');
+    Route::get('userLogin','userController@userLogin')->name('user.Login');
+    Route::get('Resgister','userController@Resgister')->name('user.Resgister');
+    Route::get('createUser','userController@createUser')->name('user.createUser');
 });
 Route::group(['prefix'=>'Admin','namespace'=>'Ajax','middleware'=>'admin'],function () {
     Route::post('searchuser','ajaxController@searchuser')->name('ajax.searchuser');   
@@ -44,4 +50,5 @@ Route::group(['prefix'=>'Admin','namespace'=>'Ajax','middleware'=>'admin'],funct
     Route::post('searchhoadon','ajaxController@searchhoadon')->name('ajax.searchhoadon');
     Route::post('searchchitiethoadon','ajaxController@searchchitiethoadon')->name('ajax.searchchitiethoadon');
     Route::post('searchcart','ajaxController@searchcart')->name('ajax.searchcart');                
+    // Route::post('checkusername','ajaxController@checkusername')->name('ajax.checkusername');                
 });

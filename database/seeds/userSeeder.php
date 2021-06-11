@@ -32,7 +32,7 @@ class userSeeder extends Seeder
         'address'=> 'My dinh nam tu liem ha noi',
         'image'  => '1617259535_IMG_2517.jpg',
         'phone'=> '098776996',
-        'status'=>'nonactive',
+        'status'=>'noneactive',
         'gioitinh'=>'nam',
         'otp'=> 999998,
         'created_at'=>new DateTime()

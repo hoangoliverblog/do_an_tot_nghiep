@@ -33,8 +33,8 @@
                 <div class="col-xl-6">
                     <div class="directory">
                         <ul>
-                            <li><span><i class="fas fa-user"></i></span><a href="">Đăng nhập</a></li>
-                            <li><span><i class="fas fa-users"></i></span><a id="resgiter"href="">Đăng kí</a></li>
+                            <li><span><i class="fas fa-user"></i></span><a href="{{route('user.Login')}}">Đăng nhập</a></li>
+                            <li><span><i class="fas fa-users"></i></span><a id="resgiter" href="{{route('user.Resgister')}}">Đăng kí</a></li>
                             <li><span><i class="fas fa-dollar-sign"></i></span><a href="">Thanh toán</a></li>
                         </ul>
                     </div>

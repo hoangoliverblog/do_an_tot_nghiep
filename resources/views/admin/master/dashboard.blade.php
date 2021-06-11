@@ -42,7 +42,7 @@
                 <img src="{{asset('img/1617259535_IMG_2517.jpg')}}" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
-                <span>Welcome;,</span>
+                <span>{{__('msg.welcome')}}</span>
               <h2>{{$user->name}}</h2>
               </div>
             </div>
@@ -187,8 +187,8 @@
                       Langguages
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item"  href="{{route('admin.language',['vi'])}}">EN</a>
-                      <a class="dropdown-item"  href="{{route('admin.language',['en'])}}">VI</a>
+                      <a class="dropdown-item"  href="{{route('admin.language',['en'])}}">EN</a>
+                      <a class="dropdown-item"  href="{{route('admin.language',['vi'])}}">VI</a>
                     </div>
                   </li>
   

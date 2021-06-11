@@ -266,4 +266,22 @@ class ajaxController extends Controller
             echo $output;
        }
     }
+
+    // public function checkusername(Request $request){
+
+    //     if($request->get('query'))
+    //     {
+           
+    //         $token = $request->get('_token'); 
+    //         $query = $request->get('query');
+    //         $data = DB::table('user')
+    //         ->where('name', 'LIKE', "%{$query}%")
+    //         ->get();
+    //         if($data > 0)
+    //         {
+    //             echo 'dâfafaf';
+    //         }
+            
+    //    }
+    // }
 }
