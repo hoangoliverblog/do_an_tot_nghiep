@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Mail\SendEmailGetOtp;
+use App\Mail\SendMailToUser;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\User;
@@ -10,6 +12,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use DateTime;
+use Illuminate\Support\Facades\Mail;
+
 class userController extends Controller
 {
     public function index(){
@@ -36,6 +40,7 @@ class userController extends Controller
 
     public function createUser(Request $request)
     {    
+
         if($request->isMethod('HEAD'))
         {
             $validator = Validator::make($request->all(),[
@@ -74,24 +79,55 @@ class userController extends Controller
                 {
                         return view('user.layout.Resgister')->with('message_pass','Nhập lại mật khẩu chưa chính xác');
                 }
-                
-                User::insert([
-                    'name'=>$request->name,
-                    'role_id'=>2,
-                    'image'=>$request->name ?? 'trong',
-                    'address'=>$request->address ?? 'trong', 
-                    'phone'=>$request->phone,
-                    'gioitinh'=>$request->gioitinh ?? 'trong',
-                    'otp'=> rand(100000,999999),
-                    'status'=>'noneactive',
-                    'email'=>$request->email,
-                    'password'=>password_hash($request->re_password,PASSWORD_DEFAULT),
-                    'created_at' => new DateTime()
-                ]);
-                return redirect()->route('user.Login');    
+                // $userMail = $request->email;
+                // $OTP = rand(100000,999999);
+
+                // User::insert([
+                //     'name'=>$request->name,
+                //     'role_id'=>2,
+                //     'image'=>$request->name ?? 'trong',
+                //     'address'=>$request->address ?? 'trong', 
+                //     'phone'=>$request->phone,
+                //     'gioitinh'=>$request->gioitinh ?? 'trong',
+                //     'otp'=> $OTP,
+                //     'status'=>'noneactive',
+                //     'email'=>$request->email,
+                //     'password'=>password_hash($request->re_password,PASSWORD_DEFAULT),
+                //     'created_at' => new DateTime()
+                // ]);
+
+                // $this->sendEmail($userMail,$OTP);
+
+                return redirect()->route('user.checkOtp');    
+            }
+        }
+    }
+
+
+    public function checkOtp(){
+        return view('user.layout.codeOtp');
+    }
+    
+    public function activeAcount(Request $request){
+        if($request->isMethod('HEAD'))
+        {
+            $validator = Validator::make($request->all(),[
+                'otp'  => 'required|numeric'
+            ],
+            [
+                'otp.required'=>'Mã OTP đang trống',
+                'otp.numeric' => 'Số điện thoại có định dạng kiểu số'
+            ]);
+            if($validator->fails()){
+                return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput();
+            }else
+            {    
+
+                return redirect('/');    
             }
         }
     }
     
-
 }

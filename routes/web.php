@@ -41,6 +41,8 @@ Route::group(['namespace'=>'User'],function () {
     Route::get('userLogin','userController@userLogin')->name('user.Login');
     Route::get('Resgister','userController@Resgister')->name('user.Resgister');
     Route::get('createUser','userController@createUser')->name('user.createUser');
+    Route::get('checkOtp','userController@checkOtp')->name('user.checkOtp');
+    Route::get('activeAcount','userController@activeAcount')->name('user.activeAcount');
 });
 Route::group(['prefix'=>'Admin','namespace'=>'Ajax','middleware'=>'admin'],function () {
     Route::post('searchuser','ajaxController@searchuser')->name('ajax.searchuser');   

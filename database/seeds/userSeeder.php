@@ -13,7 +13,7 @@ class userSeeder extends Seeder
     {
        DB::table('users')->insert([
            'name'=>'admin',
-           'email'=>'hoang682681@gmail.com',
+           'email'=>'hoang6826812@gmail.com',
            'password'=>password_hash('adminadmin',PASSWORD_DEFAULT),
            'role_id'=> 1,
            'address'=> 'so 19 ngo 449 co nhue 2 Bac tu liem',
@@ -26,7 +26,7 @@ class userSeeder extends Seeder
        ]);
        DB::table('users')->insert([
         'name'=>'user',
-        'email'=>'hoang681682@gmail.com',
+        'email'=>'hoang6816822@gmail.com',
         'password'=>password_hash('adminadmin',PASSWORD_DEFAULT),
         'role_id'=> 1,
         'address'=> 'My dinh nam tu liem ha noi',

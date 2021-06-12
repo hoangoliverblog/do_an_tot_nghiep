@@ -43,7 +43,7 @@
 
 <div class="container">
 <div class="card bg-light">
-<article class="card-body mx-auto" style="max-width: 400px;" id="login_form">
+<article class="card-body mx-auto" style="max-width: 400px;">
 	<h4 class="card-title mt-3 text-center">Tạo tài khoản</h4>
 	<p class="text-center">Tạo tài khoản miễn phí ngay tại đây </p>
 	<p>
@@ -56,7 +56,7 @@
     @if(isset($message_pass))
     {{$message_pass}}
     @endif
-	<form action="{{route('user.createUser')}}" method="POST">
+	<form action="{{route('user.createUser')}}" method="POST" id="login_form">
         @method('HEAD')
         @csrf
         <div class="form-group input-group">
@@ -108,24 +108,8 @@
         <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
         </div> <!-- form-group// -->      
-        <p class="text-center">Bạn đã có tài khoản, xin mời<a href="">Đăng nhập</a> </p>                                                                 
+        <p class="text-center">Bạn đã có tài khoản, xin mời<a href="{{route('user.Login')}}">Đăng nhập</a> </p>                                                                 
     </form>
-</article>
-</div> <!-- card.// -->
-
-</div> 
-<!--container end.//-->
-
-<br><br>
-<article class="bg-secondary mb-3">  
-<div class="card-body text-center">
-    <h3 class="text-white mt-3">Bootstrap 4 UI KIT</h3>
-<p class="h5 text-white">Components and templates  <br> for Ecommerce, marketplace, booking websites 
-and product landing pages</p>   <br>
-<p><a class="btn btn-warning" target="_blank" href="http://bootstrap-ecommerce.com/"> Bootstrap-ecommerce.com  
- <i class="fa fa-window-restore "></i></a></p>
-</div>
-<br><br>
 </article>
 @endsection
 @push('scripts')
