@@ -143,16 +143,7 @@
         </div>
     </div>    
     <!-- ++++++++++++++++ end menu ++++++++++++++++++ -->  
-       
-    <!-- ++++++++++++++++ banner ++++++++++++++++++ -->
-    <div class="banner">
-        <div class="owl-carousel owl-theme">
-            <div class="item slide_img"><img src="{{asset('lib/img/banner_green.jpg')}}" alt=""></div>
-            <div class="item slide_img"><img src="{{asset('lib/img/banner_green.jpg')}}" alt=""></div>
-            <div class="item slide_img"><img src="{{asset('lib/img/banner_green.jpg')}}" alt=""></div>
-        </div>
-    </div>
-    <!-- ++++++++++++++++ end banner ++++++++++++++++++ -->
+    
 
     <!-- ++++++++++++++++ all product ++++++++++++++++++ -->     
 

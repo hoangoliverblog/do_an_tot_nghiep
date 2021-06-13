@@ -23,11 +23,15 @@ class userController extends Controller
         $sp_nb = Product::cursor()->filter(function ($pr) {
             return $pr->price < 30000;
         });
-        return view('user.layout.home',['listsp'=>$pr_new, 'listsp_nb'=>$sp_nb]);
+        $user = Auth::user() ?? '';
+        return view('user.layout.home',['listsp'=>$pr_new, 'listsp_nb'=>$sp_nb,'user'=>$user]);
     }
     public function sanpham($id){
-        return $id;
-        //return view('user.layout.sanpham');
+        $user = Auth::user() ?? '';
+
+        $product = DB::table('products')->find($id);
+
+        return view('user.layout.sanpham',['user'=>$user,'product' => $product]);
     }
     public function userLogin(){
         
@@ -79,24 +83,25 @@ class userController extends Controller
                 {
                         return view('user.layout.Resgister')->with('message_pass','Nhập lại mật khẩu chưa chính xác');
                 }
-                // $userMail = $request->email;
-                // $OTP = rand(100000,999999);
 
-                // User::insert([
-                //     'name'=>$request->name,
-                //     'role_id'=>2,
-                //     'image'=>$request->name ?? 'trong',
-                //     'address'=>$request->address ?? 'trong', 
-                //     'phone'=>$request->phone,
-                //     'gioitinh'=>$request->gioitinh ?? 'trong',
-                //     'otp'=> $OTP,
-                //     'status'=>'noneactive',
-                //     'email'=>$request->email,
-                //     'password'=>password_hash($request->re_password,PASSWORD_DEFAULT),
-                //     'created_at' => new DateTime()
-                // ]);
+                $userMail = $request->email;
+                $OTP = rand(100000,999999);
+                $request->session()->put('user_email',$userMail);
+                User::insert([
+                    'name'=>$request->name,
+                    'role_id'=>2,
+                    'image'=>$request->name ?? 'trong',
+                    'address'=>$request->address ?? 'trong', 
+                    'phone'=>$request->phone,
+                    'gioitinh'=>$request->gioitinh ?? 'trong',
+                    'otp'=> $OTP,
+                    'status'=>'noneactive',
+                    'email'=>$request->email,
+                    'password'=>password_hash($request->re_password,PASSWORD_DEFAULT),
+                    'created_at' => new DateTime()
+                ]);
 
-                // $this->sendEmail($userMail,$OTP);
+                $this->sendEmail($userMail,$OTP);
 
                 return redirect()->route('user.checkOtp');    
             }
@@ -104,7 +109,8 @@ class userController extends Controller
     }
 
 
-    public function checkOtp(){
+    public function checkOtp(Request $request){
+        $a = $request->session()->get('user_email');
         return view('user.layout.codeOtp');
     }
     
@@ -123,11 +129,45 @@ class userController extends Controller
                         ->withErrors($validator)
                         ->withInput();
             }else
-            {    
+            {   
+                $userEmail =  $request->session()->get('user_email') ?? '';
 
-                return redirect('/');    
+                $users = DB::table('users')->where([
+                    ['email', '=', $userEmail ],
+                    ['otp', '=', $request->otp],
+                ])->get();
+
+                if(1 <= count($users))
+                {
+                    DB::table('users')->where('email',$userEmail)->update([
+                        'status' => 'active'
+                    ]);
+                    return redirect('/');    
+                }
+                return redirect()->route("user.checkOtp");    
+                
             }
         }
     }
+
+    public function checkLogin(Request $request){
+        if($request->isMethod('HEAD'))
+        {
+            if(Auth::attempt(['email' => $request->email, 'password' => $request->password,'status'=>'active']))
+            {
+                return redirect('/');
+                
+            }else
+            {
+                return redirect()->route('user.Login')->with('thongbao','Tài khoản hoặc mật khẩu không chính xác');    
+            }   
+            
+        }
+    }
+    public function Logout(){
+        Auth::logout();
+        return redirect('/');  
+    }
+    
     
 }

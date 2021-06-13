@@ -21,7 +21,7 @@
                                         <p>{{$item->desc}}</p>
                                     </div>
                                     <div class="product_price">
-                                        <label><del>{{$item->price}}</del></label>
+                                        <label><del>{{$item->price ?? ''}}</del></label>
                                         <label>{{$item->price - $item->price * $item->sale /100}}</label>
                                     </div>
                                     <div class="product_btn">
@@ -43,7 +43,7 @@
                                 <p>{{$item->desc}}</p>
                             </div>
                             <div class="product_price">
-                                <label><del>{{$item->price}}</del></label>
+                                <label><del>{{$item->price ?? ''}}</del></label>
                                 <label>{{$item->price - $item->price * $item->sale /100}}</label>
                             </div>
                             <div class="product_btn">
@@ -81,7 +81,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="owl-carousel owl-theme" id="owl-carousel_product">
+                {{-- <div class="owl-carousel owl-theme" id="owl-carousel_product">
                     @foreach ($listsp_nb as $item)
                     <div class="item">
                         <div class="owl-product_body">
@@ -100,8 +100,7 @@
                             </div>
                         </div>
                     </div>
-                    @endforeach
-                    
-                </div>
+                    @endforeach 
+                </div> --}}
                 <!-- ++++++++++++++++ end product ++++++++++++++++++ -->     
 @endsection

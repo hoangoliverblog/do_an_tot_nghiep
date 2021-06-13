@@ -1,0 +1,475 @@
+/* @font-face{
+	src:url('../lib/font/OpenSans-Bold.ttf');
+	font-family: opensan ;
+}
+*{
+	border: 0;
+	padding: 0;
+	margin :0;
+	font-family: opensan ;
+} */
+.wapper{
+	width: 80%;
+	margin: 0 auto;
+}
+.left{
+}
+.input-seach{
+
+}
+.seach{
+	padding-top: 3rem;
+}
+.seach input{
+	width: 90%;
+	height: 35px;
+	background-color: none;
+	border-radius: 16px;
+	color: #ed145b;
+	border: 1px solid #ed145b;
+}
+.seach input:focus{
+	border-color: #ed145b;
+	border-style: #ed145b;
+}
+.seach span{
+	margin-left: -2rem;
+	color: #ed145b;
+}
+.right-top{
+	height: 15px;
+	padding-top: 5px;
+}
+.right-top ul{
+
+}
+.right-top ul li{
+	list-style: none;
+	float: left;
+	padding-right: 0.5rem;
+}
+.right-top ul li span{
+	padding-right: 0.4rem;
+}
+.right-top ul li a{
+	text-decoration: none;
+	color: #ed145b;
+	font-size: 13px;
+}
+.icon-color{
+	color: #ed145b;
+}
+.icon-now{
+	width: 30%;
+	float: left;
+}
+.icon-now span{
+	color: #f72268;
+	font-size: 30px;
+
+	/*padding-right: 0.2rem;*/
+}
+.icon-now label{
+	font-size: 13px;
+	margin-left: 0.6rem;
+}
+.right-bottom{
+	margin-top: 2.6rem;
+}
+.final{
+	margin-left: 10%;
+	color: #ed145b;
+}
+.final span{
+	padding: 5px 8px;
+	font-size: 40px;
+}
+/*======================menu======================*/
+
+.navbar-light{
+	background-color: #ed145e;
+}
+.nav-item{
+	padding-left: 2rem;
+}
+.nav-link{
+	color: white !important;
+}
+.nav-link:hover{
+	color: #727070 !important;
+}
+.icon-home{
+	color: white;
+	font-size: 30px;
+	padding-left: 2rem;
+}
+.icon-home span{
+
+
+}
+.dropdown{
+	position: relative;
+	display: inline-block;
+}
+.dropdown-menu{
+	position: absolute;
+	display: none;
+	z-index: 1;
+	top: 1.8rem !important;
+	background-color: #ed145b !important;
+	margin-left: 1.8rem !important;
+	border-radius: 0 !important;
+}
+.dropdown:hover .dropdown-menu{
+	display: block;
+}
+.dropdown-item{
+	color: white !important;
+}
+/*.navbar-light{
+	background-color: gray !important;
+	opacity: 20%;
+}*/
+
+
+/*===================Banner========================*/
+
+.banner{
+	background-image: url('../img/banner.PNG');
+	width: 100%;
+}
+.img-banner{
+	width: 98%;
+	margin: 0 auto;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+}
+.img-banner img{
+	width: 100%;
+	height: auto;
+}
+
+/*===================End-Banner========================*/
+
+
+
+/*===================Sản Phẩm========================*/
+.in-sanpham{
+	width: 90%;
+	margin: 0 auto;
+}
+.in-sanpham-top{
+	margin-top: 1rem;
+}
+.wp-icon{
+	width: 30%;
+	float: left;
+}
+.icon-sanpham{
+	width: 3.8rem;
+	height: 4rem;
+	border: 1px solid #ed145b;
+	border-radius: 50%;
+	display: inline;
+	float: left;
+}
+.icon-sanpham span{
+	padding-left: 0.2rem;
+	font-size: 46px;
+	color: #ed145b;
+}
+.txt-sanpham{
+	width: 70%;
+	float: left;
+	padding-top: 0.5rem;
+	padding-left: 0.4rem;
+}
+.txt-sanpham h6{
+	color: #ed145b;
+	font-size: 14px;
+}
+.txt-sanpham p{
+	font-size: 12px;
+}
+/*===================End_Sản Phẩm========================*/
+
+
+
+/*===================New_Sản_Phẩm========================*/
+.new-sanpham{
+	width: 90%;
+	margin: 0 auto;
+	margin-top: 2rem;
+	margin-bottom: 1rem;
+}
+.NEw-sanpham{
+	text-align: center;
+	color: #ed145b;
+}
+.NEW-sanpham h3 span{
+	color: yellow;
+	padding: 0 5px;
+}
+.NEw-sanpham span{
+	font-size: 20px;
+}
+.NEw-sanpham label{
+	padding: 0 1rem;
+}
+.NEW-sanpham{
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	text-align: center;
+}
+
+/*****Card******/
+
+.NEW-Sanpham {
+    width: 100%;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.NEW-Sanpham h3{
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.NEW-Sanpham h3:hover{
+    color:pink;
+}
+.NEW-Sanpham h4{
+    font-size: 18px; 
+}
+.NEW-Sanpham h4 span{
+    padding: 0 5px;
+    font-size: 10px;
+    background-color: chocolate;
+}
+.NEW-Sanpham div{
+    margin: 1rem 0;    
+}
+
+.NEW-Sanpham .btn-add{
+    background-color: chartreuse;
+    padding: 3px 5px;
+    border-radius: 5px;
+    color: white;
+}
+.NEW-Sanpham .btn-add:hover{
+    background-color: deeppink;
+    color: black;
+}
+.NEW-Sanpham .btn-buy{
+    padding: 3px 5px;
+    background-color: deeppink;
+    border-radius: 5px;
+}
+.NEW-Sanpham .btn-buy:hover{
+    background-color: chartreuse;
+    color: white
+}
+.NEW-Sanpham div input{
+    padding: 0.3rem 0.2rem;
+}
+.NEW-Sanpham div .minus{
+    background-color: gray;
+    padding: 0.2rem 1rem;
+    margin-right: 0.3rem;
+}
+.NEW-Sanpham div .minus:hover{
+    background-color:coral
+}
+.NEW-Sanpham div .sum{
+    background-color: gray;
+    padding: 0.2rem 1rem;
+    margin-left: 0.3rem;
+}
+.NEW-Sanpham div .sum:hover{
+    background-color:coral
+}
+
+/*===================End_New_Sản_Phẩm========================*/
+
+
+
+
+/*=========================================Trang_mỹ_phẩm=============================================*/
+
+.Content-right-title{
+	text-align: center;
+}
+.Banner-my-pham{
+	width: 100%;
+}
+.Banner-my-pham img{
+	width: 100%;
+	height: 20rem;
+}
+.content-right .Control-my-pham{
+	margin-top: 1rem;
+}
+.COntrol-my-pham-left select{
+	width: 100%;
+	height: 40px;
+	margin-bottom: 1rem;
+}
+.CONtrol-my-pham-left span{
+	color: black;
+	font-size: 20px;
+	padding-right: 0.2rem;
+}
+.CONtrol-my-pham-left .active{
+	color: #ed145b !important;
+}
+.CONtrol-my-pham-left span:hover{
+	color: #ed145b;
+}
+.COntrol-my-pham-right input{
+	width: 60%;
+	height: 10px;
+}
+.COntrol-my-pham-right input:focus{
+	background-color: yellow !important;
+}
+.COntrol-my-pham-right button{
+	background-color: yellow;
+	padding: 8px 8px;
+	color: white;
+}
+.CONtrol-my-pham-right label{
+	font-size: 13px;
+	padding-right: 0.3rem;
+}
+.CONtrol-my-pham-right select{
+	font-size: 15px;
+	padding-right: 0.2rem; 
+}
+.sp-my-pham-nhat{
+	margin-bottom: 2rem;
+}
+.sp-my-pham-nhat .NEW-Sanpham .sp-my-pham-nhat-star{
+	text-align: center;
+}
+.sp-my-pham-nhat .NEW-Sanpham .sp-my-pham-nhat-star span{
+	color: yellow;
+	font-size: 16px;
+}
+.Sp-san-pham-nhat{
+	text-align: center;
+	color: #ed145b;
+}
+
+/*==============Content của trang mỹ phẩm=====================*/
+.content{
+	width: 100%;
+	min-height: 600px;
+	background-color: #f8f8f8;
+	margin-top: 1rem;
+}
+.content-left{
+	width: 100%;
+	min-height: 600px;
+}
+.content-right{
+	width: 100%;
+	min-height: 600px;
+}
+/*=======Tieu_de=======*/
+.content-left-title{
+	background-color: #f2f2f2;
+	width: 100%;
+	padding: 8px 13px;
+}
+.content-left-title h6{
+	padding-top: 0.6rem;
+}
+/*======Link liên kêt========*/
+.content-left-item{
+	color: black;
+	background-color: #ffffff;
+}
+.content-left-item ul{
+	padding-left: 0.3rem;
+}
+.content-left-item ul li{
+	list-style: none;
+	padding-top: 0.6rem; 
+}
+.content-left-item ul li a{
+	text-decoration: none;
+	color: black;
+	font-size: 14px;
+	padding-left: 0.3rem;
+}
+.content-left-item ul li a:hover{
+	color: #ed145b;
+}
+/*=====Tieu_de_phải======*/
+.content-right-title{
+	background-color: #f2f2f2;
+	width: 100%;
+	padding: 8px 13px;
+}
+.content-right-title h6{
+	padding-top: 0.6rem;
+}
+.Content-left .COntent-left{
+	padding-top: 2rem;
+}
+.CONtent-left{
+	width: 40%;
+	float: left;
+}
+.CONtent-left img{
+	width: 90%;
+	height: auto;
+	margin: 0 auto;
+}
+.CONTent-left{
+	width: 60%;
+	float: left;
+}
+.CONTent-left p{
+	font-size: 12px;
+	padding-top: 0.2rem;
+}
+.CONTent-left h6{
+	font-size: 11px;
+}
+.CONTent-left h6 del{
+	padding-right: 0.3rem;
+	color: black !important;
+}
+.CONTent-left .gia{
+	color: #ed145b;
+}
+/*==============End-Content=====================*/
+
+
+
+
+
+
+
+
+
+
+/*==============Màn hình smartphone=====================*/
+@media only screen and (max-width: 768px){
+.input-seach{
+	margin-bottom: 2rem;
+}
+.seach{
+	padding-top: 1rem !important;
+}
+.right{
+	margin-bottom: 1.3rem;
+}
+.right-top{
+	padding-bottom: 1rem;
+}
+
+
+}
+/*==============Màn hình smartphone=====================*/
