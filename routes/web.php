@@ -44,7 +44,12 @@ Route::group(['namespace'=>'User'],function () {
     Route::get('checkOtp','userController@checkOtp')->name('user.checkOtp');
     Route::get('activeAcount','userController@activeAcount')->name('user.activeAcount');
     Route::get('checkLogin','userController@checkLogin')->name('user.checkLogin');
+    Route::get('comment','userController@comment')->name('user.comment');
     Route::get('Logout','userController@Logout')->name('user.Logout');
+    Route::get('cosmetics','cosmeticsController@show')->name('cosmetics.show');
+    Route::get('perfume','perfumeController@show')->name('perfume.show');
+    Route::get('ProductSets','ProductSetsController@show')->name('ProductSets.show');
+    Route::get('Trademark','TrademarkController@show')->name('Trademark.show');
 });
 Route::group(['prefix'=>'Admin','namespace'=>'Ajax','middleware'=>'admin'],function () {
     Route::post('searchuser','ajaxController@searchuser')->name('ajax.searchuser');   

@@ -27,6 +27,7 @@ class adminController extends Controller
     }
 
     public function show(){
+        
         if(Auth::check())
         {  
          view()->share('user', Auth::user());

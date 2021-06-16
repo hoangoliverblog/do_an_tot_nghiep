@@ -168,6 +168,12 @@ class userController extends Controller
         Auth::logout();
         return redirect('/');  
     }
+    public function comment(Request $request){
+        if($request->isMethod('HEAD'))
+        {
+            var_dump($request->comment);
+        }
+    }
     
     
 }
