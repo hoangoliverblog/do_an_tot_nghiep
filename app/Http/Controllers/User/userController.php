@@ -8,6 +8,8 @@ use App\Mail\SendMailToUser;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\User;
+use App\Models\Cart;
+use App\Models\Comment;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -28,10 +30,10 @@ class userController extends Controller
     }
     public function sanpham($id){
         $user = Auth::user() ?? '';
-
+        $comment = DB::table('comments')->where('pr_id',1)->paginate(2);
         $product = DB::table('products')->find($id);
 
-        return view('user.layout.sanpham',['user'=>$user,'product' => $product]);
+        return view('user.layout.sanpham',['user'=>$user,'product' => $product,'comment'=>$comment]);
     }
     public function userLogin(){
         
@@ -168,11 +170,80 @@ class userController extends Controller
         Auth::logout();
         return redirect('/');  
     }
-    public function comment(Request $request){
+    public function comment($id,Request $request){
+        if ($request->isMethod('HEAD')) {
+
+            $validator = Validator::make(
+                $request->all(),
+                [
+                    'comment'  => 'required',
+                    'email'=>'email:rfc,dns',
+                ],
+                [
+                    'comment.required' => 'Bạn chưa nhập bình luận nào',
+                    'email.rfc,dns' => 'Sai định dạng email'
+                ]
+            );
+
+            if ($validator->fails()) {
+                return redirect()->back()
+                    ->withErrors($validator)
+                    ->withInput();
+            } else 
+            {
+
+                if(isset(Auth::user()->email))
+                {
+                    $comment = $request->comment  ?? '';
+                    DB::table('comments')->insert([
+                        'user_id' => Auth::user()->id,
+                        'pr_id' => $id,
+                        'content' => $comment,
+                        'created_at' =>  new DateTime(),
+                        'updated_at' => new DateTime()
+                    ]);
+                    return redirect()->back();
+                }
+                
+                $user_id = $request->email ?? '';
+                $comment = $request->comment  ?? '';
+                DB::table('comments')->insert([
+                    'user_id' => 10,
+                    'pr_id' => $id,
+                    'content' => $comment,
+                    'created_at' =>  new DateTime(),
+                    'updated_at' => new DateTime()
+                ]);
+                return redirect()->back();
+                
+            }
+        }
+    }
+
+
+    public function addToCart($id,Request $request){
+        
         if($request->isMethod('HEAD'))
         {
-            var_dump($request->comment);
+            $findProduct = DB::table('products')->find($id);
+            $hd_id = $findProduct->id ?? 1;
+            $name = $findProduct->name;
+            $soluong = $request->soluong;
+            $sum = $request->soluong * $findProduct->price;
+            echo $sum ;
+            DB::table('carts')->insert([
+                'hd_id'      => $hd_id,
+                'name'       => $name,
+                'soluong'    => $soluong,
+                'sum'        => $sum,
+                'status'     => 'Chờ xử lý',
+                'created_at' =>  new DateTime(),
+                'updated_at' => new DateTime()
+            ]);
+            return redirect()->back();
+
         }
+
     }
     
     

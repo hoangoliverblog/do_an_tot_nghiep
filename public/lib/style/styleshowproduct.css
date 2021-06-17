@@ -234,7 +234,9 @@
     font-size: 23px;
     font-weight: bold;
 }
-
+.NEW-Sanpham div input{
+	text-align: center;
+}
 .NEW-Sanpham h3:hover{
     color:pink;
 }
@@ -242,9 +244,10 @@
     font-size: 18px; 
 }
 .NEW-Sanpham h4 span{
-    padding: 0 5px;
+    padding: 3px 5px;
     font-size: 10px;
     background-color: chocolate;
+	border-radius: 0.2rem;
 }
 .NEW-Sanpham div{
     margin: 1rem 0;    

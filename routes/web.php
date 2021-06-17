@@ -44,7 +44,8 @@ Route::group(['namespace'=>'User'],function () {
     Route::get('checkOtp','userController@checkOtp')->name('user.checkOtp');
     Route::get('activeAcount','userController@activeAcount')->name('user.activeAcount');
     Route::get('checkLogin','userController@checkLogin')->name('user.checkLogin');
-    Route::get('comment','userController@comment')->name('user.comment');
+    Route::get('comment/{id}','userController@comment')->name('user.comment');
+    Route::get('addToCart/{id}','userController@addToCart')->name('user.addToCart');
     Route::get('Logout','userController@Logout')->name('user.Logout');
     Route::get('cosmetics','cosmeticsController@show')->name('cosmetics.show');
     Route::get('perfume','perfumeController@show')->name('perfume.show');
