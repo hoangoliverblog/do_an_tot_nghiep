@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Gentelella Alela! | </title>
+    <title>Quản trị</title>
     <script src="https://kit.fontawesome.com/d1bc342d1d.js" crossorigin="anonymous"></script>
     <!-- Ckeditor -->
     <script src="{{asset('ckeditor/ckeditor.js')}}"></script>
@@ -39,10 +39,10 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                <img src="{{asset('img/1617259535_IMG_2517.jpg')}}" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
-                <span>Welcome,</span>
+                <span>{{__('msg.welcome')}}</span>
               <h2>{{$user->name}}</h2>
               </div>
             </div>
@@ -170,7 +170,7 @@
                 <ul class=" navbar-right">
                   <li class="nav-item dropdown open" style="padding-left: 15px;">
                     <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                      <img src="images/img.jpg" alt="">{{$user->name}}
+                      <img src="{{asset('img/1617259535_IMG_2517.jpg')}}" alt="">{{$user->name}}
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item"  href="javascript:;"> Profile</a>
@@ -187,8 +187,8 @@
                       Langguages
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item"  href="{{route('admin.language',['vi'])}}">EN</a>
-                      <a class="dropdown-item"  href="{{route('admin.language',['en'])}}">VI</a>
+                      <a class="dropdown-item"  href="{{route('admin.language',['en'])}}">EN</a>
+                      <a class="dropdown-item"  href="{{route('admin.language',['vi'])}}">VI</a>
                     </div>
                   </li>
   
@@ -314,12 +314,24 @@
       CKEDITOR.replace('edittor_desc');
 
       function edit(){
-        confirm("Bạn có muốn sửa sản phẩm?");
-        // alert('Bạn có muốn sửa sản phẩm?');
+        if(confirm("Bạn có muốn sửa sản phẩm?"))
+        {
+          return true;
+        }
+        else
+        {
+          return false;
+        }
       }
       function xoa(){
-        confirm("Bạn đang muốn xóa sản phẩm?");
-         //alert('Bạn có muốn sửa sản phẩm?');
+        if(confirm("Bạn có muốn xóa sản phẩm?"))
+        {
+          return true;
+        }
+        else
+        {
+          return false;
+        }
       }
     </script>
       <script>

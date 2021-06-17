@@ -14,14 +14,14 @@
                         <div class="row">
                             @foreach ($listsp as $item)
                                 <div class="col-md-3 col-sm-12 col-xs-6 product_body">
-                                    <div class="product_img">
-                                    <img src="{{asset('img')}}{{'/'.$item->img}}" alt="photo">
+                                    <div class="product_img" style="height: 10rem">
+                                        <img src="{{asset('img')}}{{'/'.$item->img}}" alt="photo">
                                     </div>
                                     <div class="product_des">
                                         <p>{{$item->desc}}</p>
                                     </div>
                                     <div class="product_price">
-                                        <label><del>{{$item->price}}</del></label>
+                                        <label><del>{{$item->price ?? ''}}</del></label>
                                         <label>{{$item->price - $item->price * $item->sale /100}}</label>
                                     </div>
                                     <div class="product_btn">
@@ -36,14 +36,14 @@
                     @foreach ($listsp as $item)
                     <div class="item">
                         <div class="owl-product_body">
-                            <div class="product_img">
+                            <div class="product_img" style="height: 10rem">
                                 <img src="{{asset('img')}}{{'/'.$item->img}}" alt="photo">
                             </div>
                             <div class="product_des">
                                 <p>{{$item->desc}}</p>
                             </div>
                             <div class="product_price">
-                                <label><del>{{$item->price}}</del></label>
+                                <label><del>{{$item->price ?? ''}}</del></label>
                                 <label>{{$item->price - $item->price * $item->sale /100}}</label>
                             </div>
                             <div class="product_btn">
@@ -63,7 +63,7 @@
                         <div class="row">
                             @foreach ($listsp_nb as $item)
                                 <div class="col-md-3 col-sm-12 col-xs-6 product_body">
-                                    <div class="product_img">
+                                    <div class="product_img" style="height: 10rem">
                                         <img src="{{asset('img')}}{{'/'.$item->img}}" alt="photo">
                                     </div>
                                     <div class="product_des">
@@ -81,11 +81,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="owl-carousel owl-theme" id="owl-carousel_product">
+                {{-- <div class="owl-carousel owl-theme" id="owl-carousel_product">
                     @foreach ($listsp_nb as $item)
                     <div class="item">
                         <div class="owl-product_body">
-                            <div class="product_img">
+                            <div class="product_img" style="height: 10rem">
                                 <img src="{{asset('img')}}{{'/'.$item->img}}" alt="">
                             </div>
                             <div class="product_des">
@@ -100,8 +100,7 @@
                             </div>
                         </div>
                     </div>
-                    @endforeach
-                    
-                </div>
+                    @endforeach 
+                </div> --}}
                 <!-- ++++++++++++++++ end product ++++++++++++++++++ -->     
 @endsection

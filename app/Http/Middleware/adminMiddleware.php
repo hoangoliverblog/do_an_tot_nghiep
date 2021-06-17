@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 use Illuminate\Support\Facades\Auth;
 
 use Closure;
+use Mockery\CountValidator\AtMost;
 
 class adminMiddleware
 {
@@ -16,7 +17,7 @@ class adminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::check())
+        if(Auth::check() & Auth::user()->role_id == 1)
         {
             return $next($request);
         }

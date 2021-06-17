@@ -16,8 +16,7 @@ class xeploaiController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $lxl = xeploai::paginate(7) ?? [];
-        
+        $lxl = xeploai::paginate(10) ?? [];
         return view('admin.layout.xeploai',['user'=>$user,'lxl'=>$lxl]);
     }
 

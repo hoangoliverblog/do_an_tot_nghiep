@@ -18,10 +18,13 @@ class loaisanphamSeeder extends Seeder
             'name'=>'quần áo'
         ]);
         DB::table('loaisanphams')->insert([
-            'name'=>'đồ điện tử'
+            'name'=>'mỹ phẩm'
         ]);
         DB::table('loaisanphams')->insert([
-            'name'=>'sách giáo dục'
+            'name'=>'bộ sản phẩm'
+        ]);
+        DB::table('loaisanphams')->insert([
+            'name'=>'thương hiệu nổi tiếng'
         ]);
     }
 }

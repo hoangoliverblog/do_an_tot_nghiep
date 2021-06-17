@@ -16,6 +16,7 @@ class cartSeeder extends Seeder
             'name'=>'hóa đơn thanh toan',
             'soluong'=>2,
             'sum'=>0,
+            'status'=>'chưa giao',
             'created_at'=>new DateTime()
         ]);
         DB::table('carts')->insert([
@@ -23,6 +24,7 @@ class cartSeeder extends Seeder
             'name'=>'hóa đơn thanh toán ',
             'soluong'=>3,
             'sum'=>0,
+            'status'=>'đã thanh toán',
             'created_at'=>new DateTime()
         ]);
     }

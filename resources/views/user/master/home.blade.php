@@ -33,8 +33,12 @@
                 <div class="col-xl-6">
                     <div class="directory">
                         <ul>
-                            <li><span><i class="fas fa-user"></i></span><a href="">Đăng nhập</a></li>
-                            <li><span><i class="fas fa-users"></i></span><a id="resgiter"href="">Đăng kí</a></li>
+                            <li><span><i class="fas fa-user"></i></span><a href="{{route('user.Logout')}}">Đăng xuất</a></li>
+                            <li><span><i class="fas fa-user"></i></span><a href="{{route('user.Login')}}">{{$user->name ?? 'Đăng nhập'}}</a></li>
+                            @if (!isset($user->name))
+                                <li><span><i class="fas fa-users"></i></span><a id="resgiter" href="{{route('user.Resgister')}}">Đăng kí</a></li>    
+                            @endif
+                            
                             <li><span><i class="fas fa-dollar-sign"></i></span><a href="">Thanh toán</a></li>
                         </ul>
                     </div>
@@ -57,7 +61,7 @@
                 <div class="col-xl-12 menu">
                     <ul class="root_menu">
                         <li class="root_home">
-                            <a href="">Trang chủ</a>
+                          <a href="{{asset('/')}}">Trang chủ</a>
                             <div class="menu_dropdown">
                                 <div class="row">
                                     <div class="col-xl-3 col-md-3 col-sm-3">
@@ -131,11 +135,11 @@
                             </div>
                         </li>
                         <li>
-                            <a href="">Mỹ phẩm</a>
+                        <a href="{{route('cosmetics.show')}}">Mỹ phẩm</a>
                         </li>
-                        <li><a href="">Nước hoa</a></li>
-                        <li><a href="">Thương hiệu</a></li>
-                        <li><a href="">Bộ sản phẩm</a></li>
+                        <li><a href="{{route('perfume.show')}}">Nước hoa</a></li>
+                        <li><a href="{{route('Trademark.show')}}">Thương hiệu</a></li>
+                        <li><a href="{{route('ProductSets.show')}}">Bộ sản phẩm</a></li>
                     </ul>
                 </div>
             </div>

@@ -19,6 +19,7 @@ class CreateCartsTable extends Migration
             $table->string('name');
             $table->integer('soluong');
             $table->integer('sum');
+            $table->string('status');
             $table->timestamps();
         });
     }
