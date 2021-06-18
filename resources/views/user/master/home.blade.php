@@ -25,7 +25,7 @@
                         <a href="{{asset('/')}}"><img src="{{asset('lib/img/final_logo.jpg')}}" alt="logo"></a>
                         </div>
                         <div class="col-sm-6 brand_search">
-                            <input type="text">
+                            <input type="text" name="searchProduct">
                             <span><i class="fas fa-search"></i></span>    
                         </div>
                     </div>

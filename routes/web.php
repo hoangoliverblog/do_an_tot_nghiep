@@ -51,6 +51,7 @@ Route::group(['namespace'=>'User'],function () {
     Route::get('perfume','perfumeController@show')->name('perfume.show');
     Route::get('ProductSets','ProductSetsController@show')->name('ProductSets.show');
     Route::get('Trademark','TrademarkController@show')->name('Trademark.show');
+    Route::get('showBuy/{id}','userController@showBuy')->name('user.showBuy');
 });
 Route::group(['prefix'=>'Admin','namespace'=>'Ajax','middleware'=>'admin'],function () {
     Route::post('searchuser','ajaxController@searchuser')->name('ajax.searchuser');   

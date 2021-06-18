@@ -258,7 +258,7 @@ body{
                         <h6 class="Content-right-title">Thông tin chi tiết về sản phẩm</h6>
                     </div>
                     <div class="Banner-my-pham">
-                        <img src="{{asset('img/1623332171_nuoc-hoa-ban-chay-nhat.png')}}">
+                        <img src="{{asset('img')}}{{'/'.$product->img}}">
                     </div>
                     <div class="row">
                     	<div class="col-md-12 sp-my-pham-nhat">
@@ -284,7 +284,7 @@ body{
                             </div>
                             <div>
                                 <button class="btn-add" type="submit">Thêm vào giỏ</button>
-                                <button class="btn-buy">Mua ngay</button>
+                                <a href="{{route('user.showBuy',['id'=>$product->id])}}" class="btn-buy">Mua ngay</a>
                             </div>
 			    		        	  </div>                    
                         </form>

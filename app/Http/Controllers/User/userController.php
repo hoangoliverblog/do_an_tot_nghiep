@@ -226,11 +226,10 @@ class userController extends Controller
         if($request->isMethod('HEAD'))
         {
             $findProduct = DB::table('products')->find($id);
-            $hd_id = $findProduct->id ?? 1;
+            $hd_id = '';
             $name = $findProduct->name;
             $soluong = $request->soluong;
             $sum = $request->soluong * $findProduct->price;
-            echo $sum ;
             DB::table('carts')->insert([
                 'hd_id'      => $hd_id,
                 'name'       => $name,
@@ -244,6 +243,12 @@ class userController extends Controller
 
         }
 
+    }
+
+    public function showBuy($id){
+        $product = DB::table('products')->find($id);
+        $user = Auth::user() ?? '';
+        return view('user.layout.showBuy',['product'=>$product,'user'=>$user]);
     }
     
     
