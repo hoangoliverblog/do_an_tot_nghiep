@@ -279,8 +279,8 @@ body{
                             <p>{{$product->desc}}</p>
                             <div>
                                 <span class="minus" id="minus">-</span>
-                                <input type="text" name="soluong" value="1" readonly>
-                                <span class="sum" id="sum" onclick="sum()">+</span>
+                                <input type="text" name="soluong" value="1"  readonly>
+                                <span class="sum" id="sum">+</span>
                             </div>
                             <div>
                                 <button class="btn-add" type="submit">Thêm vào giỏ</button>
@@ -291,7 +291,7 @@ body{
 	                    </div>
                     </div>
                 </div>
-                <div>
+                <div style="padding-left:1rem">
                     <h4>Thêm thông số về sản phẩm :</h4>
                     <h5>Mã sản phẩm :{{$product->id}}</h5>
                     <h5>Lượt xem :</h5>
@@ -311,14 +311,14 @@ body{
                 <div class="comment-form">
                   <!-- Comment Avatar -->
                   <div class="comment-avatar">
-                    <img src="http://lorempixel.com/200/200/people">
+                    <img src="{{asset('img/1623332171_nuoc-hoa-ban-chay-nhat.png')}}">
                   </div>
               
                   <form class="form" action="{{route('user.comment',['id'=>$product->id])}}" method="POST" name="form" ng-submit="form.$valid && cmntCtrl.addComment()" novalidate>
                     @csrf
                     @method('HEAD')
                     <div class="form-row">
-                      <textarea
+                      <textarea 
                                 name="comment"
                                 class="input"
                                 ng-model="cmntCtrl.comment.text"
@@ -415,8 +415,6 @@ body{
 @endsection
 @push('scripts')
 <script>
-  
-    
 </script>
 @endpush
 

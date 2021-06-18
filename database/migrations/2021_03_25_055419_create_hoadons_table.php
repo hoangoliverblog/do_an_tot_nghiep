@@ -16,8 +16,13 @@ class CreateHoadonsTable extends Migration
         Schema::create('hoadons', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('pr_id');
-            $table->integer('user_id');
-            $table->integer('sum');
+            $table->integer('user_id')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
+            $table->string('city')->nullable();
+            $table->string('zipcode')->nullable();
+            $table->integer('sum')->nullable();
             $table->timestamps();
         });
     }

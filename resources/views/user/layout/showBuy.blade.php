@@ -52,9 +52,16 @@
                     <div class="Banner-my-pham">
                         <img src="{{asset('img')}}{{'/'.$product->img}}">
                     </div>
+                    @if (\Session::has('msg'))
+                    <div class="alert alert-success">
+                        <ul>
+                            <li>{!! \Session::get('msg') !!}</li>
+                        </ul>
+                    </div>
+                     @endif
                     <div class="row">
                     	<div class="col-md-12 sp-my-pham-nhat">
-                        <form action="{{route('user.addToCart',['id'=>$product->id])}}" method="POST">
+                        <form action="{{route('user.buyProduct',['id'=>$product->id])}}" method="POST">
                           @csrf
                           @method('HEAD')
 	                    	  <div class="NEW-Sanpham">
@@ -68,55 +75,41 @@
                             </h4>
                             <p>{{$product->thongtin}}</p> 
                             @if (!isset($user->email))
-                            <form class="contact_user">
                                 <div class="form-row">
                                   <div class="form-group col-md-6">
                                     <label for="inputEmail4" style="float: left;">Email</label>
-                                    <input type="email" class="form-control" id="inputEmail4">
+                                    <input type="email" class="form-control" id="inputEmail4" name="email">
                                   </div>
                                   <div class="form-group col-md-6">
-                                    <label for="inputPassword4" style="float: left;">Password</label>
-                                    <input type="password" class="form-control" id="inputPassword4">
+                                    <label for="inputPassword4" style="float: left;">Số điện thoại</label>
+                                    <input type="text" class="form-control" id="inputPassword4" name="phone">
                                   </div>
                                 </div>
                                 <div class="form-group">
-                                  <label for="inputAddress" style="float: left;">Address</label>
-                                  <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-                                </div>
-                                <div class="form-group">
-                                  <label for="inputAddress2" style="float: left;">Address 2</label>
-                                  <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                                  <label for="inputAddress" style="float: left;">Địa chỉ</label>
+                                  <input type="text" class="form-control" id="inputAddress" name="address">
                                 </div>
                                 <div class="form-row">
                                   <div class="form-group col-md-6">
-                                    <label for="inputCity" style="float: left;">City</label>
-                                    <input type="text" class="form-control" id="inputCity">
-                                  </div>
-                                  <div class="form-group col-md-4">
-                                    <label for="inputState" style="float: left;">State</label>
-                                    <select id="inputState" class="form-control">
-                                      <option selected>Choose...</option>
-                                      <option>...</option>
-                                    </select>
+                                    <label for="inputCity" style="float: left;">Thành phố</label>
+                                    <input type="text" class="form-control" id="inputCity" name="city">
                                   </div>
                                   <div class="form-group col-md-2">
-                                    <label for="inputZip">Zip</label>
-                                    <input type="text" class="form-control" id="inputZip">
+                                    <label for="inputZip">Mã bưu điện</label>
+                                    <input type="text" class="form-control" id="inputZip" name="zipcode">
                                   </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Mua hàng</button>
-                              </form>
                             @endif                               
                             <div>
                                 <h4>Số lượng</h4>
                                 <span class="minus" id="minus">-</span>
-                                <input type="text" name="soluong" value="1" readonly>
-                                <span class="sum" id="sum" onclick="sum()">+</span>
+                                <input type="text" name="soluong" id="soluong" value="3" readonly>
+                                <span class="sum" id="sum">+</span>
                             </div>
                             <div>
                                 <button class="btn-add" type="submit">Chọn mua sản phẩm</button>
                             </div>
-			    		    </div>                    
+			    		            </div>                    
                         </form>
 	                    </div>
                     </div>
@@ -132,7 +125,8 @@
 @endsection
 @push('scripts')
 <script>
-
+  a = document.getElementById('soluong').value;
+  console.log(a);
 </script>
 @endpush
 

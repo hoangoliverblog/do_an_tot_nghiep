@@ -225,8 +225,13 @@ class userController extends Controller
         
         if($request->isMethod('HEAD'))
         {
+            if(!isset(Auth::user()->email))
+            {
+                $request->session()->put('name', session_id());
+            }
+            
             $findProduct = DB::table('products')->find($id);
-            $hd_id = '';
+            $hd_id = 1;
             $name = $findProduct->name;
             $soluong = $request->soluong;
             $sum = $request->soluong * $findProduct->price;
@@ -239,10 +244,10 @@ class userController extends Controller
                 'created_at' =>  new DateTime(),
                 'updated_at' => new DateTime()
             ]);
-            return redirect()->back();
+            return redirect()->route('user.showCart',['id'=>$id]);
 
         }
-
+            
     }
 
     public function showBuy($id){
@@ -250,6 +255,71 @@ class userController extends Controller
         $user = Auth::user() ?? '';
         return view('user.layout.showBuy',['product'=>$product,'user'=>$user]);
     }
+    public function buyProduct($id , Request $request){
     
+        if($request->isMethod('HEAD'))
+        {
+            $validator = Validator::make($request->all(),[
+                'email'     =>'required|min:9|max:30|email:rfc,dns',
+                'phone'     => 'required|min:3|numeric',
+                'address'   => 'required',
+                'city'      => 'required',
+                'zipcode'   => 'numeric'
+            ],
+            [
+                'email.required'=>'Email không được để trống',
+                'email.min'=>'Email có độ dài từ 9 đến 30 kí tự',
+                'email.max'=>'Email có độ dài từ 9 đến 30 kí tự',
+                'email.email'=>'Định dạng nhập vào có dạng abc@gmail.com',
+                'address.required'=>'Địa chỉ không được để trống',
+                'city.required'=>'Mật khẩu không được để trống',
+                'phone.numeric' => 'Số điện thoại có định dạng kiểu số',
+                'phone.required' => 'Số điện thoại không được để trống',
+                'phone.min' => 'Số điện thoại có độ dài tối thiểu là 10 chữ số',
+                'zipcode.numeric'   => 'Mã bưu điện là kiểu số'
+            ]);
+
+            if($validator->fails()){
+                return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput();
+            }else
+            { 
+
+                $pr_id       = $id ;
+                $user_id     = Auth::user()->id ?? 10;
+                $email       = $request->email ?? '';
+                $phone       = $request->phone ?? '';
+                $address     = $request->address ?? '';
+                $city        = $request->city ?? '';
+                $product     = DB::table('products')->find($id);
+                $zipcode     = $request->zipcode;
+                $sum         = $product->price * $request->soluong;
+                
+                DB::table('hoadons')->insert([
+                    'pr_id'      => $pr_id,
+                    'user_id'    => $user_id,
+                    'email'      => $email,
+                    'phone'      => $phone,
+                    'address'    => $address,
+                    'city'       => $city,
+                    'zipcode'    => $zipcode,
+                    'sum'        => $sum,
+                    'created_at' =>  new DateTime(),
+                    'updated_at' => new DateTime()
+                    ]);
+                return redirect()->back()->with('msg','Một email chi tiết mua hàng đã được gửi tới bạn.');    
+            }
+        }
+       
+    }
+
+    public function showCart($id,Request $request)
+    {
+        if ($request->session()->has('name')) {
+            $name =  $request->session()->has('name');
+        }
+        return view('user.layout.showCart');
+    }
     
 }
