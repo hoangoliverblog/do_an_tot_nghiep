@@ -54,9 +54,7 @@
                     </div>
                     @if (\Session::has('msg'))
                     <div class="alert alert-success">
-                        <ul>
-                            <li>{!! \Session::get('msg') !!}</li>
-                        </ul>
+                        <h4>{!! \Session::get('msg') !!}</h4>
                     </div>
                      @endif
                     <div class="row">

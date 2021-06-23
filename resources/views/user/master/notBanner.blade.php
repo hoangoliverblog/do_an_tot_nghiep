@@ -44,7 +44,7 @@
                     <div class="hot_new" >
                         <div class="hot_new_cart">
                             <span><i class="fas fa-female"></i><a href="">Bí quyết làm đẹp</a></span>
-                            <span><i class="fas fa-shopping-cart"></i></span>
+                            <span><a href="{{route('user.showCart',[$user->id ?? 10])}}"><i class="fas fa-shopping-cart"></i></a></span>
                         </div>
                     </div>
                 </div>

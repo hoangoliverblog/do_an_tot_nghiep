@@ -10,7 +10,7 @@ class Cart extends Model
     protected $table = 'carts';
 
     protected $fillable = [
-        'hd_id','name','soluong','sum','status'
+        'user_id','hd_id','name','soluong','sum','status'
     ];
 
     public $timestamps = false;

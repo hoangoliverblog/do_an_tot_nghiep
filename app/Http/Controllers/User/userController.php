@@ -181,7 +181,7 @@ class userController extends Controller
                 ],
                 [
                     'comment.required' => 'Bạn chưa nhập bình luận nào',
-                    'email.rfc,dns' => 'Sai định dạng email'
+                    'email.rfc,dns'    => 'Sai định dạng email'
                 ]
             );
 
@@ -222,12 +222,12 @@ class userController extends Controller
 
 
     public function addToCart($id,Request $request){
-        
         if($request->isMethod('HEAD'))
         {
-            if(!isset(Auth::user()->email))
+            if(!Auth::check())
             {
-                $request->session()->put('name', session_id());
+                $request->session()->put('name',session()->getId()); 
+                $userIdIfNotLogin = session()->getId();
             }
             
             $findProduct = DB::table('products')->find($id);
@@ -235,8 +235,10 @@ class userController extends Controller
             $name = $findProduct->name;
             $soluong = $request->soluong;
             $sum = $request->soluong * $findProduct->price;
+            // var_dump($userIdIfNotLogin);
             DB::table('carts')->insert([
                 'hd_id'      => $hd_id,
+                'user_id'    => Auth::user()->id ?? $userIdIfNotLogin,
                 'name'       => $name,
                 'soluong'    => $soluong,
                 'sum'        => $sum,
@@ -259,25 +261,36 @@ class userController extends Controller
     
         if($request->isMethod('HEAD'))
         {
-            $validator = Validator::make($request->all(),[
-                'email'     =>'required|min:9|max:30|email:rfc,dns',
-                'phone'     => 'required|min:3|numeric',
-                'address'   => 'required',
-                'city'      => 'required',
-                'zipcode'   => 'numeric'
-            ],
-            [
-                'email.required'=>'Email không được để trống',
-                'email.min'=>'Email có độ dài từ 9 đến 30 kí tự',
-                'email.max'=>'Email có độ dài từ 9 đến 30 kí tự',
-                'email.email'=>'Định dạng nhập vào có dạng abc@gmail.com',
-                'address.required'=>'Địa chỉ không được để trống',
-                'city.required'=>'Mật khẩu không được để trống',
-                'phone.numeric' => 'Số điện thoại có định dạng kiểu số',
-                'phone.required' => 'Số điện thoại không được để trống',
-                'phone.min' => 'Số điện thoại có độ dài tối thiểu là 10 chữ số',
-                'zipcode.numeric'   => 'Mã bưu điện là kiểu số'
-            ]);
+            if(!isset(Auth::user()->name))
+            {
+                $validator = Validator::make($request->all(),[
+                    'email'     =>'required|min:9|max:30|email:rfc,dns',
+                    'phone'     => 'required|min:3|numeric',
+                    'address'   => 'required',
+                    'city'      => 'required',
+                    'zipcode'   => 'numeric'
+                ],
+                [
+                    'email.required'=>'Email không được để trống',
+                    'email.min'=>'Email có độ dài từ 9 đến 30 kí tự',
+                    'email.max'=>'Email có độ dài từ 9 đến 30 kí tự',
+                    'email.email'=>'Định dạng nhập vào có dạng abc@gmail.com',
+                    'address.required'=>'Địa chỉ không được để trống',
+                    'city.required'=>'Mật khẩu không được để trống',
+                    'phone.numeric' => 'Số điện thoại có định dạng kiểu số',
+                    'phone.required' => 'Số điện thoại không được để trống',
+                    'phone.min' => 'Số điện thoại có độ dài tối thiểu là 10 chữ số',
+                    'zipcode.numeric'   => 'Mã bưu điện là kiểu số'
+                ]);
+            }
+            else
+            {
+                $validator = Validator::make($request->all(),[
+                ],
+                [
+                ]);
+            }
+            
 
             if($validator->fails()){
                 return redirect()->back()
@@ -288,9 +301,9 @@ class userController extends Controller
 
                 $pr_id       = $id ;
                 $user_id     = Auth::user()->id ?? 10;
-                $email       = $request->email ?? '';
-                $phone       = $request->phone ?? '';
-                $address     = $request->address ?? '';
+                $email       = $request->email ?? Auth::user()->email;
+                $phone       = $request->phone ?? Auth::user()->phone;
+                $address     = $request->address ?? Auth::user()->address;
                 $city        = $request->city ?? '';
                 $product     = DB::table('products')->find($id);
                 $zipcode     = $request->zipcode;
@@ -308,6 +321,24 @@ class userController extends Controller
                     'created_at' =>  new DateTime(),
                     'updated_at' => new DateTime()
                     ]);
+                $timeBuy = new DateTime();
+                $timeBuy = $timeBuy->format("Y-m-d H:i:s");
+                $purchasedProductData  = [
+                    "id"        =>  $product->id,
+                    "name"      =>  $product->name,
+                    "price"     =>  $product->price,
+                    "soluong"   =>  $request->soluong,
+                    "thongtin"  =>  $product->thongtin,
+                    "sum"       =>  $sum,
+                    "img"       =>  $product->img,
+                    "sale"      =>  $product->sale,
+                    "timeBuy"   =>  $timeBuy,
+                    "address"   =>  $address,
+                    "phone"     =>  $phone
+                ];
+
+                $this->sendBill($email,$purchasedProductData);
+
                 return redirect()->back()->with('msg','Một email chi tiết mua hàng đã được gửi tới bạn.');    
             }
         }
@@ -316,10 +347,16 @@ class userController extends Controller
 
     public function showCart($id,Request $request)
     {
-        if ($request->session()->has('name')) {
-            $name =  $request->session()->has('name');
+        $user = Auth::user() ?? '';
+        if(Auth::check())
+        {
+            $cart = DB::table('carts')->where('user_id', '=', $id)->get();
         }
-        return view('user.layout.showCart');
+        else
+        {
+            $cart = DB::table('carts')->where('user_id', '=', $request->session()->get('name'))->get();
+        }
+        return view('user.layout.showCart',['data'=>$cart,'user'=>$user]);
     }
     
 }
