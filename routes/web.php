@@ -54,6 +54,7 @@ Route::group(['namespace'=>'User'],function () {
     Route::get('showBuy/{id}','userController@showBuy')->name('user.showBuy');
     Route::get('showCart/{id}','userController@showCart')->name('user.showCart');
     Route::get('buyProduct/{id}','userController@buyProduct')->name('user.buyProduct');
+    Route::get('deleteProductsInCart/{id}','userController@deleteProductsInCart')->name('user.deleteProductsInCart');
 });
 Route::group(['prefix'=>'Admin','namespace'=>'Ajax','middleware'=>'admin'],function () {
     Route::post('searchuser','ajaxController@searchuser')->name('ajax.searchuser');   

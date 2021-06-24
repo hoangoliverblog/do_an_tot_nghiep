@@ -44,7 +44,7 @@
                     <div class="hot_new" >
                         <div class="hot_new_cart">
                             <span><i class="fas fa-female"></i><a href="">Bí quyết làm đẹp</a></span>
-                            <span><a href="{{route('user.showCart',[$user->id ?? 10])}}"><i class="fas fa-shopping-cart"></i></a></span>
+                            <span><a href="{{route('user.showCart',[$user->id ?? 'default'])}}"><i class="fas fa-shopping-cart">{{$countProductInCart}}</i></a></span>
                         </div>
                     </div>
                 </div>
@@ -213,5 +213,27 @@
 <script src="{{asset('lib/bootstrap/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('lib/style/owl.carousel.min.js')}}"></script>
 <script src="{{asset('lib/style/Homejs.js')}}"></script>
+<script>
+    function edit(){
+        if(confirm("Bạn có muốn sửa sản phẩm?"))
+        {
+          return true;
+        }
+        else
+        {
+          return false;
+        }
+      }
+      function xoa(){
+        if(confirm("Bạn có muốn xóa sản phẩm?"))
+        {
+          return true;
+        }
+        else
+        {
+          return false;
+        }
+      }
+</script>
 </body>
 </html>

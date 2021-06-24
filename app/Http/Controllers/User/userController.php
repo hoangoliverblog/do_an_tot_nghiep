@@ -14,25 +14,32 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use DateTime;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Mail;
 
 class userController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
 
         $pr_new = Product::paginate(5);
 
         $sp_nb = Product::cursor()->filter(function ($pr) {
             return $pr->price < 30000;
         });
+        $productUserId = Auth::user()->id ?? $request->session()->get('name');
+        $countProductInCart = DB::table('carts')->where('user_id','=',$productUserId)->count();
+        $request->session()->put('countProductInCart',$countProductInCart);
+
         $user = Auth::user() ?? '';
-        return view('user.layout.home',['listsp'=>$pr_new, 'listsp_nb'=>$sp_nb,'user'=>$user]);
+        return view('user.layout.home',['listsp'=>$pr_new, 'listsp_nb'=>$sp_nb,'user'=>$user,'countProductInCart'=>$countProductInCart]);
     }
-    public function sanpham($id){
+    public function sanpham($id,Request $request){
         $user = Auth::user() ?? '';
         $comment = DB::table('comments')->where('pr_id',1)->paginate(2);
         $product = DB::table('products')->find($id);
-
+        if ($request->session()->has('countProductInCart')) {
+            View::share('countProductInCart', $request->session()->get('countProductInCart', ''));
+        }
         return view('user.layout.sanpham',['user'=>$user,'product' => $product,'comment'=>$comment]);
     }
     public function userLogin(){
@@ -252,9 +259,12 @@ class userController extends Controller
             
     }
 
-    public function showBuy($id){
+    public function showBuy($id,Request $request){
         $product = DB::table('products')->find($id);
         $user = Auth::user() ?? '';
+        if ($request->session()->has('countProductInCart')) {
+            View::share('countProductInCart', $request->session()->get('countProductInCart', ''));
+        }
         return view('user.layout.showBuy',['product'=>$product,'user'=>$user]);
     }
     public function buyProduct($id , Request $request){
@@ -356,7 +366,16 @@ class userController extends Controller
         {
             $cart = DB::table('carts')->where('user_id', '=', $request->session()->get('name'))->get();
         }
+        if ($request->session()->has('countProductInCart')) {
+            View::share('countProductInCart', $request->session()->get('countProductInCart', ''));
+        }
         return view('user.layout.showCart',['data'=>$cart,'user'=>$user]);
+    }
+
+    public function deleteProductsInCart($id)
+    {
+        DB::table('carts')->where('id', '=', $id)->delete();
+        return redirect()->back();
     }
     
 }

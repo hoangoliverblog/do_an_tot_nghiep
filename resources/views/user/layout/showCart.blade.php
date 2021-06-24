@@ -23,12 +23,8 @@
             <td>{{$item->sum}}</td>
             <td>{{$item->created_at}}</td>
             <td>
-                <span><a onclick="return edit()" href="" style="color:#43c943"><i class="fas fa-edit"></i></a></span>
-                <form action="" method="POST" onsubmit="return xoa()">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit"><span><a href="" style="color:#43c943"><i class="fas fa-trash-alt"></i></a></span></button>
-                </form>
+                <span><a onclick="return edit()" href="{{route('user.showCart',['id'=>$item->id])}}" style="color:#43c943"><i class="fas fa-edit"></i></a></span>
+                <span><a onclick="return xoa()" href="{{route('user.deleteProductsInCart',['id'=>$item->id])}}" style="color:#43c943"><i class="fas fa-trash-alt"></i></a></span>
             </td>
         </tr>
         @endforeach
@@ -37,6 +33,7 @@
 @endsection
 @push('scripts')
 <script>
+  
 </script>
 @endpush
 
