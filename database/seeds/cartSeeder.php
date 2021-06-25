@@ -11,23 +11,17 @@ class cartSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('carts')->insert([
-            'hd_id'=>1,
-            'user_id'=>1,
-            'name'=>'hóa đơn thanh toan',
-            'soluong'=>2,
-            'sum'=>0,
-            'status'=>'chưa giao',
-            'created_at'=>new DateTime()
-        ]);
-        DB::table('carts')->insert([
-            'hd_id'=>2,
-            'user_id'=>2,
-            'name'=>'hóa đơn thanh toán ',
-            'soluong'=>3,
-            'sum'=>0,
-            'status'=>'đã thanh toán',
-            'created_at'=>new DateTime()
-        ]);
+        $faker = Faker\Factory::create();
+        for ($i=0; $i < 100; $i++) { 
+            DB::table('carts')->insert([
+                'hd_id'=>2,
+                'user_id'=>2,
+                'name'=> $faker->name,
+                'soluong'=>$faker->numberBetween($min = 10, $max = 2000),
+                'sum'=>$faker->randomNumber($nbDigits = NULL, $strict = false),
+                'status'=>'chưa thanh toán',
+                'created_at'=>new DateTime()
+            ]);
+        }
     }
 }

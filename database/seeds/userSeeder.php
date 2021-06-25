@@ -36,6 +36,25 @@ class userSeeder extends Seeder
         'gioitinh'=>'nam',
         'otp'=> 999998,
         'created_at'=>new DateTime()
-    ]);
+        ]);
+
+        $faker = Faker\Factory::create();
+        for ($i=0; $i < 100; $i++) { 
+            DB::table('users')->insert([
+                'name'=>$faker->userName,
+                'email'=>$faker->freeEmail,
+                'password'=>password_hash($faker->password,PASSWORD_DEFAULT),
+                'role_id'=> 2,
+                'address'=> $faker->address,
+                'image'  => $faker->numberBetween($min = 1, $max = 10).'_user.jpg',
+                'phone'=> $faker->phoneNumber,
+                'status'=>'active',
+                'gioitinh'=>'nam',
+                'otp'=> $faker->numberBetween($min = 100000, $max = 999999),
+                'created_at'=>new DateTime()
+                ]);
+        
+        }
+
     }
 }

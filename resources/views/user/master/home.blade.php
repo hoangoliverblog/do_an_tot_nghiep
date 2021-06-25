@@ -25,7 +25,7 @@
                         <a href="{{asset('/')}}"><img src="{{asset('lib/img/final_logo.jpg')}}" alt="logo"></a>
                         </div>
                         <div class="col-sm-6 brand_search">
-                            <input type="text" name="searchProduct">
+                            <input type="text" name="searchProduct" id="searchProduct">
                             <span><i class="fas fa-search"></i></span>    
                         </div>
                     </div>
@@ -33,19 +33,29 @@
                 <div class="col-xl-6">
                     <div class="directory">
                         <ul>
+                            @if (isset($user->name))
                             <li><span><i class="fas fa-user"></i></span><a href="{{route('user.Logout')}}">Đăng xuất</a></li>
+                            @endif
                             <li><span><i class="fas fa-user"></i></span><a href="{{route('user.Login')}}">{{$user->name ?? 'Đăng nhập'}}</a></li>
                             @if (!isset($user->name))
                                 <li><span><i class="fas fa-users"></i></span><a id="resgiter" href="{{route('user.Resgister')}}">Đăng kí</a></li>    
                             @endif
-                            
                             <li><span><i class="fas fa-dollar-sign"></i></span><a href="">Thanh toán</a></li>
                         </ul>
                     </div>
                     <div class="hot_new" >
                         <div class="hot_new_cart">
                             <span><i class="fas fa-female"></i><a href="">Bí quyết làm đẹp</a></span>
-                            <span><a href="{{route('user.showCart',[$user->id ?? 'default'])}}"><i class="fas fa-shopping-cart"></i><i class="hot_new_cart_i_count">{{$countProductInCart}}</i></a></span>
+                            <span>
+                                <a href="{{route('user.showCart',[$user->id ?? 'default'])}}">
+                                    <i class="fas fa-shopping-cart">
+                                        {{-- {{$countProductInCart ?? ''}} --}}
+                                        @if(isset($countProductInCart) && $countProductInCart > 0)
+                                            +
+                                        @endif
+                                    </i>
+                                </a>
+                            </span>
                         </div>
                     </div>
                 </div>

@@ -26,5 +26,11 @@ class loaisanphamSeeder extends Seeder
         DB::table('loaisanphams')->insert([
             'name'=>'thương hiệu nổi tiếng'
         ]);
+        $faker = Faker\Factory::create();
+        for ($i=0; $i < 100; $i++) { 
+            DB::table('loaisanphams')->insert([
+                'name'=>'Loại sản phẩm' . $i 
+            ]);
+        }
     }
 }

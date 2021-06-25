@@ -24,30 +24,37 @@ class userController extends Controller
         $pr_new = Product::paginate(5);
 
         $sp_nb = Product::cursor()->filter(function ($pr) {
-            return $pr->price < 30000;
+            return $pr->price < 100000;
         });
         $productUserId = Auth::user()->id ?? $request->session()->get('name');
         $countProductInCart = DB::table('carts')->where('user_id','=',$productUserId)->count();
         $request->session()->put('countProductInCart',$countProductInCart);
 
+        if ($request->session()->has('countProductInCart')) {
+            View::share('countProductInCart', $request->session()->get('countProductInCart', ''));
+        }
         $user = Auth::user() ?? '';
         return view('user.layout.home',['listsp'=>$pr_new, 'listsp_nb'=>$sp_nb,'user'=>$user,'countProductInCart'=>$countProductInCart]);
     }
     public function sanpham($id,Request $request){
         $user = Auth::user() ?? '';
-        $comment = DB::table('comments')->where('pr_id',1)->paginate(2);
+        $comment = DB::table('comments')->where('pr_id',$id)->paginate(2);
         $product = DB::table('products')->find($id);
         if ($request->session()->has('countProductInCart')) {
             View::share('countProductInCart', $request->session()->get('countProductInCart', ''));
         }
         return view('user.layout.sanpham',['user'=>$user,'product' => $product,'comment'=>$comment]);
     }
-    public function userLogin(){
-        
+    public function userLogin(Request $request){
+        if ($request->session()->has('countProductInCart')) {
+            View::share('countProductInCart', $request->session()->get('countProductInCart', ''));
+        }
         return view('user.layout.userLogin');
     }
-    public function Resgister(){
-        
+    public function Resgister(Request $request){
+        if ($request->session()->has('countProductInCart')) {
+            View::share('countProductInCart', $request->session()->get('countProductInCart', ''));
+        }
         return view('user.layout.Resgister');
     }
 
@@ -178,19 +185,33 @@ class userController extends Controller
         return redirect('/');  
     }
     public function comment($id,Request $request){
-        if ($request->isMethod('HEAD')) {
 
-            $validator = Validator::make(
-                $request->all(),
-                [
-                    'comment'  => 'required',
-                    'email'=>'email:rfc,dns',
-                ],
-                [
-                    'comment.required' => 'Bạn chưa nhập bình luận nào',
-                    'email.rfc,dns'    => 'Sai định dạng email'
-                ]
-            );
+        if ($request->isMethod('HEAD')) {
+            if(Auth::check())
+                {
+                    $validator = Validator::make(
+                        $request->all(),
+                        [
+                            'comment'  => 'required'
+                        ],
+                        [
+                            'comment.required' => 'Bạn chưa nhập bình luận nào'
+                        ]
+                    );
+                }else
+                {
+                    $validator = Validator::make(
+                        $request->all(),
+                        [
+                            'comment'  => 'required',
+                            'email'=>'email:rfc,dns',
+                        ],
+                        [
+                            'comment.required' => 'Bạn chưa nhập bình luận nào',
+                            'email.rfc,dns'    => 'Sai định dạng email'
+                        ]
+                    );
+                }
 
             if ($validator->fails()) {
                 return redirect()->back()
@@ -199,7 +220,7 @@ class userController extends Controller
             } else 
             {
 
-                if(isset(Auth::user()->email))
+                if(Auth::check())
                 {
                     $comment = $request->comment  ?? '';
                     DB::table('comments')->insert([

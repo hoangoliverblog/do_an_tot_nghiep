@@ -34,8 +34,8 @@
               @foreach ($lus as $lu)
                <tr>
                   <th scope="row">{{$lu->id}}</th>
-                      <td>{{$lu->user->email}}</td>
-                      <td>{{$lu->user->name}}</td>
+                      <td>{{$lu->user_id}}</td>
+                      <td>{{$lu->user}}</td>
                       <td>{{$lu->product->loaisanpham->name}}</td>
                       <td>{{$lu->product->name}}</td>
                       <td>{{$lu->content}}</td>

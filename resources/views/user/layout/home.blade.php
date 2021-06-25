@@ -72,7 +72,7 @@
                                         <img src="{{asset('img')}}{{'/'.$item->img}}" alt="photo">
                                     </div>
                                     <div class="product_des">
-                                        <p>{{$item->price}}</p>
+                                        <p>{{$item->thongtin}}</p>
                                     </div>
                                     <div class="product_price">
                                         <label><del>{{$item->price}}</del></label>

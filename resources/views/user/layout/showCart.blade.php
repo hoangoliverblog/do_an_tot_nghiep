@@ -1,9 +1,12 @@
 @extends('user.master.home')
 @section('content')
-<div class="alert alert-success" role="alert">
+<div class="container"> 
+  <div class="alert alert-success" role="alert" style="text-align: center">
     Danh sách chi tiết các sản phẩm đã được thêm vào giỏ    
+  </div>
 </div>
-<table class="table table-striped">
+<div class="container">
+  <table class="table table-striped">
     <thead>
       <tr>
         <th scope="col"></th>
@@ -23,13 +26,14 @@
             <td>{{$item->sum}}</td>
             <td>{{$item->created_at}}</td>
             <td>
-                <span><a onclick="return edit()" href="{{route('user.showCart',['id'=>$item->id])}}" style="color:#43c943"><i class="fas fa-edit"></i></a></span>
+                <span><a onclick="return edit()" href="{{route('user.showBuy',['id'=>$item->id])}}" style="color:#43c943"><i class="fas fa-edit"></i></a></span>
                 <span><a onclick="return xoa()" href="{{route('user.deleteProductsInCart',['id'=>$item->id])}}" style="color:#43c943"><i class="fas fa-trash-alt"></i></a></span>
             </td>
         </tr>
         @endforeach
     </tbody>
   </table>
+</div>
 @endsection
 @push('scripts')
 <script>
