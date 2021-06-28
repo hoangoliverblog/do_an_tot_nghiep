@@ -29,33 +29,24 @@
 
       <div class="login_wrapper">
         <div class="animate form login_form">
-          @if (\Session::has('updatePassword'))
+          <section class="login_content">
+            @if (\Session::has('msg'))
             <div class="alert alert-success">
-                <h4>{!! \Session::get('updatePassword') !!}</h4>
+                <h4>{!! \Session::get('msg') !!}</h4>
             </div>
              @endif
-          <section class="login_content">
-            <form action="{{route('Admin.checklogin')}}" method="post">
+            <form action="{{route('Admin.checkOtpGetPassword')}}" method="post">
               @csrf
-              <h1>Đăng nhập</h1>
-              @if(isset($thongbao))
-              {{$thongbao}}
-              @endif
-              @error('email')
+              <h1>Nhập mã Otp</h1>
+              @error('otp')
                   {{$message}}
               @enderror
               <div>
-                <input name="email" type="email" class="form-control" placeholder="Tài khoản" />
-              </div>
-              @error('password')
-                  {{$message}}
-              @enderror
-              <div>
-                <input name="password" type="password" class="form-control" placeholder="Mật khẩu" />
+                <input name="otp" type="text" class="form-control" placeholder="Nhập Otp" />
               </div>
               <div>
-                <button type="submit" class="btn btn-default submit">Đăng nhập</button>
-                <a class="reset_pass" href="{{route('Admin.showPasswordRetrieval')}}">Lấy lại mật khẩu?</a>
+                <button type="submit" class="btn btn-default submit">Xác nhận</button>
+                <a class="reset_pass" href="{{route('Admin.showPasswordRetrieval')}}"><- Quay lại </a>
               </div>
               <div class="clearfix"></div>
             </form>

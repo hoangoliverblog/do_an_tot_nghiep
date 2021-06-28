@@ -17,6 +17,10 @@ Route::group(['prefix'=>'Admin','namespace'=>'Admin'],function () {
     Route::get('login','adminController@login')->name('Admin.login');
     Route::post('checklogin','adminController@checklogin')->name('Admin.checklogin');
     Route::get('logout','adminController@logout')->name('Admin.logout');
+    Route::get('showPasswordRetrieval','adminController@showPasswordRetrieval')->name('Admin.showPasswordRetrieval');
+    Route::post('passwordRetrieval','adminController@passwordRetrieval')->name('Admin.passwordRetrieval');
+    Route::post('checkOtpGetPassword','adminController@checkOtpGetPassword')->name('Admin.checkOtpGetPassword');
+    Route::get('showCodeOtp','adminController@showCodeOtp')->name('Admin.showCodeOtp');
 });
 // Dashboard Admin
 Route::group(['prefix'=>'Admin','namespace'=>'Admin','middleware'=>'admin'],function () {
@@ -28,10 +32,7 @@ Route::group(['prefix'=>'Admin','namespace'=>'Admin','middleware'=>'admin'],func
     Route::resource('xeploai','xeploaiController')->only(['index','destroy']);
     Route::resource('chitiethoadon','chitiethoadonController')->only(['index','destroy']);
     Route::resource('comment','commentController')->only(['index','destroy']);
-    Route::get('language/{language}',function ($language) {
-        App::setlocale($language);
-        return redirect()->back();
-    })->name('admin.language');
+    Route::get('language/{language}','languageController@index')->name('admin.language');
     
 });
 // user home

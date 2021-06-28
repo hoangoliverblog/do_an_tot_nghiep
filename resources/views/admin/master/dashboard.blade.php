@@ -18,11 +18,8 @@
     <link href="{{asset('vendors/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
     <!-- NProgress -->
     <link href="{{asset('vendors/nprogress/nprogress.css')}}" rel="stylesheet">
-
     <!-- Custom Theme Style -->
     <link href="{{asset('build/css/custom.min.css')}}" rel="stylesheet">
-    
-    
   </head>
 
   <body class="nav-md">
@@ -334,13 +331,6 @@
         }
       }
     </script>
-      <script>
-          $(document).pjax('a', '#main_content')
-            if ($.support.pjax) {
-                $.pjax.defaults.timeout = 300; // time in milliseconds
-              }
-            });
-      </script>
       @stack('scripts')
   </body>
 </html>

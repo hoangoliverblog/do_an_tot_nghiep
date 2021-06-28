@@ -24,9 +24,7 @@
               <th scope="col">Mã hóa đơn</th>
               <th scope="col">Tên người dùng</th>
               <th scope="col">Tên sản phẩm</th>
-              <th scope="col">Loại tài khoản</th>
               <th scope="col">Địa chỉ</th>
-              <th scope="col">Số điện thoại</th>
               <th scope="col">Tổng thanh toán</th>
               <th scope="col">Ngày tạo</th>
             </tr>
@@ -37,9 +35,7 @@
                   <th scope="row">{{$lu->id}}</th>
                      <td>{{$lu->user->name}}</td>
                        <td>{{$lu->sanpham->name}}</td>
-                      <td>{{$lu->user->role_user->role_name}}</td>
                       <td>{{$lu->user->address}}</td>
-                      <td>{{$lu->user->phone}}</td>
                       <td>{{$sum = $lu->sanpham->price * $lu->sanpham->soluong}} vnđ</td>
                       <td>{{$lu->created_at}}</td>
                       <td>
