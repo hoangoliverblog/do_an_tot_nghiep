@@ -52,7 +52,6 @@ class adminController extends Controller
         Auth::logout();
         return redirect('Admin/login');
     }
-
     public function showPasswordRetrieval(){
         return view('admin.layout.showPasswordRetrieval');
     }
