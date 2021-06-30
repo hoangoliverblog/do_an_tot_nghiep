@@ -20,6 +20,7 @@
     <link href="{{asset('vendors/nprogress/nprogress.css')}}" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="{{asset('build/css/custom.min.css')}}" rel="stylesheet">
+
   </head>
 
   <body class="nav-md">
@@ -279,7 +280,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+            <a href="https://colorlib.com"></a>
           </div>
           <div class="clearfix"></div>
         </footer>
@@ -306,7 +307,6 @@
     <script src="{{asset('js.jquery.pjax.js')}}"></script>
     
     <script>
-
       CKEDITOR.replace('thongtin');
       CKEDITOR.replace('edittor_desc');
 

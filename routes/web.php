@@ -23,7 +23,7 @@ Route::group(['prefix'=>'Admin','namespace'=>'Admin'],function () {
     Route::get('showCodeOtp','adminController@showCodeOtp')->name('Admin.showCodeOtp');
 });
 // Dashboard Admin
-Route::group(['prefix'=>'Admin','namespace'=>'Admin','middleware'=>'admin'],function () {
+Route::group(['prefix'=>'Admin','namespace'=>'Admin','middleware'=>['admin','language']],function () {
     Route::get('show','adminController@show')->name('Admin.show');
     Route::resource('user','userController');
     Route::resource('product','productController');
