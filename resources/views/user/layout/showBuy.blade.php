@@ -71,7 +71,7 @@
                                 <span>Giảm 55%, tiết kiệm</span>
                               @endif
                             </h4>
-                            <p>{{$product->thongtin}}</p> 
+                            <p>{!!$product->thongtin!!}</p> 
                             @if (!isset($user->email))
                                 <div class="form-row">
                                   <div class="form-group col-md-6">
