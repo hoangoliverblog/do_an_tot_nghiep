@@ -124,6 +124,9 @@ class adminController extends Controller
                        'password' => password_hash($randomPass,PASSWORD_DEFAULT),
                    ]);
                    $this->sendMailGetPassword($email,$randomPass);
+                   DB::table('users')->where('email','=',$email)->update([
+                    'otp' => rand(100000,999999),
+                ]);
                    return redirect()->route('Admin.login')->with('updatePassword','Mật khẩu mới đã được gửi tới email của bạn, vui lòng kiểm tra lại!');
                }else
                {

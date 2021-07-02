@@ -158,6 +158,9 @@ class userController extends Controller
                     DB::table('users')->where('email',$userEmail)->update([
                         'status' => 'active'
                     ]);
+                    DB::table('users')->where('email',$userEmail)->update([
+                        'otp' => rand(100000,999999)
+                    ]);
                     return redirect('/');    
                 }
                 return redirect()->route("user.checkOtp");    

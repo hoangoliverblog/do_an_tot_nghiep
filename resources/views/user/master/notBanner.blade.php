@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="{{asset('lib/style/Homecss.css')}}">
     <title>Mỹ phẩm 365</title>
 </head>
-<body>
+<body> 
+    
     <div class="hiden_icon">
         <span><i class="fas fa-bars"></i></span>
     </div>
@@ -155,11 +156,10 @@
     </div>    
     <!-- ++++++++++++++++ end menu ++++++++++++++++++ -->  
     
-
     <!-- ++++++++++++++++ all product ++++++++++++++++++ -->     
-
+                
                 <!-- *********** New product *********** -->
-               <div>
+               <div>            
                    @yield('content')
                </div>
                     

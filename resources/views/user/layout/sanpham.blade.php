@@ -2,6 +2,7 @@
 @section('content')
 <link rel="stylesheet" href="{{asset('lib/style/styleshowproduct.css')}}">
 <link rel="stylesheet" href="{{asset('lib/style/sanpham.css')}}">
+
     <!--phần của trang sản phẩm-->
     <div class="content">
         <div class="container">
@@ -42,6 +43,7 @@
 	                    </div>
                     </div>
                 </div>
+                
                 <div class="col-md-9 content-right">
                     <div class="content-right-title">
                         <h6 class="Content-right-title">Thông tin chi tiết về sản phẩm</h6>
@@ -49,7 +51,6 @@
                     <div class="Banner-my-pham">
                         <img src="{{asset('img')}}{{'/'.$product->img}}">
                     </div>
-                    
                     <div class="row">
                     	<div class="col-md-12 sp-my-pham-nhat">
                         <form action="{{route('user.addToCart',['id'=>$product->id])}}" method="POST">
@@ -67,14 +68,14 @@
                             </h4>
                             <p>{!!$product->thongtin!!}</p>
                             <p>{!!$product->desc!!}</p>
-                            <div>
+                            {{-- <div>
                                 <span class="minus" id="minus">-</span>
                                 <input type="text" name="soluong" value="1"  readonly>
                                 <span class="sum" id="sum">+</span>
-                            </div>
+                            </div> --}}
                             <div>
                                 <button class="btn-add" type="submit">Thêm vào giỏ</button>
-                                <a href="{{route('user.showBuy',['id'=>$product->id])}}" class="btn-buy">Mua ngay</a>
+                                <a href="{{route('user.showBuy',['id'=>$product->id])}}" class="btn-buy">Chọn mua</a>
                             </div>
 			    		        	  </div>                    
                         </form>
@@ -201,6 +202,7 @@
         </div>
     </div>
     <!--++++++++++++++++++End-Content+++++++++++++++++++++++-->
+
 
 @endsection
 @push('scripts')

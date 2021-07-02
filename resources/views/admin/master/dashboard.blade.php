@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Quản trị</title>
+    <title>{{__('msg.Admin')}}</title>
     <script src="https://kit.fontawesome.com/d1bc342d1d.js" crossorigin="anonymous"></script>
     <!-- Ckeditor -->
     <script src="{{asset('ckeditor/ckeditor.js')}}"></script>
@@ -29,11 +29,9 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>{{__('msg.Admin')}} !</span></a>
             </div>
-
             <div class="clearfix"></div>
-
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
@@ -45,38 +43,36 @@
               </div>
             </div>
             <!-- /menu profile quick info -->
-
             <br />
-
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
-                <h3>General</h3>
+                <h3>{{__('msg.General')}}</h3>
                 <ul class="nav side-menu">
-                  <li><a> <i class="fa fa-home"></i>Tài khoản<span class="fa fa-chevron-down"></span></a>
+                  <li><a> <i class="fa fa-home"></i>{{__('msg.Account')}}<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                    <li><a href="{{route('user.index')}}">Danh sách tài khoản</a></li>
+                    <li><a href="{{route('user.index')}}">{{__('msg.ListAccount')}}</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-edit"></i>Sản phẩm<span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-edit"></i>{{__('msg.Product')}}<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{route('product.index')}}">Danh sách sản phẩm</a></li>
-                      <li><a href="{{route('xeploai.index')}}">Xếp loại sản phẩm</a></li>
-                      <li><a href="{{route('comment.index')}}">Bình luận khách hàng</a></li>
+                      <li><a href="{{route('product.index')}}">{{__('msg.ListProduct')}}</a></li>
+                      <li><a href="{{route('xeploai.index')}}">{{__('msg.ProductRating')}}</a></li>
+                      <li><a href="{{route('comment.index')}}">{{__('msg.CustomerComments')}}</a></li>
                     </ul>
                   </li>
-                <li><a><i class="fa fa-desktop"></i>Hóa đơn<span class="fa fa-chevron-down"></span></a>
+                <li><a><i class="fa fa-desktop"></i>{{__('msg.Bill')}}<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{route('hoadon.index')}}">Danh sách hóa đơn</a></li>
-                      <li><a href="{{route('chitiethoadon.index')}}">Chi tiết hóa đơn</a></li>
+                      <li><a href="{{route('hoadon.index')}}">{{__('msg.BillList')}}</a></li>
+                      <li><a href="{{route('chitiethoadon.index')}}">{{__('msg.InvoiceDetails')}}</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-table"></i>Giỏ hàng <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-table"></i>{{__('msg.Cart')}}<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{route('cart.index')}}">Danh sách giỏ hàng</a></li>
+                      <li><a href="{{route('cart.index')}}">{{__('msg.shoppingCartList')}}</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
+                  {{-- <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="chartjs.html">Chart JS</a></li>
                       <li><a href="chartjs2.html">Chart JS2</a></li>
@@ -90,10 +86,10 @@
                       <li><a href="fixed_sidebar.html">Fixed Sidebar</a></li>
                       <li><a href="fixed_footer.html">Fixed Footer</a></li>
                     </ul>
-                  </li>
+                  </li> --}}
                 </ul>
               </div>
-              <div class="menu_section">
+              {{-- <div class="menu_section">
                 <h3>Live On</h3>
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-bug"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>
@@ -134,7 +130,7 @@
                   </li>                  
                   <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a></li>
                 </ul>
-              </div>
+              </div> --}}
 
             </div>
             <!-- /sidebar menu -->
@@ -171,22 +167,22 @@
                       <img src="{{asset('img/1617259535_IMG_2517.jpg')}}" alt="">{{$user->name}}
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item"  href="javascript:;"> Profile</a>
+                      <a class="dropdown-item"  href="javascript:;"> {{__('msg.Profile')}}</a>
                         <a class="dropdown-item"  href="javascript:;">
                           <span class="badge bg-red pull-right">50%</span>
-                          <span>Settings</span>
+                          <span>{{__('msg.Settings')}}</span>
                         </a>
-                    <a class="dropdown-item"  href="javascript:;">Help</a>
-                      <a class="dropdown-item"  href="{{route('Admin.logout')}}"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                    <a class="dropdown-item"  href="javascript:;">{{__('msg.Help')}}</a>
+                      <a class="dropdown-item"  href="{{route('Admin.logout')}}"><i class="fa fa-sign-out pull-right"></i>{{__('msg.Logout')}}</a>
                     </div>
                   </li>
                   <li class="nav-item dropdown open" style="padding-left: 15px;">
                     <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                      Langguages
+                      {{__('msg.Language')}}
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item"  href="{{route('admin.language',['en'])}}">EN</a>
-                      <a class="dropdown-item"  href="{{route('admin.language',['vi'])}}">VI</a>
+                      <a class="dropdown-item"  href="{{route('admin.language',['en'])}}">English</a>
+                      <a class="dropdown-item"  href="{{route('admin.language',['vi'])}}">Vietnamese</a>
                     </div>
                   </li>
   
@@ -311,7 +307,7 @@
       CKEDITOR.replace('edittor_desc');
 
       function edit(){
-        if(confirm("Bạn có muốn sửa sản phẩm?"))
+        if(confirm("{{__('msg.messageEdit')}}"))
         {
           return true;
         }
@@ -321,7 +317,7 @@
         }
       }
       function xoa(){
-        if(confirm("Bạn có muốn xóa sản phẩm?"))
+        if(confirm("{{__('msg.messageDelete')}}"))
         {
           return true;
         }

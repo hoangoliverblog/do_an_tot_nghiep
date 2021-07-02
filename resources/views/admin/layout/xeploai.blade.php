@@ -6,26 +6,18 @@
   <div class="container">
     <div class="row col-md-4">
         <div class="input-group mb-3">
-          <input type="text" id="search_to_xeploai" class="form-control" placeholder="Nhập từ tìm kiếm" aria-label="Recipient's username" aria-describedby="button-addon2">
+          <input type="text" id="search_to_xeploai" class="form-control" placeholder="{{__('msg.EnterSearchWord')}}" aria-label="Recipient's username" aria-describedby="button-addon2">
         </div>
       </div>
-      <table class="table-primary"></table>
-      <table class="table-secondary"></table>
-      <table class="table-success"></table>
-      <table class="table-danger"></table>
-      <table class="table-warning"></table>
-      <table class="table-info"></table>
-      <table class="table-light"></table>
-      <table class="table-dark"></table>
       <table class="table caption-top">
-          <caption>Xếp lại sản phẩm</caption>
+          <caption>{{__('msg.ProductRating')}}</caption>
           <thead>
             <tr>
               <th scope="col">id</th>
-              <th scope="col">Loại sản phẩm</th>
-              <th scope="col">Tên sản phẩm</th>
-              <th scope="col">Giá sản phẩm</th>
-              <th scope="col">Đánh giá</th>
+              <th scope="col">{{__('msg.ProductType')}}</th>
+              <th scope="col">{{__('msg.ProductName')}}</th>
+              <th scope="col">{{__('msg.Price')}}</th>
+              <th scope="col">{{__('msg.Avaluate')}}</th>
             </tr>
           </thead>
           <tbody id="list_xl">
