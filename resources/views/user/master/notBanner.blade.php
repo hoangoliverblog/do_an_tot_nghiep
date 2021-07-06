@@ -39,7 +39,7 @@
                             @if (!isset($user->name))
                                 <li><span><i class="fas fa-users"></i></span><a id="resgiter" href="{{route('user.Resgister')}}">Đăng kí</a></li>    
                             @endif
-                            <li><span><i class="fas fa-dollar-sign"></i></span><a href="">Thanh toán</a></li>
+                            <li><span><i class="fas fa-dollar-sign"></i></span><a href="{{route('user.showCart',[$user->id ?? 'default'])}}">Thanh toán</a></li>
                         </ul>
                     </div>
                     <div class="hot_new" >

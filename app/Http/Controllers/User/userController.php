@@ -253,6 +253,7 @@ class userController extends Controller
 
 
     public function addToCart($id,Request $request){
+
         if($request->isMethod('HEAD'))
         {
             if(!Auth::check())
@@ -266,8 +267,7 @@ class userController extends Controller
             $name = $findProduct->name;
             $soluong = $request->soluong;
             $sum = $request->soluong * $findProduct->price;
-            // var_dump($userIdIfNotLogin);
-            DB::table('carts')->insert([
+            $insert =DB::table('carts')->insert([
                 'hd_id'      => $hd_id,
                 'user_id'    => Auth::user()->id ?? $userIdIfNotLogin,
                 'name'       => $name,
@@ -379,21 +379,23 @@ class userController extends Controller
        
     }
 
-    public function showCart($id,Request $request)
+    public function showCart($id ,Request $request)
     {
         $user = Auth::user() ?? '';
         if(Auth::check())
         {
-            $cart = DB::table('carts')->where('user_id', '=', $id)->get();
+            $cart = DB::table('carts')->where('user_id', '=', Auth::user()->id)->get();
         }
         else
         {
             $cart = DB::table('carts')->where('user_id', '=', $request->session()->get('name'))->get();
         }
+
         if ($request->session()->has('countProductInCart')) {
             View::share('countProductInCart', $request->session()->get('countProductInCart', ''));
         }
         return view('user.layout.showCart',['data'=>$cart,'user'=>$user]);
+        // return redirect()->route('user.showCart',['id'=>$id]);
     }
 
     public function deleteProductsInCart($id)
@@ -402,4 +404,9 @@ class userController extends Controller
         return redirect()->back();
     }
     
+    public function showPayMent()
+    {
+
+        return view('payment.form_pay');
+    }
 }

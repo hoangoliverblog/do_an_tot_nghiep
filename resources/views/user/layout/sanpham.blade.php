@@ -68,11 +68,11 @@
                             </h4>
                             <p>{!!$product->thongtin!!}</p>
                             <p>{!!$product->desc!!}</p>
-                            {{-- <div>
+                            <div>
                                 <span class="minus" id="minus">-</span>
                                 <input type="text" name="soluong" value="1"  readonly>
                                 <span class="sum" id="sum">+</span>
-                            </div> --}}
+                            </div>
                             <div>
                                 <button class="btn-add" type="submit">Thêm vào giỏ</button>
                                 <a href="{{route('user.showBuy',['id'=>$product->id])}}" class="btn-buy">Chọn mua</a>

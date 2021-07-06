@@ -264,7 +264,7 @@ class ajaxController extends Controller
 
             } 
             echo $output;
-       }
+        }
     }
 
     // public function checkusername(Request $request){
@@ -284,4 +284,9 @@ class ajaxController extends Controller
             
     //    }
     // }
+
+    public function searchAllProduct(Request $request)
+    {
+        echo 1;
+    }
 }
