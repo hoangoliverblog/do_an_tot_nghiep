@@ -30,24 +30,26 @@
 
         <div class="table-responsive">
 
-            <form action="" id="create_form" method="post">
+            <form action="{{route('user.createPayment')}}" id="create_form" method="post">
                 @csrf
                 <div class="form-group">
                     <label for="order_name">Tên người dùng</label>
                     <input class="form-control" id="order_name" name="order_name" type="text"
-                        value="" readonly />
+                        value="{{Auth::user()->name ?? 'User'}}" readonly />
+                    <input type="hidden" name="{{$nameUserIfNotLogin}}" value="{{$nameUserIfNotLogin}}">
                 </div>
                 <div class="form-group">
                     <label for="order_id">Tên sản phẩm thanh toán</label>
                     <input class="form-control" id="order_id" name="order_id" type="text"
-                        value="" readonly />
+                        value="@foreach ($aryProduct as $item) {{$item . '.'}} @endforeach" 
+                    readonly />
                 </div>
                     <input class="form-control" id="post_id" name="post_id" 
                         value="" type="hidden"/>
                 <div class="form-group">
                     <label for="amount">Số tiền (VNĐ)</label>
                     <input class="form-control" id="amount" name="amount" type="number"
-                        value="" readonly />
+                        value=""/>
                 </div>
                 <div class="form-group">
                     <label for="order_desc">Nội dung thanh toán</label>

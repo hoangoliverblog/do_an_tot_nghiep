@@ -14,13 +14,9 @@ use Illuminate\Database\Eloquent\Builder;
 
 class PayController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
+   
     public function showRequire(){
-        $require = Register::where("teacher_id", Auth::id())->orderBy('id', 'desc')->paginate(10);
+        // $require = Register::where("teacher_id", Auth::id())->orderBy('id', 'desc')->paginate(10);
         $payment = Pay::where('order_name', Auth::user()->name)->get(); 
         $pay = [];
         foreach($payment as $pays){
@@ -30,12 +26,13 @@ class PayController extends Controller
     }
 
     public function showPay($post_id){
-        $require = Post::where('id', $post_id)->first();
-        return view('pays.form_pay', compact('require'));
+        // $require = Post::where('id', $post_id)->first();
+        return view('pays.form_pay');
     }
 
     public function create(Request $request)
     {
+        
         $vnp_TmnCode = "NXE8898T"; //Mã website tại VNPAY 
         $vnp_HashSecret = "LTEAYKMCSVGRUPYMESCFCCSCJGUZOLYD"; //Chuỗi bí mật
         $vnp_Url = "http://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
@@ -112,8 +109,8 @@ class PayController extends Controller
         }
 
         $invoice = "There is a teacher named " . $pay->order_name . " who has just paid for the class in the system.";
-        $admin = User::where('role_id', 1)->first();
-        Notification::send($admin, new NewUserRegister($invoice));
+        // $admin = User::where('role_id', 1)->first();
+        // Notification::send($admin, new NewUserRegister($invoice));
 
         return view('pays.pay_return');
     }
