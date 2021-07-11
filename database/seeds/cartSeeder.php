@@ -12,7 +12,7 @@ class cartSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create();
-        for ($i=0; $i < 100; $i++) { 
+        for ($i=0; $i < 5; $i++) { 
             DB::table('carts')->insert([
                 'hd_id'=>2,
                 'user_id'=>2,

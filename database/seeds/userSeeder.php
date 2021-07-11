@@ -13,7 +13,7 @@ class userSeeder extends Seeder
     {
        DB::table('users')->insert([
            'name'=>'admin',
-           'email'=>'hoang6826812@gmail.com',
+           'email'=>'hoang682681@gmail.com',
            'password'=>password_hash('adminadmin',PASSWORD_DEFAULT),
            'role_id'=> 1,
            'address'=> 'so 19 ngo 449 co nhue 2 Bac tu liem',
@@ -26,7 +26,7 @@ class userSeeder extends Seeder
        ]);
        DB::table('users')->insert([
         'name'=>'user',
-        'email'=>'hoang6816822@gmail.com',
+        'email'=>'hoang681682@gmail.com',
         'password'=>password_hash('adminadmin',PASSWORD_DEFAULT),
         'role_id'=> 1,
         'address'=> 'My dinh nam tu liem ha noi',
@@ -39,7 +39,7 @@ class userSeeder extends Seeder
         ]);
 
         $faker = Faker\Factory::create();
-        for ($i=0; $i < 100; $i++) { 
+        for ($i=0; $i < 5; $i++) { 
             DB::table('users')->insert([
                 'name'=>$faker->userName,
                 'email'=>$faker->freeEmail,

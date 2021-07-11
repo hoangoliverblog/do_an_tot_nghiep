@@ -12,7 +12,7 @@ class productSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create();
-        for ($i=0; $i < 100; $i++) { 
+        for ($i=0; $i < 5; $i++) { 
             DB::table('products')->insert([
                 'name'=>$faker->name,
                 'id_loaisp'=>'3',

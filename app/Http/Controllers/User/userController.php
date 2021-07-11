@@ -163,7 +163,7 @@ class userController extends Controller
                     ]);
                     return redirect('/');    
                 }
-                return redirect()->route("user.checkOtp");    
+                return redirect()->route("user.Login");    
                 
             }
         }

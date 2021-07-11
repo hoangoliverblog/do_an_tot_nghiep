@@ -20,7 +20,7 @@ class commentSeeder extends Seeder
         ]);
        
         $faker = Faker\Factory::create();
-        for ($i=0; $i < 100; $i++) { 
+        for ($i=0; $i < 5; $i++) { 
             DB::table('comments')->insert([
                 'user_id'=>2,
                 'pr_id'=>1,

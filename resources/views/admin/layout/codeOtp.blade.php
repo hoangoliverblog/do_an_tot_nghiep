@@ -38,6 +38,7 @@
             <form action="{{route('Admin.checkOtpGetPassword')}}" method="post">
               @csrf
               <h1>Nhập mã Otp</h1>
+              <h4>Một email mới vừa được gửi tới gmail của bạn!</h4>
               @error('otp')
                   {{$message}}
               @enderror
