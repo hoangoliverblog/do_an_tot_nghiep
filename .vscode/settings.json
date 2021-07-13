@@ -7,11 +7,11 @@
             "previewLimit": 50,
             "server": "localhost",
             "port": 3306,
+            "askForPassword": true,
             "driver": "MySQL",
-            "name": "hoang",
+            "name": "banhang",
             "database": "banhang",
-            "username": "root",
-            "password": ""
+            "username": "root"
         }
     ]
 }
