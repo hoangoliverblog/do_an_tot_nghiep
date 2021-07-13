@@ -5,7 +5,7 @@
   {{ csrf_field() }}
     <div class="row col-md-4">
         <div class="input-group mb-3">
-          <input type="text" id="search_chitiethoadon" class="form-control" placeholder="Nhập từ tìm kiếm" aria-label="Recipient's username" aria-describedby="button-addon2">
+          <input type="text" id="search_chitiethoadon" class="form-control" placeholder="{{__('msg.EnterSearchWord')}}" aria-label="Recipient's username" aria-describedby="button-addon2">
         </div>
     </div>
   <div class="container">
@@ -18,19 +18,19 @@
       <table class="table-light"></table>
       <table class="table-dark"></table>
       <table class="table caption-top">
-          <caption>Chi tiết hóa đơn</caption>
+          <caption>{{__('msg.InvoiceDetails')}}</caption>
           <thead>
             <tr>
-              <th scope="col">Mã hóa đơn</th>
-              <th scope="col">Tên người dùng</th>
-              <th scope="col">Loại tài khoản</th>
-              <th scope="col">Tên sản phẩm</th>
-              <th scope="col">Giá sản phẩm</th>
-              <th scope="col">Địa chỉ</th>
-              <th scope="col">Số điện thoại</th>
-              <th scope="col">Tổng thanh toán</th>
-              <th scope="col">Ngày tạo</th>
-              <th scope="col">Thao tác</th>
+              <th scope="col">{{__('msg.BillCode')}}</th>
+              <th scope="col">{{__('msg.UserName')}}</th>
+              <th scope="col">{{__('msg.AccountType')}}</th>
+              <th scope="col">{{__('msg.ProductName')}}</th>
+              <th scope="col">{{__('msg.Price')}}</th>
+              <th scope="col">{{__('msg.Address')}}</th>
+              <th scope="col">{{__('msg.Phone')}}</th>
+              <th scope="col">{{__('msg.Amount')}}</th>
+              <th scope="col">{{__('msg.Created_at')}}</th>
+              <th scope="col">{{__('msg.Manipulation')}}</th>
             </tr>
           </thead>
           <tbody id="list_chitiethd">

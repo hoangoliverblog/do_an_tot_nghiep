@@ -17,9 +17,13 @@ Route::group(['prefix'=>'Admin','namespace'=>'Admin'],function () {
     Route::get('login','adminController@login')->name('Admin.login');
     Route::post('checklogin','adminController@checklogin')->name('Admin.checklogin');
     Route::get('logout','adminController@logout')->name('Admin.logout');
+    Route::get('showPasswordRetrieval','adminController@showPasswordRetrieval')->name('Admin.showPasswordRetrieval');
+    Route::post('passwordRetrieval','adminController@passwordRetrieval')->name('Admin.passwordRetrieval');
+    Route::post('checkOtpGetPassword','adminController@checkOtpGetPassword')->name('Admin.checkOtpGetPassword');
+    Route::get('showCodeOtp','adminController@showCodeOtp')->name('Admin.showCodeOtp');
 });
 // Dashboard Admin
-Route::group(['prefix'=>'Admin','namespace'=>'Admin','middleware'=>'admin'],function () {
+Route::group(['prefix'=>'Admin','namespace'=>'Admin','middleware'=>['admin','language']],function () {
     Route::get('show','adminController@show')->name('Admin.show');
     Route::resource('user','userController');
     Route::resource('product','productController');
@@ -28,10 +32,7 @@ Route::group(['prefix'=>'Admin','namespace'=>'Admin','middleware'=>'admin'],func
     Route::resource('xeploai','xeploaiController')->only(['index','destroy']);
     Route::resource('chitiethoadon','chitiethoadonController')->only(['index','destroy']);
     Route::resource('comment','commentController')->only(['index','destroy']);
-    Route::get('language/{language}',function ($language) {
-        App::setlocale($language);
-        return redirect()->back();
-    })->name('admin.language');
+    Route::get('language/{language}','languageController@index')->name('admin.language');
     
 });
 // user home
@@ -44,12 +45,21 @@ Route::group(['namespace'=>'User'],function () {
     Route::get('checkOtp','userController@checkOtp')->name('user.checkOtp');
     Route::get('activeAcount','userController@activeAcount')->name('user.activeAcount');
     Route::get('checkLogin','userController@checkLogin')->name('user.checkLogin');
-    Route::get('comment','userController@comment')->name('user.comment');
+    Route::get('comment/{id}','userController@comment')->name('user.comment');
+    Route::get('addToCart/{id}','userController@addToCart')->name('user.addToCart');
     Route::get('Logout','userController@Logout')->name('user.Logout');
     Route::get('cosmetics','cosmeticsController@show')->name('cosmetics.show');
     Route::get('perfume','perfumeController@show')->name('perfume.show');
     Route::get('ProductSets','ProductSetsController@show')->name('ProductSets.show');
     Route::get('Trademark','TrademarkController@show')->name('Trademark.show');
+    Route::get('showBuy/{id}','userController@showBuy')->name('user.showBuy');
+    Route::get('showCart/{id}','userController@showCart')->name('user.showCart');
+    Route::get('buyProduct/{id}','userController@buyProduct')->name('user.buyProduct');
+    Route::get('deleteProductsInCart/{id}','userController@deleteProductsInCart')->name('user.deleteProductsInCart');
+    Route::post('searchAllProduct','ajaxController@searchAllProduct')->name('ajax.searchAllProduct');
+    Route::get('showPayMent','userController@showPayMent')->name('user.showPayMent');
+    Route::post('createPayment','userController@createPayment')->name('user.createPayment');                                        
+    Route::get('payReturn','userController@payReturn')->name('user.payReturn');                                        
 });
 Route::group(['prefix'=>'Admin','namespace'=>'Ajax','middleware'=>'admin'],function () {
     Route::post('searchuser','ajaxController@searchuser')->name('ajax.searchuser');   

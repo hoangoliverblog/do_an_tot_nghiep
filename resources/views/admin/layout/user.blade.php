@@ -6,35 +6,28 @@
   <div class="container">
     <div class="row col-md-4">
         <div class="input-group mb-3">
-          <input type="text" id="search_user" class="form-control" placeholder="Nhập từ tìm kiếm" aria-label="Recipient's username" aria-describedby="button-addon2">
+          <input type="text" id="search_user" class="form-control" placeholder="{{__('msg.EnterSearchWord')}}" aria-label="Recipient's username" aria-describedby="button-addon2">
         </div>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Thêm tài khoản</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">{{__('msg.MoreAccount')}}</button>
         @if(isset($message_pass))
         {{$message_pass}}
         @endif
     </div>
-      <table class="table-primary"></table>
-      <table class="table-secondary"></table>
-      <table class="table-success"></table>
-      <table class="table-danger"></table>
-      <table class="table-warning"></table>
-      <table class="table-info"></table>
-      <table class="table-light"></table>
-      <table class="table-dark"></table>
       <table class="table caption-top">
-          <caption>Danh sách người dùng</caption>
+          <caption>{{__('msg.UserList')}}</caption>
           <thead>
             <tr>
               <th scope="col">id</th>
-              <th scope="col">Tên người dùng</th>
-              <th scope="col">Ảnh</th>
-              <th scope="col">Email</th>
-              <th scope="col">Loại tài khoản</th>
-              <th scope="col">Địa chỉ</th>
-              <th scope="col">Số điện thoại</th>
-              <th scope="col">Giới tính</th>
-              <th scope="col">Trạng thái</th>
-              <th scope="col">Ngày tạo</th>
+              <th scope="col">{{__('msg.UserName')}}</th>
+              <th scope="col">{{__('msg.Image')}}</th>
+              <th scope="col">{{__('msg.Email')}}</th>
+              <th scope="col">{{__('msg.AccountType')}}</th>
+              <th scope="col">{{__('msg.Address')}}</th>
+              <th scope="col">{{__('msg.Phone')}}</th>
+              <th scope="col">{{__('msg.GenderType')}}</th>
+              <th scope="col">{{__('msg.Status')}}</th>
+              <th scope="col">{{__('msg.Created_at')}}</th>
+              <th scope="col">{{__('msg.Manipulation')}}</th>
             </tr>
           </thead>
           <tbody id="list_lu">
@@ -67,72 +60,72 @@
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Thêm tài khoản</h5>
+                  <h5 class="modal-title" id="exampleModalLabel">{{__('msg.MoreAccount')}}</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div class="modal-body">
-                  <h3>Thêm tài khoản</h3>
+                  <h3>{{__('msg.MoreAccount')}}</h3>
                   <form action="{{route('user.store')}}" method="post" enctype="multipart/form-data">
                       @csrf
                       <div class="form-group">
-                        <label for="exampleInputEmail1">Tên người dùng</label>
-                        <input type="text" class="form-control" name="name"  aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1">{{__('msg.UserName')}}</label>
+                        <input type="text" class="form-control" name="name">
                         @error('name')
                           {{$message}}
                         @enderror
                       </div>
                       <div class="form-group">
-                        <label for="exampleFormControlFile1">Ảnh</label>
+                        <label for="exampleFormControlFile1">{{__('msg.Image')}}</label>
                         @error('img')
                           {{$message}}
                         @enderror
                         <input type="file" class="form-control-file" name="img" id="exampleFormControlFile1">
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputEmail1">Email</label>
+                        <label for="exampleInputEmail1">{{__('msg.Email')}}</label>
                         @error('email')
                           {{$message}}
                         @enderror
                         <input type="text" class="form-control" name="email"  aria-describedby="emailHelp">
                       </div>
                       <div class="form-group">
-                          <label for="exampleInputEmail1">Địa chỉ</label>
+                          <label for="exampleInputEmail1">{{__('msg.Address')}}</label>
                           @error('address')
                             {{$message}}
                           @enderror
                           <input type="text" class="form-control" name="address"  aria-describedby="emailHelp">
                         </div>
                         <div class="form-group">
-                          <label for="exampleInputEmail1">Số điện thoại</label>
+                          <label for="exampleInputEmail1">{{__('msg.Phone')}}</label>
                           @error('phone')
                             {{$message}}
                           @enderror
                           <input type="text" class="form-control" name="phone" aria-describedby="emailHelp">
                         </div>
                         <div class="form-group">
-                          <label for="exampleFormControlFile1">Giới tính</label>
+                          <label for="exampleFormControlFile1">{{__('msg.GenderType')}}</label>
                           @error('gioitinh')
                             {{$message}}
                           @enderror
                           <input type="text" class="form-control" name="gioitinh" >
                         </div>
                         <div class="form-group">
-                          <label for="exampleInputEmail1">Mật khẩu</label>
+                          <label for="exampleInputEmail1">{{__('msg.Password')}}</label>
                           <input type="password" class="form-control" name="password">
                           @error('password')
                             {{$message}}
                           @enderror
                         </div>
                         <div class="form-group">
-                          <label for="exampleInputEmail1">Nhập lại mật khẩu</label>
+                          <label for="exampleInputEmail1">{{__('msg.Re_password')}}</label>
                           <input type="password" class="form-control" name="re_password" >
                           @error('massage')
                           {{$message}}
                           @enderror
                         </div>
-                      <button type="submit" class="btn btn-primary">Thêm mới</button>
+                      <button type="submit" class="btn btn-primary">{{__('msg.AddNew')}}</button>
                     </form>
                     
                 </div>

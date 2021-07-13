@@ -10,7 +10,7 @@ class chitiethoadon extends Model
     protected $table = 'chitiethoadons';
 
     protected $fillable = [
-        'hd_id',
+        'hd_id'
     ];
 
     public $timestamps = false;

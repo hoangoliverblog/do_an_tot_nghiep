@@ -5,10 +5,10 @@
   <div class="container">
     <div class="row col-md-4">
         <div class="input-group mb-3">
-          <input type="text" id="search_product" class="form-control" placeholder="Nhập từ tìm kiếm" aria-label="Recipient's username" aria-describedby="button-addon2">
+          <input type="text" id="search_product" class="form-control" placeholder="{{__('msg.EnterSearchWord')}}" aria-label="Recipient's username" aria-describedby="button-addon2">
         </div>
         <div id="abc"></div>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Thêm sản phẩm</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">{{__('msg.MoreProduct')}}</button>
     </div>
       <table class="table-primary"></table>
       <table class="table-secondary"></table>
@@ -19,20 +19,21 @@
       <table class="table-light"></table>
       <table class="table-dark"></table>
       <table class="table caption-top">
-          <caption>Danh sách sản phẩm</caption>
+          <caption>{{__('msg.ListProduct')}}</caption>
           <thead>
             <tr>
               <th scope="col">id</th>
-              <th scope="col">Tên sản phẩm</th>
-              <th scope="col">Loại sản phẩm</th>
-              <th scope="col">Giá</th>
-              <th scope="col">Số lượng</th>
-              <th scope="col">Ảnh</th>
-              <th scope="col">Thông tin</th>
-              <th scope="col">Mô tả</th>
-              <th scope="col">Mã giảm giá</th>
-              <th scope="col">Tỷ lệ Sales</th>
-              <th scope="col">Ngày nhập</th>
+              <th scope="col">{{__('msg.ProductName')}}</th>
+              <th scope="col">{{__('msg.ProductType')}}</th>
+              <th scope="col">{{__('msg.Price')}}</th>
+              <th scope="col">{{__('msg.Amount')}}</th>
+              <th scope="col">{{__('msg.Image')}}</th>
+              <th scope="col">{{__('msg.Infomation')}}</th>
+              <th scope="col">{{__('msg.Description')}}</th>
+              <th scope="col">{{__('msg.Coupe')}}</th>
+              <th scope="col">{{__('msg.SaleRate')}}</th>
+              <th scope="col">{{__('msg.Created_at')}}</th>
+              <th scope="col">{{__('msg.Manipulation')}}</th>
             </tr>
           </thead>
           <tbody id="list_pr">
@@ -65,24 +66,24 @@
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Thêm sản phẩm</h5>
+                  <h5 class="modal-title" id="exampleModalLabel">{{__('msg.AddProduct')}}</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div class="modal-body">
-                  <h3>Thêm sản phẩm</h3>
+                  <h3>{{__('msg.AddProduct')}}</h3>
                   <form action="{{route('product.store')}}" method="post" enctype="multipart/form-data">
                       @csrf
                       <div class="form-group">
-                        <label for="exampleInputEmail1">Tên sản phẩm</label>
+                        <label for="exampleInputEmail1">{{__('msg.ProductName')}}</label>
                         <input type="text" class="form-control" name="name" id="exampleInputEmail1" aria-describedby="emailHelp">
                         @error('name')
                           {{$message}}
                         @enderror
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputEmail1">Loại sản phẩm</label>
+                        <label for="exampleInputEmail1">{{__('msg.ProductType')}}</label>
                         @error('id_loaisp')
                           {{$message}}
                         @enderror
@@ -93,55 +94,55 @@
                         </select>
                       </div>
                       <div class="form-group">
-                          <label for="exampleInputEmail1">Giá</label>
+                          <label for="exampleInputEmail1">{{__('msg.Price')}}</label>
                           @error('price')
                             {{$message}}
                           @enderror
                           <input type="text" class="form-control" name="price" id="exampleInputEmail1" aria-describedby="emailHelp">
                         </div>
                         <div class="form-group">
-                          <label for="exampleInputEmail1">Số lượng</label>
+                          <label for="exampleInputEmail1">{{__('msg.Amount')}}</label>
                           @error('soluong')
                             {{$message}}
                           @enderror
                           <input type="text" class="form-control" name="soluong" id="exampleInputEmail1" aria-describedby="emailHelp">
                         </div>
                         <div class="form-group">
-                          <label for="exampleFormControlFile1">Ảnh</label>
+                          <label for="exampleFormControlFile1">{{__('msg.Image')}}</label>
                           @error('img')
                             {{$message}}
                           @enderror
                           <input type="file" class="form-control-file" name="img" id="exampleFormControlFile1">
                         </div>
                         <div class="form-group">
-                          <label for="exampleInputEmail1">Thông tin</label>
+                          <label for="exampleInputEmail1">{{__('msg.Infomation')}}</label>
                           <textarea id="edittor_pr" name="thongtin" class="form-control"id="" cols="30" rows="10"></textarea>
                           @error('thongtin')
                             {{$message}}
                           @enderror
                         </div>
                         <div class="form-group">
-                          <label for="exampleInputEmail1">Mô tả</label>
+                          <label for="exampleInputEmail1">{{__('msg.Description')}}</label>
                           <textarea name="desc"  class="form-control" id="edittor_desc" cols="30" rows="10"></textarea>
                           @error('desc')
                           {{$message}}
                           @enderror
                         </div>
                         <div class="form-group">
-                          <label for="exampleInputEmail1">Mã giảm giá</label>
+                          <label for="exampleInputEmail1">{{__('msg.Coupe')}}</label>
                           <input type="text" class="form-control" name="coupe" id="exampleFormControlFile1">
                           @error('coupe')
                           {{$message}}
                           @enderror
                         </div>
                         <div class="form-group">
-                          <label for="exampleInputEmail1">Tỷ lệ sale</label>
+                          <label for="exampleInputEmail1">{{__('msg.SaleRate')}}</label>
                           <input type="text" class="form-control" name="sale" id="exampleFormControlFile1">
                           @error('sale')
                           {{$message}}
                           @enderror
                         </div>
-                      <button type="submit" class="btn btn-primary">Thêm mới</button>
+                      <button type="submit" class="btn btn-primary">{{__('msg.AddProduct')}}</button>
                     </form>
                 </div>
                 {{-- <div class="modal-footer">

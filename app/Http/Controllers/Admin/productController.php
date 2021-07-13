@@ -52,9 +52,9 @@ class productController extends Controller
                 [
                     'name'  => 'required|min:3|max:30',
                     'id_loaisp' => 'required',
-                    'price' => 'required|min:4|max:10|numeric',
+                    'price' => 'required|min:4|numeric',
                     'soluong' => 'required|numeric',
-                    'sale'  => 'numeric|min:1|max:2'
+                    'sale'  => 'numeric|min:0|max:100'
                 ],
                 [
                     'name.required' => 'Tên sản phẩm không được để trống',
@@ -64,7 +64,6 @@ class productController extends Controller
                     'price.required' => 'Giá sản phẩm không được để trống',
                     'price.min' => 'Giá sản phẩm lớn hơn 1000 vnđ',
                     'price.numeric' => 'Giá sản phẩm có định dạng là chữ số',
-                    'price.max' => 'Giá sản phẩm nhỏ hơn 1 tỷ đồng',
                     'soluong.required' => 'Nhập số lượng sản phẩm',
                     'soluong.numeric' => 'Số lượng có định dạng là kiểu chữ số',
                     'sale.numeric' => 'Tỷ lệ giảm giá có định dạng là kiểu số'
@@ -145,7 +144,7 @@ class productController extends Controller
                     'id_loaisp' => 'required',
                     'price' => 'required|min:4|numeric',
                     'soluong' => 'required|numeric',
-                    'sale'  => 'numeric|min:1|max:100'
+                    'sale'  => 'numeric|min:0|max:100'
                 ],
                 [
                     'name.required' => 'Tên sản phẩm không được để trống',

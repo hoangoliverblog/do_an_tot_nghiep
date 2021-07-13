@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Comment;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -43,5 +44,9 @@ class User extends Authenticatable
 
     public function hoadon(){
         return $this->hasMany('App\Models\hoadon','user_id','id');
+    }
+
+    public function comment(){
+        return $this->hasMany(Comment::class,'user_id','id');
     }
 }

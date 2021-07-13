@@ -53,4 +53,48 @@ class Controller extends BaseController
         $message->from("hoang681682@gmail.com","Shop mỹ phẩm 365");
         });
     }
+
+
+    public function sendBill($email,$productData){
+        $to_name = "admin";
+        $to_email = $email;
+        $data = [
+            "name"      =>$email,
+            "body"      => "A test mail",
+            "otp"       => '637',
+            "product"    => $productData
+            ];
+
+        Mail::send('emails.sendBill',['data' => $data], function($message) use ($to_name, $to_email) {
+        $message->to($to_email, $to_name)->subject("Shop mỹ phẩm 365");
+        $message->from("hoang681682@gmail.com","Shop mỹ phẩm 365");
+        });
+    }
+
+    public function sendMailGetPassword($email,$newPass){
+        $to_name = "admin";
+        $to_email = $email;
+        $data = [
+            "name"      =>$email,
+            "body"      => "A test mail",
+            "otp"       => '637',
+            "pass"    => $newPass
+            ];
+
+        Mail::send('emails.sendMailGetPassword',['data' => $data], function($message) use ($to_name, $to_email) {
+        $message->to($to_email, $to_name)->subject("Shop mỹ phẩm 365");
+        $message->from("hoang681682@gmail.com","Shop mỹ phẩm 365");
+        });
+    }
+
+    public function RandomString()
+    {
+        $alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
+        for ($i = 0; $i < 8; $i++) {
+            $n = rand(0, strlen($alphabet)-1);
+            $pass[$i] = $alphabet[$n];
+        }
+        return $pass;
+    }
+   
 }

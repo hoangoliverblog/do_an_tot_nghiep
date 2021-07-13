@@ -19,11 +19,13 @@
                                         <img src="{{asset('img')}}{{'/'.$item->img}}" alt="photo">
                                     </div>
                                     <div class="product_des">
-                                        <p>{{$item->desc}}</p>
+                                        <p>{!!$item->desc!!}</p>
                                     </div>
                                     <div class="product_price">
                                         <label><del>{{$item->price ?? ''}}</del></label>
-                                        <label>{{$item->price - $item->price * $item->sale /100}}</label>
+                                        @if(isset($item->sale))
+                                            <label>{{$item->price - $item->price * $item->sale /100}}</label>
+                                        @endif 
                                     </div>
                                     <div class="product_btn">
                                     <button><a href="{{route('user.sanpham',[$item->id])}}">Mua ngay</a></button>

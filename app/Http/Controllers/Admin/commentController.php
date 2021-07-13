@@ -17,7 +17,7 @@ class commentController extends Controller
      */
     public function index()
     {
-        $lus = Comment::paginate(5);
+        $lus = Comment::paginate(10);
         
         $user = Auth::user();
 

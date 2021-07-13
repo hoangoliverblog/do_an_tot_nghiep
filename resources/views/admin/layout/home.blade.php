@@ -4,7 +4,7 @@
     <div class="">
       <div class="page-title">
         <div class="title_left">
-          <h3>Echarts <small>Some examples to get you started</small></h3>
+          <h3>Quản trị <small>Tổng quan hoạt động website</small></h3>
         </div>
 
         <div class="title_right">
@@ -25,7 +25,7 @@
         <div class="col-md-8 col-sm-8  ">
           <div class="x_panel">
             <div class="x_title">
-              <h2>Bar Graph</h2>
+              <h2>Số lượng tài khoản theo tháng</h2>
               <ul class="nav navbar-right panel_toolbox">
                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                 </li>

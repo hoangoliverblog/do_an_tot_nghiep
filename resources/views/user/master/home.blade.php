@@ -25,27 +25,37 @@
                         <a href="{{asset('/')}}"><img src="{{asset('lib/img/final_logo.jpg')}}" alt="logo"></a>
                         </div>
                         <div class="col-sm-6 brand_search">
-                            <input type="text">
-                            <span><i class="fas fa-search"></i></span>    
+                            <input type="text" name="searchProduct" id="searchProduct">
+                            <span id="searchAllProduct"><i class="fas fa-search"></i></span>    
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-6">
                     <div class="directory">
                         <ul>
+                            @if (isset($user->name))
                             <li><span><i class="fas fa-user"></i></span><a href="{{route('user.Logout')}}">Đăng xuất</a></li>
+                            @endif
                             <li><span><i class="fas fa-user"></i></span><a href="{{route('user.Login')}}">{{$user->name ?? 'Đăng nhập'}}</a></li>
                             @if (!isset($user->name))
                                 <li><span><i class="fas fa-users"></i></span><a id="resgiter" href="{{route('user.Resgister')}}">Đăng kí</a></li>    
                             @endif
-                            
-                            <li><span><i class="fas fa-dollar-sign"></i></span><a href="">Thanh toán</a></li>
+                            <li><span><i class="fas fa-dollar-sign"></i></span><a href="{{route('user.showCart',[$user->id ?? 'default'])}}">Thanh toán</a></li>
                         </ul>
                     </div>
                     <div class="hot_new" >
                         <div class="hot_new_cart">
                             <span><i class="fas fa-female"></i><a href="">Bí quyết làm đẹp</a></span>
-                            <span><i class="fas fa-shopping-cart"></i></span>
+                            <span>
+                                <a href="{{route('user.showCart',[$user->id ?? 'default'])}}">
+                                    <i class="fas fa-shopping-cart">
+                                        {{-- {{$countProductInCart ?? ''}} --}}
+                                        @if(isset($countProductInCart) && $countProductInCart > 0)
+                                            +
+                                        @endif
+                                    </i>
+                                </a>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -156,7 +166,7 @@
         </div>
     </div>
     <!-- ++++++++++++++++ end banner ++++++++++++++++++ -->
-
+    <div id="resultReturnbyAjax"></div>
     <!-- ++++++++++++++++ all product ++++++++++++++++++ -->     
 
                 <!-- *********** New product *********** -->
@@ -223,5 +233,47 @@
 <script src="{{asset('lib/bootstrap/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('lib/style/owl.carousel.min.js')}}"></script>
 <script src="{{asset('lib/style/Homejs.js')}}"></script>
+<script>
+    function edit(){
+        if(confirm("Bạn có muốn sửa sản phẩm?"))
+        {
+          return true;
+        }
+        else
+        {
+          return false;
+        }
+      }
+      function xoa(){
+        if(confirm("Bạn có muốn xóa sản phẩm?"))
+        {
+          return true;
+        }
+        else
+        {
+          return false;
+        }
+      }
+
+      $(document).ready(function(){
+        $('#searchAllProduct').click(function(){ //bắt sự kiện keyup khi người dùng gõ từ khóa tim kiếm
+        var query = $('#searchProduct').val(); //lấy gía trị ng dùng gõ
+            if(query != '') //kiểm tra khác rỗng thì thực hiện đoạn lệnh bên dưới
+            {
+            // var _token = $('input[name="_token"]').val(); // token để mã hóa dữ liệu
+            //$('#abc').html(_token);
+            $.ajax({
+            url:"{{ route('ajax.searchAllProduct')}}", // đường dẫn khi gửi dữ liệu đi 'search' là tên route 
+            method:"POST", // phương thức gửi dữ liệu.
+            data:{query:query},
+            success:function(data){ //dữ liệu nhận về
+            $('#resultReturnbyAjax').fadeIn();  
+            $('#resultReturnbyAjax').html(data); //nhận dữ liệu dạng html và gán vào cặp thẻ có id là listpr
+            }
+        });
+        }
+        });
+        });
+</script>
 </body>
 </html>

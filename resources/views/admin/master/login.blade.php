@@ -29,6 +29,11 @@
 
       <div class="login_wrapper">
         <div class="animate form login_form">
+          @if (\Session::has('updatePassword'))
+            <div class="alert alert-success">
+                <h4>{!! \Session::get('updatePassword') !!}</h4>
+            </div>
+             @endif
           <section class="login_content">
             <form action="{{route('Admin.checklogin')}}" method="post">
               @csrf
@@ -50,7 +55,7 @@
               </div>
               <div>
                 <button type="submit" class="btn btn-default submit">Đăng nhập</button>
-                <a class="reset_pass" href="#">Lấy lại mật khẩu?</a>
+                <a class="reset_pass" href="{{route('Admin.showPasswordRetrieval')}}">Lấy lại mật khẩu?</a>
               </div>
               <div class="clearfix"></div>
             </form>

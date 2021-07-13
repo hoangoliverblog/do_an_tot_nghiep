@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="{{asset('lib/style/Homecss.css')}}">
     <title>Mỹ phẩm 365</title>
 </head>
-<body>
+<body> 
+    
     <div class="hiden_icon">
         <span><i class="fas fa-bars"></i></span>
     </div>
@@ -38,13 +39,22 @@
                             @if (!isset($user->name))
                                 <li><span><i class="fas fa-users"></i></span><a id="resgiter" href="{{route('user.Resgister')}}">Đăng kí</a></li>    
                             @endif
-                            <li><span><i class="fas fa-dollar-sign"></i></span><a href="">Thanh toán</a></li>
+                            <li><span><i class="fas fa-dollar-sign"></i></span><a href="{{route('user.showCart',[$user->id ?? 'default'])}}">Thanh toán</a></li>
                         </ul>
                     </div>
                     <div class="hot_new" >
                         <div class="hot_new_cart">
                             <span><i class="fas fa-female"></i><a href="">Bí quyết làm đẹp</a></span>
-                            <span><i class="fas fa-shopping-cart"></i></span>
+                            <span>
+                                <a href="{{route('user.showCart',[$user->id ?? 'default'])}}">
+                                    <i class="fas fa-shopping-cart">
+                                        {{-- {{$countProductInCart ?? ''}} --}}
+                                        @if(isset($countProductInCart) && $countProductInCart > 0)
+                                            +
+                                        @endif
+                                    </i>
+                                </a>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -146,11 +156,10 @@
     </div>    
     <!-- ++++++++++++++++ end menu ++++++++++++++++++ -->  
     
-
     <!-- ++++++++++++++++ all product ++++++++++++++++++ -->     
-
+                
                 <!-- *********** New product *********** -->
-               <div>
+               <div>            
                    @yield('content')
                </div>
                     
@@ -213,5 +222,27 @@
 <script src="{{asset('lib/bootstrap/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('lib/style/owl.carousel.min.js')}}"></script>
 <script src="{{asset('lib/style/Homejs.js')}}"></script>
+<script>
+    function edit(){
+        if(confirm("Bạn có muốn sửa sản phẩm?"))
+        {
+          return true;
+        }
+        else
+        {
+          return false;
+        }
+      }
+      function xoa(){
+        if(confirm("Bạn có muốn xóa sản phẩm?"))
+        {
+          return true;
+        }
+        else
+        {
+          return false;
+        }
+      }
+</script>
 </body>
 </html>
