@@ -23,7 +23,7 @@
                                     </div>
                                     <div class="product_price">
                                         <label><del>{{$item->price ?? ''}}</del></label>
-                                        @if(isset($item->sale))
+                                        @if(isset($item->sale) & $item->sale > 0)
                                             <label>{{$item->price - $item->price * $item->sale /100}}</label>
                                         @endif 
                                     </div>

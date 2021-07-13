@@ -15,7 +15,7 @@ class Comment extends Model
     public $timestamps = false;
 
     public function user(){
-        return $this->hasMany('App\User','user_id','id');
+        return $this->belongsTo('App\User','user_id','id');
     }
 
     public function product(){

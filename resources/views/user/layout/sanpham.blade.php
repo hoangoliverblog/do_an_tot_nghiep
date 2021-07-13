@@ -61,18 +61,19 @@
                             <h3>{{$product->name}}</h3>
                             <h4>
                               <del>{{$product->price}}</del>
-                              @if(isset($product->sale))
+                              @if(isset($product->sale) & $product->sale > 0)
                                 {{$product->price - $product->price * $product->sale /100}}  
-                                <span>Giảm 55%, tiết kiệm</span>
+                                <span>Giảm {{$product->sale}}, tiết kiệm</span>
                               @endif
                             </h4>
                             <p>{!!$product->thongtin!!}</p>
                             <p>{!!$product->desc!!}</p>
-                            <div>
+                            <input type="hidden" name="soluong" value="1"  readonly>
+                            {{-- <div>
                                 <span class="minus" id="minus">-</span>
-                                <input type="text" name="soluong" value="1"  readonly>
+                                <input type="hidden" name="soluong" value="1"  readonly>
                                 <span class="sum" id="sum">+</span>
-                            </div>
+                            </div> --}}
                             <div>
                                 <button class="btn-add" type="submit">Thêm vào giỏ</button>
                                 <a href="{{route('user.showBuy',['id'=>$product->id])}}" class="btn-buy">Chọn mua</a>

@@ -66,9 +66,9 @@
                             <h3>{{$product->name}}</h3>
                             <h4>
                               <del>{{$product->price}}</del>
-                              @if(isset($product->sale))
+                              @if(isset($product->sale) & $product->sale > 0)
                                 {{$product->price - $product->price * $product->sale /100}}  
-                                <span>Giảm 55%, tiết kiệm</span>
+                                <span>Giảm {{$product->sale}}, tiết kiệm</span>
                               @endif
                             </h4>
                             <p>{!!$product->thongtin!!}</p> 

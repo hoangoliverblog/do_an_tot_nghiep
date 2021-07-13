@@ -16,13 +16,13 @@ class chitiethoadonSeeder extends Seeder
             'created_at'=>new DateTime()
         ]);
         
-        $faker = Faker\Factory::create();
-        for ($i=0; $i < 5; $i++) { 
-            DB::table('chitiethoadons')->insert([
-                'hd_id'=>2,
-                'created_at'=>new DateTime()
-            ]);
-        }
+        // $faker = Faker\Factory::create();
+        // for ($i=0; $i < 5; $i++) { 
+        //     DB::table('chitiethoadons')->insert([
+        //         'hd_id'=>2,
+        //         'created_at'=>new DateTime()
+        //     ]);
+        // }
         
     }
 }

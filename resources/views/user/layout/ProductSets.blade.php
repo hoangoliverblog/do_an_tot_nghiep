@@ -19,7 +19,7 @@
                                         <img src="{{asset('img')}}{{'/'.$item->img}}" alt="photo">
                                     </div>
                                     <div class="product_des">
-                                        <p>{{$item->desc}}</p>
+                                        <p>{!!$item->desc!!}</p>
                                     </div>
                                     <div class="product_price">
                                         <label><del>{{$item->price ?? ''}}</del></label>

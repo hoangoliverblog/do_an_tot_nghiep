@@ -28,14 +28,15 @@
               <th scope="col">Tên sản phẩm</th>
               <th scope="col">Nội dung</th>
               <th scope="col">Thời gian</th>
+              <th scope="col">Thao tác</th>
             </tr>
           </thead>
           <tbody id="list_hd">
               @foreach ($lus as $lu)
                <tr>
                   <th scope="row">{{$lu->id}}</th>
-                      <td>{{$lu->user_id}}</td>
-                      <td>{{$lu->user}}</td>
+                      <td>{{$lu->user->email}}</td>
+                      <td>{{$lu->user->name}}</td>
                       <td>{{$lu->product->loaisanpham->name}}</td>
                       <td>{{$lu->product->name}}</td>
                       <td>{{$lu->content}}</td>

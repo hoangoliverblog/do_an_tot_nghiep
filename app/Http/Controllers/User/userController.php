@@ -352,6 +352,7 @@ class userController extends Controller
                     'city'       => $city,
                     'zipcode'    => $zipcode,
                     'sum'        => $sum,
+                    'status'     => 'chưa thanh toán',
                     'created_at' =>  new DateTime(),
                     'updated_at' => new DateTime()
                     ]);
@@ -368,7 +369,8 @@ class userController extends Controller
                     "sale"      =>  $product->sale,
                     "timeBuy"   =>  $timeBuy,
                     "address"   =>  $address,
-                    "phone"     =>  $phone
+                    "phone"     =>  $phone,
+                    "status"   =>  'chưa thanh toán'
                 ];
 
                 $this->sendBill($email,$purchasedProductData);

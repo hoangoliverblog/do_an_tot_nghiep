@@ -13,7 +13,7 @@ class cosmeticsController extends Controller
         if ($request->session()->has('countProductInCart')) {
             View::share('countProductInCart', $request->session()->get('countProductInCart', ''));
         }
-        $aryProduct = Product::paginate(10)->where('id_loaisp', 3);
+        $aryProduct = Product::paginate(10)->where('id_loaisp', 1);
         $user = Auth::user() ?? '';
         return view('user.layout.cosmetics',['aryProduct'=>$aryProduct,'user'=>$user]);
     }

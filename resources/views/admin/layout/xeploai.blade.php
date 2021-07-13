@@ -24,10 +24,10 @@
               @foreach ($lxl as $lu)
                <tr>
                   <th scope="row">{{$lu->id}}</th>
-                      <td>{{$lu->sanpham}}</td>
-                      <td>{{$lu->sanpham}}</td>
-                      <td>{{$lu->sanpham}}</td>
-                      <td>{{$lu->level}}</td>
+                      <td>{{$lu->sanpham->loaisanpham->name}}</td>
+                      <td>{{$lu->sanpham->name}}</td>
+                      <td>{{$lu->sanpham->price}}</td>
+                      <td style="padding-left:1.2rem">{{$lu->level . ' '}}<i class="fas fa-star" style="color: yellow"></i></td>
                 </tr>      
                 @endforeach
           </tbody> 

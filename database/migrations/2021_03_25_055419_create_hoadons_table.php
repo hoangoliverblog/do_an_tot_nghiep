@@ -23,6 +23,7 @@ class CreateHoadonsTable extends Migration
             $table->string('city')->nullable();
             $table->string('zipcode')->nullable();
             $table->integer('sum')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

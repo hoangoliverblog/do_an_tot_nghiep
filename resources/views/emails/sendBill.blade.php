@@ -28,7 +28,6 @@
 		<td>Số lượng</td>
 		<td>Giá</td>
 		</tr>
-		
 		<tr>
 		<td>
 		<p style="padding-right:10px"><img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fcongthucmypham.vn%2F&psig=AOvVaw3haUpB45NJ7M60jSsLtyN0&ust=1624521365104000&source=images&cd=vfe&ved=0CAoQjRxqFwoTCOjV2PKjrfECFQAAAAAdAAAAABAE" width="100px" class="CToWUd"></p>
@@ -59,6 +58,10 @@
 		<tr>
 		<td>Ngày đặt hàng</td>
 		<td>{{$data['product']['timeBuy']}}</td>
+		</tr>
+		<tr>
+		<td>Trạng thái thanh toán</td>
+		<td>{{$data['product']['status']}}</td>
 		</tr>
 		<tr>
 		<td width="50%">Phương thức thanh toán</td>

@@ -16,16 +16,17 @@ class commentSeeder extends Seeder
         DB::table('comments')->insert([
             'user_id'=>1,
             'pr_id'=>1,
-            'content'=>'san pham kha tot'
+            'content'=>'san pham kha tot',
+            'created_at'=> new DateTime()
         ]);
        
-        $faker = Faker\Factory::create();
-        for ($i=0; $i < 5; $i++) { 
-            DB::table('comments')->insert([
-                'user_id'=>2,
-                'pr_id'=>1,
-                'content'=>$faker->text
-            ]);
-        }
+        // $faker = Faker\Factory::create();
+        // for ($i=0; $i < 5; $i++) { 
+        //     DB::table('comments')->insert([
+        //         'user_id'=>2,
+        //         'pr_id'=>1,
+        //         'content'=>$faker->text
+        //     ]);
+        // }
     }
 }
