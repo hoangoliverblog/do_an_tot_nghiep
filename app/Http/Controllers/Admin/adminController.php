@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\adminLoginRequest;
+use DateTime;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
@@ -32,7 +33,21 @@ class adminController extends Controller
         {  
          view()->share('user', Auth::user());
         }
-        return view('admin.layout.home');
+        $date = new DateTime();
+
+        $date = $date->modify('-1 month');
+
+        $sumUser = DB::table('users')->count() ?? 0;
+        $sumUserNoneActive = DB::table('users')->where('status','=','noneactive')->count() ?? 0;
+        $sumUserAddNewByMonth = DB::table('users')->where('created_at','>',$date)->count() ?? 0;
+    
+        $sumProductNotPay = DB::table('carts')->where('status','=','chưa thanh toán')->count() ?? 0;
+        return view('admin.layout.home',[
+            'sumUser'               =>$sumUser,
+            'sumUserNoneActive'     =>$sumUserNoneActive,
+            'sumUserAddNewByMonth'  =>$sumUserAddNewByMonth,
+
+            ]);
     }
 
     public function checklogin(adminLoginRequest $adminLoginRequest){
