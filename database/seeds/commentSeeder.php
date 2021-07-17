@@ -17,6 +17,7 @@ class commentSeeder extends Seeder
             'user_id'=>1,
             'pr_id'=>1,
             'content'=>'san pham kha tot',
+            'emailIfNotLogin'=> '',
             'created_at'=> new DateTime()
         ]);
        

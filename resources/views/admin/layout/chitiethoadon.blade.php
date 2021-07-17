@@ -29,6 +29,7 @@
               <th scope="col">{{__('msg.Address')}}</th>
               <th scope="col">{{__('msg.Phone')}}</th>
               <th scope="col">{{__('msg.Amount')}}</th>
+              <th scope="col">{{__('msg.Status')}}</th>
               <th scope="col">{{__('msg.Created_at')}}</th>
               <th scope="col">{{__('msg.Manipulation')}}</th>
             </tr>
@@ -44,6 +45,7 @@
                         <td>{{$lu->hoadon->user->address}}</td>
                         <td>{{$lu->hoadon->user->phone}}</td>
                         <td>{{$sum = $lu->hoadon->sanpham->price * $lu->hoadon->sanpham->soluong}} vnđ</td>
+                        <td>{{$lu->hoadon->status}}</td>
                         <td>{{$lu->created_at}}</td>
                         <td>
                         <form action="{{route('hoadon.destroy',[$lu->id])}}" method="POST" onsubmit="return xoa()">

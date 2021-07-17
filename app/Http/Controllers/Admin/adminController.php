@@ -33,15 +33,19 @@ class adminController extends Controller
         {  
          view()->share('user', Auth::user());
         }
+        //
         $date = new DateTime();
-
         $date = $date->modify('-1 month');
-
         $sumUser = DB::table('users')->count() ?? 0;
         $sumUserNoneActive = DB::table('users')->where('status','=','noneactive')->count() ?? 0;
         $sumUserAddNewByMonth = DB::table('users')->where('created_at','>',$date)->count() ?? 0;
-    
+        //
         $sumProductNotPay = DB::table('carts')->where('status','=','chưa thanh toán')->count() ?? 0;
+        //
+        // $sumRevenue = DB::table('products')
+        // ->selectRaw('count(*) as total')
+        // ->selectRaw("count(case when status = 'đã thanh toán' then 1 end) as confirmed")
+        // ->first();
         return view('admin.layout.home',[
             'sumUser'               =>$sumUser,
             'sumUserNoneActive'     =>$sumUserNoneActive,

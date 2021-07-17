@@ -39,6 +39,7 @@ Route::group(['prefix'=>'Admin','namespace'=>'Admin','middleware'=>['admin','lan
 Route::group(['namespace'=>'User'],function () {
     Route::get('/','userController@index');
     Route::get('sanham/{id}','userController@sanpham')->name('user.sanpham');
+    Route::post('searchAllProductByName','userController@searchAllProductByName')->name('user.searchAllProductByName');
     Route::get('userLogin','userController@userLogin')->name('user.Login');
     Route::get('Resgister','userController@Resgister')->name('user.Resgister');
     Route::get('createUser','userController@createUser')->name('user.createUser');

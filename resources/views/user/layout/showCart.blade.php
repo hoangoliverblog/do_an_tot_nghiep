@@ -26,7 +26,7 @@
           @foreach ($data as $item)
           <tr>
               <td>
-              <input type="checkbox" name="checkbox-{{$item->id}}" value="{{$item->name}}">
+              <input type="checkbox" name="checkbox-{{$item->id}}" value="{{$item->name ."@". $item->id . "@" .$item->sum}}">
               </td>
               <th scope="row">{{$item->name}}</th>
               <td>{{$item->soluong}}</td>

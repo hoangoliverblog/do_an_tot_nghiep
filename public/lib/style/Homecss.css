@@ -46,12 +46,24 @@
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgb(67, 201, 67) (0, 123, 255, 0.25);
 }
-.brand_search span{
+.brand_search button{
     position: absolute;
     font-size: 1.3rem;
     color: rgb(197, 197, 197);
     margin-left: -2rem;
     cursor: pointer;
+    background-color: transparent;
+    border-radius: 5px;
+}
+.brand_search button:focus{
+    background-color: transparent;
+    border: none;
+    background-color: transparent;
+    border: transparent;
+}
+.brand_search button:hover{
+    color:  rgb(67, 201, 67);
+    
 }
 /* ----------end header left------------- */
 .directory{

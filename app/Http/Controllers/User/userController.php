@@ -38,12 +38,18 @@ class userController extends Controller
     }
     public function sanpham($id,Request $request){
         $user = Auth::user() ?? '';
-        $comment = DB::table('comments')->where('pr_id',$id)->paginate(2);
+        // $comment = DB::table('comments')->where('pr_id',$id)->paginate(2);
+        $comment    = Comment::where('pr_id',$id)->paginate(2);
         $product = DB::table('products')->find($id);
         if ($request->session()->has('countProductInCart')) {
             View::share('countProductInCart', $request->session()->get('countProductInCart', ''));
         }
         return view('user.layout.sanpham',['user'=>$user,'product' => $product,'comment'=>$comment]);
+    }
+    public function searchAllProductByName(Request $request){
+        $keyword = $request->searchProduct;
+        $aryResult = DB::table('products')->where('name', 'like', $keyword.'%')->get();
+        return view('user.layout.searchAll',['aryResult'=> $aryResult]);
     }
     public function userLogin(Request $request){
         if ($request->session()->has('countProductInCart')) {
@@ -207,11 +213,13 @@ class userController extends Controller
                         $request->all(),
                         [
                             'comment'  => 'required',
-                            'email'=>'email:rfc,dns',
+                            'email'=>'required|email:rfc,dns',
                         ],
                         [
                             'comment.required' => 'Bạn chưa nhập bình luận nào',
-                            'email.rfc,dns'    => 'Sai định dạng email'
+                            'email.rfc,
+                            dns'    => 'Sai định dạng email',
+                            'email.required'   => 'Vui lòng nhập email để đánh giá sản phẩm!'
                         ]
                     );
                 }
@@ -230,6 +238,7 @@ class userController extends Controller
                         'user_id' => Auth::user()->id,
                         'pr_id' => $id,
                         'content' => $comment,
+                        'emailIfNotLogin' => Auth::user()->email,
                         'created_at' =>  new DateTime(),
                         'updated_at' => new DateTime()
                     ]);
@@ -242,6 +251,7 @@ class userController extends Controller
                     'user_id' => 10,
                     'pr_id' => $id,
                     'content' => $comment,
+                    'emailIfNotLogin' => $request->email,
                     'created_at' =>  new DateTime(),
                     'updated_at' => new DateTime()
                 ]);
@@ -341,8 +351,7 @@ class userController extends Controller
                 $city        = $request->city ?? '';
                 $product     = DB::table('products')->find($id);
                 $zipcode     = $request->zipcode;
-                $sum         = $product->price * $request->soluong;
-                
+                $sum         = $product->price * (int)$request->soluong;
                 DB::table('hoadons')->insert([
                     'pr_id'      => $pr_id,
                     'user_id'    => $user_id,
@@ -410,20 +419,39 @@ class userController extends Controller
     {
         $aryProduct = $request->all() ?? [];
         unset($aryProduct['_token']);
-        return view('payment.form_pay',['aryProduct'=>$aryProduct,'nameUserIfNotLogin'=>session()->getId()]);
+        if($aryProduct == [])
+        {
+            return redirect()->back();
+        }
+        foreach($aryProduct as $item)
+        {
+            $aryItem    = explode('@',$item);
+            $aryId[]    = $aryItem[1];
+            $aryName[]  = $aryItem[0];
+            $arySum[]      = $aryItem[2];
+        }
+        $sum = array_sum($arySum);
+        return view('payment.form_pay',['id'=>$aryId,'name'=>$aryName,'sum'=>$sum,'nameUserIfNotLogin'=>session()->getId()]);
     }
 
     public function createPayment(Request $request){
-        $vnp_TmnCode = "NXE8898T"; //Mã website tại VNPAY 
+        $stringId       = $request->idProductPay;
+        $vnp_TmnCode    = "NXE8898T"; //Mã website tại VNPAY 
         $vnp_HashSecret = "LTEAYKMCSVGRUPYMESCFCCSCJGUZOLYD"; //Chuỗi bí mật
-        $vnp_Url = "http://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-        $vnp_TxnRef = $_POST['order_id']; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
-        $vnp_OrderInfo = $_POST['order_desc'];
-        $vnp_OrderName = $_POST['order_name'];
-        $vnp_Amount = str_replace(',', '', $_POST['amount']) * 100;
-        $vnp_Locale = $_POST['language'];
-        $vnp_BankCode = $_POST['bank_code'];
-        $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
+        $vnp_Url        = "http://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
+        $vnp_TxnRef     = $_POST['order_id'].'@'.$stringId; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
+        $vnp_OrderInfo  = $_POST['order_desc'];
+        $vnp_OrderName  = $_POST['order_name'];
+        $vnp_Amount     = str_replace(',', '', $_POST['amount']) * 100;
+        $vnp_Locale     = $_POST['language'];
+        $vnp_BankCode   = $_POST['bank_code'];
+        $vnp_IpAddr     = $_SERVER['REMOTE_ADDR'];
+        // $aryLastExl     = explode('@',$stringId);
+        // foreach($aryLastExl as $item)
+        // {
+            
+        //     $aryIdProduct[] = trim($item);
+        // }
 
         $inputData = [
             "vnp_Version" => "2.0.0",
@@ -473,14 +501,24 @@ class userController extends Controller
                 $inputData[$key] = $value;
             }
         }
-        dd($inputData);
+        $ary = explode('@',$inputData['vnp_TxnRef']);
+        foreach($ary as $item)
+        {
+            $aryId[] = $item;
+        }
+        $nameProduct = $aryId[0];
+        unset($aryId[0]);
+        $count = (int)count($aryId);
+        unset($aryId[$count]);
         if ($inputData['vnp_ResponseCode'] == '00') {
-            // DB::table('carts')->where('id','=',)->update([
-            //     'status' => 'Đã thanh toán'
-            // ]);
-            echo 1;
+            foreach($aryId as $id)
+            {
+                DB::table('carts')->where('id','=',$id)->update([
+                    'status' => 'Đã thanh toán'
+                ]);
+            }
         }
 
-        // return view('payment.pay_return');
+        return view('payment.pay_return');
     }
 }

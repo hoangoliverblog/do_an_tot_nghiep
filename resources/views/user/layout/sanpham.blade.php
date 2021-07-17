@@ -120,6 +120,7 @@
                     @error('comment')
                           {{$message}}
                         @enderror
+                    @if (!Auth::check())
                     <div class="form-row">
                       <input
                              class="input"
@@ -135,6 +136,7 @@
                     @error('email')
                           {{$message}}
                         @enderror
+                    @endif
                     <div class="form-row">
                       <input type="submit" value="Bình luận">
                     </div>
@@ -183,9 +185,9 @@
                       <div class="comment-footer">
                         <div class="comment-info">
                           <span class="comment-author">
-                            <a href="">{{$item->pr_id}}</a>
+                            <a href="">{{$item->user->name ?? 'Anonymous'}}</a>
                           </span>
-                          <span class="comment-date">{{$item->created_at}}</span>
+                          <span class="comment-date">{{$item->user->email ?? $item->emailIfNotLogin}}</span>
                         </div>
                         <div class="comment-actions">
                           <a href="#">{{$item->created_at}}</a>

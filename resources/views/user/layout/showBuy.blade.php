@@ -100,9 +100,9 @@
                             @endif                               
                             <div>
                                 <h4>Số lượng</h4>
-                                <span class="minus" id="minus">-</span>
-                                <input type="text" name="soluong" id="soluong" value="3" readonly>
-                                <span class="sum" id="sum">+</span>
+                                <span class="minus" id="minus" onclick="minus()">-</span>
+                                <input type="text" name="soluong" value="1" readonly>
+                                <span class="sum" id="sum" onclick="sum()">+</span>
                             </div>
                             <div>
                                 <button class="btn-add" type="submit">Chọn mua sản phẩm</button>
@@ -123,8 +123,7 @@
 @endsection
 @push('scripts')
 <script>
-  a = document.getElementById('soluong').value;
-  console.log(a);
+ 
 </script>
 @endpush
 

@@ -26,8 +26,11 @@
                         <a href="{{asset('/')}}"><img src="{{asset('lib/img/final_logo.jpg')}}" alt="logo"></a>
                         </div>
                         <div class="col-sm-6 brand_search">
-                            <input type="text">
-                            <span><i class="fas fa-search"></i></span>    
+                            <form action="{{route('user.searchAllProductByName')}}" method="POST">
+                                @csrf
+                                <input type="text" name="searchProduct" id="searchProduct">
+                                <button type="submit" style="display:inline-block"><span><i class="fas fa-search"></i></span></button>
+                            </form>    
                         </div>
                     </div>
                 </div>
@@ -223,26 +226,40 @@
 <script src="{{asset('lib/style/owl.carousel.min.js')}}"></script>
 <script src="{{asset('lib/style/Homejs.js')}}"></script>
 <script>
-    function edit(){
-        if(confirm("Bạn có muốn sửa sản phẩm?"))
-        {
-          return true;
-        }
-        else
-        {
-          return false;
-        }
-      }
-      function xoa(){
-        if(confirm("Bạn có muốn xóa sản phẩm?"))
-        {
-          return true;
-        }
-        else
-        {
-          return false;
-        }
-      }
+function edit(){
+    if(confirm("Bạn có muốn sửa sản phẩm?"))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+    }
+    function xoa(){
+    if(confirm("Bạn có muốn xóa sản phẩm?"))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+    } 
+function minus(){
+    input = document.getElementById('soluong');
+    if(input.value <= 0)
+    {
+        return;
+    }
+    lastUpdateValue = input.value - 1;
+    input.value = lastUpdateValue;
+}
+function sum(){
+    input = document.getElementById('soluong');
+    lastUpdateValue = Number(input.value) + 1;
+    input.value = lastUpdateValue;
+}
 </script>
 </body>
 </html>

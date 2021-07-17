@@ -25,8 +25,11 @@
                         <a href="{{asset('/')}}"><img src="{{asset('lib/img/final_logo.jpg')}}" alt="logo"></a>
                         </div>
                         <div class="col-sm-6 brand_search">
-                            <input type="text" name="searchProduct" id="searchProduct">
-                            <span id="searchAllProduct"><i class="fas fa-search"></i></span>    
+                            <form action="{{route('user.searchAllProductByName')}}" method="POST">
+                                @csrf
+                                <input type="text" name="searchProduct" id="searchProduct">
+                                <button type="submit" style="display:inline-block"><span><i class="fas fa-search"></i></span></button>
+                            </form>    
                         </div>
                     </div>
                 </div>
@@ -254,26 +257,6 @@
           return false;
         }
       }
-
-      $(document).ready(function(){
-        $('#searchAllProduct').click(function(){ //bắt sự kiện keyup khi người dùng gõ từ khóa tim kiếm
-        var query = $('#searchProduct').val(); //lấy gía trị ng dùng gõ
-            if(query != '') //kiểm tra khác rỗng thì thực hiện đoạn lệnh bên dưới
-            {
-            // var _token = $('input[name="_token"]').val(); // token để mã hóa dữ liệu
-            //$('#abc').html(_token);
-            $.ajax({
-            url:"{{ route('ajax.searchAllProduct')}}", // đường dẫn khi gửi dữ liệu đi 'search' là tên route 
-            method:"POST", // phương thức gửi dữ liệu.
-            data:{query:query},
-            success:function(data){ //dữ liệu nhận về
-            $('#resultReturnbyAjax').fadeIn();  
-            $('#resultReturnbyAjax').html(data); //nhận dữ liệu dạng html và gán vào cặp thẻ có id là listpr
-            }
-        });
-        }
-        });
-        });
 </script>
 </body>
 </html>

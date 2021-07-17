@@ -35,8 +35,14 @@
               @foreach ($lus as $lu)
                <tr>
                   <th scope="row">{{$lu->id}}</th>
-                      <td>{{$lu->user->email}}</td>
-                      <td>{{$lu->user->name}}</td>
+                      <td>
+                        @if ($lu->emailIfNotLogin == '')
+                        {{"Anonymus"}}
+                        @else 
+                        {{$lu->emailIfNotLogin}}
+                        @endif
+                      </td>
+                      <td>{{$lu->user->name ?? 'Anonymus'}}</td>
                       <td>{{$lu->product->loaisanpham->name}}</td>
                       <td>{{$lu->product->name}}</td>
                       <td>{{$lu->content}}</td>

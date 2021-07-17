@@ -4,6 +4,8 @@
     $info = explode('/' , $_GET['vnp_OrderInfo']);
     $d = $_GET['vnp_PayDate'];
     $date = substr($d, 0, 4) .'-'. substr($d, 4,2) .'-'. substr($d,6,2) .' '. substr($d,8,2) .':'. substr($d,10,2) .':'. substr($d,12,2);
+    $ary = $_GET['vnp_TxnRef'];
+    $aryContent = explode('@',$ary);
 @endphp
 <!DOCTYPE html>
 <html lang="en">
@@ -31,8 +33,8 @@
         </div>
         <div class="table-responsive">
             <div class="form-group">
-                <label>Mã thanh toán:</label>
-                <label> {{$_GET['vnp_TxnRef']}} </label>
+                <label>Tên sản phẩm thanh toán :</label>
+                <label> {{$aryContent[0]}} </label>
             </div>
             <div class="form-group">
                 <label>Số tiền:</label>
@@ -62,7 +64,7 @@
                     @endif
                 </label>
                 <br>
-                <a href="/home">
+                <a href="{{asset('/')}}">
                     <button>Trang chủ</button>
                 </a>
             </div>
@@ -70,9 +72,6 @@
         <p>
             &nbsp;
         </p>
-        <footer class="footer">
-            <p>&copy; Quản lý GSBK 2021</p>
-        </footer>
     </div>
 </body>
 

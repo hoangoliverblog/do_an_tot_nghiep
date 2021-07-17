@@ -25,9 +25,6 @@
             <h3 class="text-muted" style="text-align: center; color: blue">THANH TOÁN MUA SẢN PHẨM</h3>
         </div>
 
-        {{-- <h4 style=" color: red">Vui lòng thanh toán số tiền: {{ $require->cost }} x {{ $require->time_required }}h x
-            20% (VNĐ) (phí nhận lớp = 20% giá trị lớp mà bạn nhận dạy)</h4> --}}
-
         <div class="table-responsive">
 
             <form action="{{route('user.createPayment')}}" id="create_form" method="post">
@@ -41,7 +38,7 @@
                 <div class="form-group">
                     <label for="order_id">Tên sản phẩm thanh toán</label>
                     <input class="form-control" id="order_id" name="order_id" type="text"
-                        value="@foreach ($aryProduct as $item) {{$item . '.'}} @endforeach" 
+                        value="@foreach ($name as $item) {{$item . '.'}} @endforeach" 
                     readonly />
                 </div>
                     <input class="form-control" id="post_id" name="post_id" 
@@ -49,12 +46,12 @@
                 <div class="form-group">
                     <label for="amount">Số tiền (VNĐ)</label>
                     <input class="form-control" id="amount" name="amount" type="number"
-                        value=""/>
+                value="{{$sum}}" readonly/>
                 </div>
                 <div class="form-group">
                     <label for="order_desc">Nội dung thanh toán</label>
                     <textarea class="form-control" cols="20" id="order_desc" name="order_desc" rows="2"
-                        placeholder="VD: Thanh toán phí nhận lớp" required></textarea>
+                        placeholder="VD: Thanh toán phí mua hàng" required></textarea>
                 </div>
                 <div class="form-group">
                     <label for="bank_code">Ngân hàng</label>
@@ -90,6 +87,9 @@
                         <option value="vn">Tiếng Việt</option>
                         <option value="en">English</option>
                     </select>
+                </div>
+                <div>
+                    <input type="hidden" name="idProductPay" value="@foreach ($id as $item) {{$item.'@'}} @endforeach">
                 </div>
                 <button style="color: red" type="submit" class="btn btn-default">Thanh toán Redirect</button>
             </form>

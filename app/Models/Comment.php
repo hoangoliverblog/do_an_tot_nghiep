@@ -9,7 +9,7 @@ class Comment extends Model
     protected $table = 'comments';
 
     protected $fillable = [
-        'user_id','pr_id','content'
+        'user_id','pr_id','content','emailIfNotLogin'
     ];
 
     public $timestamps = false;
