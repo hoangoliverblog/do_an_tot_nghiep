@@ -13,7 +13,7 @@ class ProductSetsController extends Controller
         if ($request->session()->has('countProductInCart')) {
             View::share('countProductInCart', $request->session()->get('countProductInCart', ''));
         }
-        $aryProduct = Product::paginate(10)->where('id_loaisp', 4);
+        $aryProduct = Product::where('id_loaisp', 4)->paginate(10);
         $user = Auth::user() ?? '';
         return view('user.layout.ProductSets',['aryProduct'=>$aryProduct,'user'=>$user]);
     }

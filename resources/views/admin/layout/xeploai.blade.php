@@ -27,7 +27,7 @@
                       <td>{{$lu->sanpham->loaisanpham->name}}</td>
                       <td>{{$lu->sanpham->name}}</td>
                       <td>{{$lu->sanpham->price}}</td>
-                      <td style="padding-left:1.2rem">{{$lu->level . ' '}}<i class="fas fa-star" style="color: yellow"></i></td>
+                      <td style="padding-left:1.2rem">{{$lu->level . ' '}}sao</td>
                 </tr>      
                 @endforeach
           </tbody> 

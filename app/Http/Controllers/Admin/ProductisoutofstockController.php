@@ -5,9 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\xeploai;
+use Illuminate\Support\Facades\DB;
 use App\Models\Product;
-class xeploaiController extends Controller
+
+class ProductisoutofstockController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +17,10 @@ class xeploaiController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        $lxl = xeploai::paginate(10) ?? [];
         $lus = Product::where('soluong','<','100')->paginate(10);
-        return view('admin.layout.xeploai',['user'=>$user,'lxl'=>$lxl,'lus'=>$lus]);
+        $user = Auth::user();
+        $lsp = DB::table('loaisanphams')->get();    
+        return view('admin.layout.Productisoutofstock',['lus' => $lus, 'user' => $user, 'lsp' => $lsp]);
     }
 
     /**
@@ -85,7 +86,6 @@ class xeploaiController extends Controller
      */
     public function destroy($id)
     {
-        xeploai::where('id',$id)->delete();
-        return redirect()->back();
+        //
     }
 }

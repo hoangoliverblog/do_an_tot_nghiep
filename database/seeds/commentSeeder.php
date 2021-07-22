@@ -21,13 +21,14 @@ class commentSeeder extends Seeder
             'created_at'=> new DateTime()
         ]);
        
-        // $faker = Faker\Factory::create();
-        // for ($i=0; $i < 5; $i++) { 
-        //     DB::table('comments')->insert([
-        //         'user_id'=>2,
-        //         'pr_id'=>1,
-        //         'content'=>$faker->text
-        //     ]);
-        // }
+        $faker = Faker\Factory::create();
+        for ($i=0; $i < 50; $i++) { 
+            DB::table('comments')->insert([
+                'user_id'=>2,
+                'pr_id'=>1,
+                'content'=>$faker->text,
+                'emailIfNotLogin'=> ''
+            ]);
+        }
     }
 }

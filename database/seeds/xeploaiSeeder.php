@@ -23,12 +23,24 @@ class xeploaiSeeder extends Seeder
             'pr_id'=>3,
             'level'=>'2'
         ]);
-        // $faker = Faker\Factory::create();
-        // for ($i=0; $i < 5; $i++) { 
-        //     DB::table('xeploais')->insert([
-        //         'pr_id'=>3,
-        //         'level'=>$faker->numberBetween($min = 1, $max = 5)
-        //     ]);
-        // }
+        $faker = Faker\Factory::create();
+        for ($i=0; $i < 5; $i++) { 
+            DB::table('xeploais')->insert([
+                'pr_id'=>1,
+                'level'=>$faker->numberBetween($min = 1, $max = 5)
+            ]);
+        }
+        for ($i=0; $i < 5; $i++) { 
+            DB::table('xeploais')->insert([
+                'pr_id'=>2,
+                'level'=>$faker->numberBetween($min = 1, $max = 5)
+            ]);
+        }
+        for ($i=0; $i < 5; $i++) { 
+            DB::table('xeploais')->insert([
+                'pr_id'=>3,
+                'level'=>$faker->numberBetween($min = 1, $max = 5)
+            ]);
+        }
     }
 }

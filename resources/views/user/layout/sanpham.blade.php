@@ -86,7 +86,7 @@
                 <div style="padding-left:1rem">
                     <h4>Thêm thông số về sản phẩm :</h4>
                     <h5>Mã sản phẩm :{{$product->id}}</h5>
-                    <h5>Lượt xem :</h5>
+                    <h5>Lượt xem :{{$product->viewcount}}</h5>
                     <h5>Nhà sản xuất :</h5>
                     <h5>Tình trạng : @if ($product->soluong > 0)
                         <span>Còn hàng</span>    

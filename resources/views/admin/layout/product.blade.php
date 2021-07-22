@@ -31,6 +31,7 @@
               <th scope="col">{{__('msg.Infomation')}}</th>
               <th scope="col">{{__('msg.Description')}}</th>
               <th scope="col">{{__('msg.Coupe')}}</th>
+              <th scope="col">{{__('msg.View')}}</th>
               <th scope="col">{{__('msg.SaleRate')}}</th>
               <th scope="col">{{__('msg.Created_at')}}</th>
               <th scope="col">{{__('msg.Manipulation')}}</th>
@@ -48,6 +49,7 @@
                       <td>{!!$lu->thongtin!!}</td>
                       <td>{!!$lu->desc!!}</td>
                       <td>{{$lu->coupe}}</td>
+                      <td>{{$lu->viewcount}}</td>
                       <td>{{$lu->sale}}%</td>
                       <td>{{$lu->created_at}}</td>
                       <td>

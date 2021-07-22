@@ -52,6 +52,7 @@
                   <li><a> <i class="fa fa-home"></i>{{__('msg.Account')}}<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                     <li><a href="{{route('user.index')}}">{{__('msg.ListAccount')}}</a></li>
+                    <li><a href="{{route('staff.index')}}">{{__('msg.ListStaff')}}</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-edit"></i>{{__('msg.Product')}}<span class="fa fa-chevron-down"></span></a>
@@ -59,6 +60,9 @@
                       <li><a href="{{route('product.index')}}">{{__('msg.ListProduct')}}</a></li>
                       <li><a href="{{route('xeploai.index')}}">{{__('msg.ProductRating')}}</a></li>
                       <li><a href="{{route('comment.index')}}">{{__('msg.CustomerComments')}}</a></li>
+                      <li><a href="{{route('Productisoutofstock.index')}}">{{__('msg.Productisoutofstock')}}@if(count($lus) >= 1)
+                        <i class='fas fa-exclamation-triangle' style="color: rgb(247, 107, 27)"></i>
+                    @endif</a></li>
                     </ul>
                   </li>
                 <li><a><i class="fa fa-desktop"></i>{{__('msg.Bill')}}<span class="fa fa-chevron-down"></span></a>
@@ -89,7 +93,7 @@
                   </li> --}}
                 </ul>
               </div>
-              {{-- <div class="menu_section">
+              <div class="menu_section">
                 <h3>Live On</h3>
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-bug"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>
@@ -130,7 +134,7 @@
                   </li>                  
                   <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a></li>
                 </ul>
-              </div> --}}
+              </div>
 
             </div>
             <!-- /sidebar menu -->

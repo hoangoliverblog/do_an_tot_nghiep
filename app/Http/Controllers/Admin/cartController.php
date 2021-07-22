@@ -99,7 +99,8 @@ class cartController extends Controller
         $user = Auth::user();
         $lsp = Cart::find($id);
         $list_lsp = Product::all();
-        return view('admin.layout.cartUpdate', ['lsp' => $lsp, 'user' => $user, 'list_lsp' => $list_lsp]);
+        $lus = Product::where('soluong','<','100')->paginate(10);
+        return view('admin.layout.cartUpdate', ['lsp' => $lsp, 'user' => $user, 'list_lsp' => $list_lsp,'lus'=>$lus]);
     }
 
     /**

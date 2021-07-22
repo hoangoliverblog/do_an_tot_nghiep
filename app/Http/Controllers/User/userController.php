@@ -36,20 +36,73 @@ class userController extends Controller
         $user = Auth::user() ?? '';
         return view('user.layout.home',['listsp'=>$pr_new, 'listsp_nb'=>$sp_nb,'user'=>$user,'countProductInCart'=>$countProductInCart]);
     }
+
     public function sanpham($id,Request $request){
         $user = Auth::user() ?? '';
         // $comment = DB::table('comments')->where('pr_id',$id)->paginate(2);
-        $comment    = Comment::where('pr_id',$id)->paginate(2);
-        $product = DB::table('products')->find($id);
+        $comment          = Comment::where('pr_id',$id)->paginate(2);
+        $product          = DB::table('products')->find($id);
+        $numberViewCount  = $product->viewcount;
         if ($request->session()->has('countProductInCart')) {
             View::share('countProductInCart', $request->session()->get('countProductInCart', ''));
         }
+        $sessionCountView = $request->session()->has('sessionCountView'.$id);
+        if(false === $sessionCountView)
+        {
+            $request->session()->push('sessionCountView'.$id, session_id());
+            $getSessionCountView = $request->session()->has('sessionCountView'.$id);
+            if(true === $getSessionCountView)
+            {
+                DB::table('products')->where('id',$id)->update(['viewcount'=> $numberViewCount + 1]);
+            }
+        }
+
         return view('user.layout.sanpham',['user'=>$user,'product' => $product,'comment'=>$comment]);
     }
+    
     public function searchAllProductByName(Request $request){
         $keyword = $request->searchProduct;
         $aryResult = DB::table('products')->where('name', 'like', $keyword.'%')->get();
+        // $users = DB::table('users')
+        //             ->whereNotBetween('votes', [1, 100])
+        //             ->get();// search by khoảng giá
         return view('user.layout.searchAll',['aryResult'=> $aryResult]);
+    }
+    
+    public function searchByPriceRange(Request $request){
+        $ByPriceRangeMax = 0;
+        $ByPriceRangeMin = 0;
+        $getDataSearch   = (int)$request->searchByPriceRange;
+        switch ($getDataSearch) {
+        case 1:
+            $ByPriceRangeMax = 100000 ;
+            break;
+        case 2:
+            $ByPriceRange = 200000 ;
+            $ByPriceRangeMin = 100000 ;
+            break;
+        case 3:
+            $ByPriceRange = 300000 ;
+            $ByPriceRangeMin = 200000 ;
+            break;
+        case 4:
+            $ByPriceRange = 500000 ;
+            $ByPriceRangeMin = 300000 ;
+            break;
+        case 5:
+            $ByPriceRange = 500000 ;
+            break;
+        default:
+            $ByPriceRangeMax = 0;
+            $ByPriceRangeMin = 0;
+        }
+        // $keyword = $request->searchProduct;
+        // $aryResult = DB::table('products')->where('name', 'like', $keyword.'%')->get();
+        $aryResult = DB::table('products')
+                    ->whereBetween('price', [$ByPriceRangeMin, $ByPriceRangeMax])                    
+                    ->get();
+        return view('user.layout.searchAll',['aryResult'=> $aryResult]);
+        
     }
     public function userLogin(Request $request){
         if ($request->session()->has('countProductInCart')) {

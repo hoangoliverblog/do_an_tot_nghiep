@@ -64,6 +64,9 @@
         'BillCode'      => 'Bill code',
         'UpdateCart'    => 'Update cart',
         'messageEdit'   => 'Do you want to edit?',
-        'messageDelete' => 'Do you want to delete?'
+        'messageDelete' => 'Do you want to delete?',
+        'Productisoutofstock' => 'Product is out of stock',
+        'View'          => 'View',
+        'ListStaff'     => 'List Staff'
     ];  
 ?>

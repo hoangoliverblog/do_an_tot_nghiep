@@ -22,8 +22,7 @@ class productController extends Controller
         $lus = Product::paginate(10);
         $user = Auth::user();
 
-        $lsp = DB::table('loaisanphams')->get();
-
+        $lsp = DB::table('loaisanphams')->get();        
         return view('admin.layout.product', ['lus' => $lus, 'user' => $user, 'lsp' => $lsp]);
     }
 
@@ -94,6 +93,7 @@ class productController extends Controller
                     'desc' => $request->desc ?: 'trong',
                     'coupe' => $request->coupe ?: 'trong',
                     'sale' => $request->sale ?: 0,
+                    'viewcount'=>0,
                     'created_at' => new DateTime()
                 ]);
                 return redirect()->back();
@@ -112,7 +112,8 @@ class productController extends Controller
         $user = Auth::user();
         $lsp = Product::find($id);
         $list_lsp = Product::all();
-        return view('admin.layout.productUpdate', ['lsp' => $lsp, 'user' => $user, 'list_lsp' => $list_lsp]);
+        $lus = Product::where('soluong','<','100')->paginate(10);
+        return view('admin.layout.productUpdate', ['lsp' => $lsp, 'user' => $user, 'list_lsp' => $list_lsp,'lus'=>$lus]);
     }
 
     /**

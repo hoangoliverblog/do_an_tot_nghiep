@@ -26,7 +26,9 @@ Route::group(['prefix'=>'Admin','namespace'=>'Admin'],function () {
 Route::group(['prefix'=>'Admin','namespace'=>'Admin','middleware'=>['admin','language']],function () {
     Route::get('show','adminController@show')->name('Admin.show');
     Route::resource('user','userController');
+    Route::resource('staff','staffController');
     Route::resource('product','productController');
+    Route::resource('Productisoutofstock','ProductisoutofstockController')->only(['index','destroy']);
     Route::resource('hoadon','hoadonController')->only(['index','destroy']);
     Route::resource('cart','cartController');
     Route::resource('xeploai','xeploaiController')->only(['index','destroy']);
@@ -40,6 +42,7 @@ Route::group(['namespace'=>'User'],function () {
     Route::get('/','userController@index');
     Route::get('sanham/{id}','userController@sanpham')->name('user.sanpham');
     Route::post('searchAllProductByName','userController@searchAllProductByName')->name('user.searchAllProductByName');
+    Route::post('searchByPriceRange','userController@searchByPriceRange')->name('user.searchByPriceRange');
     Route::get('userLogin','userController@userLogin')->name('user.Login');
     Route::get('Resgister','userController@Resgister')->name('user.Resgister');
     Route::get('createUser','userController@createUser')->name('user.createUser');
@@ -64,6 +67,7 @@ Route::group(['namespace'=>'User'],function () {
 });
 Route::group(['prefix'=>'Admin','namespace'=>'Ajax','middleware'=>'admin'],function () {
     Route::post('searchuser','ajaxController@searchuser')->name('ajax.searchuser');   
+    Route::post('searchstaff','ajaxController@searchstaff')->name('ajax.searchstaff');   
     Route::post('searchproduct','ajaxController@searchproduct')->name('ajax.searchproduct');   
     Route::post('searchxeploai','ajaxController@searchxeploai')->name('ajax.searchxeploai');    
     Route::post('searchcomment','ajaxController@searchcomment')->name('ajax.searchcomment');

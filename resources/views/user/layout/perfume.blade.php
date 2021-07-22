@@ -35,5 +35,5 @@
                         </div>
                     </div>
                 </div>
-                
+                <div style="text-align:center;margin: 2rem auto"><button type="button" class="btn btn-light"><span>{{$aryProduct->links()}}</span></button></div>
 @endsection

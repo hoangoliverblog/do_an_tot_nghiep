@@ -289,4 +289,40 @@ class ajaxController extends Controller
     {
         echo 1;
     }
+    public function searchstaff(Request $request){
+
+        if($request->get('query'))
+        {
+            $token = $request->get('_token');
+
+            $query = $request->get('query');
+            $data = DB::table('Staff')
+            ->where('name', 'LIKE', "%{$query}%")
+            ->get();
+             foreach($data as $row)
+            {
+                $output = '<tr>';                
+                $output .=  '<th>'.$row->id.'</th>';
+                $output .=  '<td>'.$row->name.'</td>';
+                $output .=  '<td><img src="http://127.0.0.1:8000/'.$row->image.'"/></td>';
+                $output .=  '<td>'.$row->email.'</td>';
+                $output .=  '<td>'.$row->address.'</td>';
+                $output .=  '<td>'.$row->phone.'</td>';
+                $output .=  '<td>'.$row->gioitinh.'</td>';
+                $output .=  '<td>'.$row->status.'</td>';
+                $output .=  '<td>'.$row->created_at.'</td>';
+                // $output .=  '<td>'."<span><a onclick='return edit()' href=".route('staff.show',[$row->id])."><i class='fas fa-edit'></i></a></span>"
+                //             ."<form action=".route('staff.destroy',[$row->id])." method='POST' onsubmit='return xoa()'>"
+                //             ."<input type='hidden' name='_token' value='".$token."'>"
+                //             ."<input type='hidden' name='_method' value='DELETE'>"
+                //             ."<button type='submit'><span><a href=''><i class='fas fa-trash-alt'></i></a></span></button>"
+                //             ."</form>"
+                //             ."</td>";
+                $output .= '</tr>';
+
+            }
+            
+            echo $output;
+       }
+    }
 }

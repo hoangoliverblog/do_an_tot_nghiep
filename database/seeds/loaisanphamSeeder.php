@@ -11,14 +11,15 @@ class loaisanphamSeeder extends Seeder
      */
     public function run()
     {
+        
         DB::table('loaisanphams')->insert([
             'name'=>'nước hoa'
         ]);
         DB::table('loaisanphams')->insert([
-            'name'=>'quần áo'
+            'name'=>'mỹ phẩm'
         ]);
         DB::table('loaisanphams')->insert([
-            'name'=>'mỹ phẩm'
+            'name'=>'quần áo'
         ]);
         DB::table('loaisanphams')->insert([
             'name'=>'bộ sản phẩm'
@@ -26,11 +27,11 @@ class loaisanphamSeeder extends Seeder
         DB::table('loaisanphams')->insert([
             'name'=>'thương hiệu nổi tiếng'
         ]);
-        // $faker = Faker\Factory::create();
-        // for ($i=0; $i < 5; $i++) { 
-        //     DB::table('loaisanphams')->insert([
-        //         'name'=>'Loại sản phẩm' . $i 
-        //     ]);
-        // }
+        $faker = Faker\Factory::create();
+        for ($i=0; $i < 25; $i++) { 
+            DB::table('loaisanphams')->insert([
+                'name'=>'Loại sản phẩm thứ ' . $i 
+            ]);
+        }
     }
 }

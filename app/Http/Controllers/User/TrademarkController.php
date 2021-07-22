@@ -13,7 +13,7 @@ class TrademarkController extends Controller
         if ($request->session()->has('countProductInCart')) {
             View::share('countProductInCart', $request->session()->get('countProductInCart', ''));
         }
-        $aryProduct = Product::paginate(10)->where('id_loaisp', 5);
+        $aryProduct = Product::where('id_loaisp', 5)->paginate(10);
         $user = Auth::user() ?? '';
         return view('user.layout.trademark',['aryProduct'=>$aryProduct,'user'=>$user]);
     }

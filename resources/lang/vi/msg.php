@@ -62,6 +62,9 @@
         'AddCart'       => 'Thêm vào giỏ hàng',
         'UpdateCart'    => 'Cập nhật giỏ hàng',
         'messageEdit'   => 'Do you want to edit?',
-        'messageDelete' => 'Do you want to delete?'
+        'messageDelete' => 'Do you want to delete?',
+        'Productisoutofstock' => 'Sản phẩm sắp hết hàng',
+        'View'          => 'Lượt xem',
+        'ListStaff'     => 'Danh sách nhân viên'
     ];  
 ?>

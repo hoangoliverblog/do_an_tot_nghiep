@@ -9,6 +9,7 @@ use DateTime;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
+use App\Models\Product;
 use Illuminate\Support\Facades\Validator;
 class adminController extends Controller
 {
@@ -28,30 +29,97 @@ class adminController extends Controller
     }
 
     public function show(){
-        
+        $lus = Product::where('soluong','<','100')->paginate(10);
         if(Auth::check())
         {  
          view()->share('user', Auth::user());
         }
-        //
+        //Tổng quan người dùng
         $date = new DateTime();
         $date = $date->modify('-1 month');
         $sumUser = DB::table('users')->count() ?? 0;
         $sumUserNoneActive = DB::table('users')->where('status','=','noneactive')->count() ?? 0;
         $sumUserAddNewByMonth = DB::table('users')->where('created_at','>',$date)->count() ?? 0;
-        //
-        $sumProductNotPay = DB::table('carts')->where('status','=','chưa thanh toán')->count() ?? 0;
-        //
-        // $sumRevenue = DB::table('products')
-        // ->selectRaw('count(*) as total')
-        // ->selectRaw("count(case when status = 'đã thanh toán' then 1 end) as confirmed")
-        // ->first();
-        return view('admin.layout.home',[
+        //Tổng quan giỏ hàng
+        $productMoreLike  = DB::table('carts')->pluck('name');
+        foreach ($productMoreLike as $key => $item) {
+           $aryProductMoreLike[] = $item;
+        }
+        $aryCountValue = array_count_values($aryProductMoreLike);
+        $numberLike = max($aryCountValue) ;
+        foreach($aryCountValue as $key => $value)
+        {
+            if($numberLike === $value)
+            {
+                $nameProductLike = $key; // loại sản phẩm đc yêu thích nhất
+            }
+        }
+        $sumProductNotPay = DB::table('carts')->where('status','=','chưa thanh toán')->count() ?? 0; 
+
+        $productOfMonth  = DB::table('carts')->where('created_at','>',$date)->pluck('name');
+        foreach ($productOfMonth as $key => $item) {
+           $sumProductOfMonth[] = $item;
+        }
+        $aryCountProductOfMonth = array_count_values($aryProductMoreLike);
+        $numberProductOfMonth = max($aryCountProductOfMonth) ;
+        foreach($aryCountProductOfMonth as $key => $value)
+        {
+            if($numberProductOfMonth === $value)
+            {
+                $nameProductOfMonth = $key; // sản phẩm của tháng
+            }
+        }
+        //Doanh thu
+        $sumRevenue = DB::table('hoadons')->pluck('sum');
+        foreach ($sumRevenue as $item) {
+            $aryRevenue[] = $item;
+         }
+        $sumRevenueByMonth = array_sum($aryRevenue);
+
+        $numberOfUnpaidOrders   = DB::table('hoadons')->where('status','=','chưa thanh toán')->count();
+        $quantitySoldInTheMonth = DB::table('hoadons')
+                                    ->where('created_at','>',$date)
+                                    ->where('status','=','đã thanh toán')
+                                    ->get() ?? [];
+        if(count($quantitySoldInTheMonth) == 0)
+        {
+            $sumInTheMonth = 0;
+        }else{
+            foreach($quantitySoldInTheMonth as $key => $value)
+                {
+                    $sumQuantitySoldInTheMonth[] = $value;
+                }
+            $sumInTheMonth = array_sum($sumQuantitySoldInTheMonth);
+        }
+        
+        //Đánh giá sản phẩm
+        $maxProductReviews = DB::table('xeploais')->pluck('level');
+        foreach ($maxProductReviews as $item) {
+            $aryProductReviews[] = $item;
+         }
+        $idProductReviewsMax = max($aryProductReviews);
+        $idProductReviewsMin = min($aryProductReviews);
+        //Bình luận khách hàng
+        $sumComment = DB::table('comments')->where('created_at','>',$date)->count();
+        $sumGoodComment = DB::table('comments')->where('created_at','>',$date)->where('content', 'like', 'tot%')->count();
+        //ary -> view dashboarh
+        $aryToView = [
             'sumUser'               =>$sumUser,
             'sumUserNoneActive'     =>$sumUserNoneActive,
             'sumUserAddNewByMonth'  =>$sumUserAddNewByMonth,
+            'nameProductLike'       => $nameProductLike,
+            'sumProductNotPay'      => $sumProductNotPay,
+            'nameProductOfMonth'    => $nameProductOfMonth,
+            'sumRevenueByMonth'     => $sumRevenueByMonth,
+            'numberOfUnpaidOrders'  => $numberOfUnpaidOrders,
+            'sumInTheMonth'         => $sumInTheMonth,
+            'idProductReviewsMax'      => $idProductReviewsMax,
+            'idProductReviewsMin'      => $idProductReviewsMin,
+            'sumComment'            => $sumComment,
+            'sumGoodComment'        => $sumGoodComment
 
-            ]);
+        ];
+        return view('admin.layout.home',['aryToView'=>$aryToView,'lus'=>$lus]);
     }
 
     public function checklogin(adminLoginRequest $adminLoginRequest){

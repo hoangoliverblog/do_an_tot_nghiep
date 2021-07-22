@@ -47,19 +47,19 @@ class hoadonSeeder extends Seeder
             'status' => 'chưa thanh toán',
             'created_at'=>new DateTime()
         ]);
-        // $faker = Faker\Factory::create();
-        // for ($i=0; $i < 5; $i++) { 
-        //     DB::table('hoadons')->insert([
-        //         'pr_id'  =>1,
-        //         'user_id'=>2,
-        //         'email'  => $faker->freeEmail,
-        //         'phone'  => $faker->phoneNumber,
-        //         'address'=> $faker->address,
-        //         'city'   => $faker->city,
-        //         'zipcode'=> $faker->postcode ,
-        //         'sum'    => $faker->randomNumber($nbDigits = NULL, $strict = false),
-        //         'created_at'=>new DateTime()
-        //     ]);
-        // }
+        $faker = Faker\Factory::create();
+        for ($i=0; $i < 50; $i++) { 
+            DB::table('hoadons')->insert([
+                'pr_id'  =>1,
+                'user_id'=>2,
+                'email'  => $faker->freeEmail,
+                'phone'  => $faker->phoneNumber,
+                'address'=> $faker->address,
+                'city'   => $faker->city,
+                'zipcode'=> $faker->postcode ,
+                'sum'    => $faker->randomNumber($nbDigits = NULL, $strict = false),
+                'created_at'=>new DateTime()
+            ]);
+        }
     }
 }
