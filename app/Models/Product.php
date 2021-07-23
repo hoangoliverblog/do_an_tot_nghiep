@@ -10,7 +10,7 @@ class Product extends Model
 
     protected $fillable = [
         'name','id_loaisp','price','soluong','img','thongtin',
-        'desc','sale','coupe','viewcount'
+        'desc','sale','coupe','viewcount','producer'
     ];
 
     public $timestamps = false;

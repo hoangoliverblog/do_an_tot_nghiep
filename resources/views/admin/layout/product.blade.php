@@ -30,6 +30,7 @@
               <th scope="col">{{__('msg.Image')}}</th>
               <th scope="col">{{__('msg.Infomation')}}</th>
               <th scope="col">{{__('msg.Description')}}</th>
+              <th scope="col">{{__('msg.producer')}}</th>
               <th scope="col">{{__('msg.Coupe')}}</th>
               <th scope="col">{{__('msg.View')}}</th>
               <th scope="col">{{__('msg.SaleRate')}}</th>
@@ -44,10 +45,16 @@
                       <td>{{$lu->name}}</td>
                       <td>{{$lu->loaisanpham->name}}</td>
                       <td>{{$lu->price}}</td>
-                      <td>{{$lu->soluong}}</td>
+                      <td>
+                        {{$lu->soluong}}
+                        @if ($lu->soluong > 300)
+                        <i class='fas fa-exclamation-triangle' style="color: rgb(247, 107, 27)">Tồn</i>
+                        @endif
+                      </td>
                       <td><img src="{{asset('img')}}{{'/'.$lu->img}}" style="width: 6rem;height 8rem :" alt="photo" ></td>
                       <td>{!!$lu->thongtin!!}</td>
                       <td>{!!$lu->desc!!}</td>
+                      <td>{!!$lu->producer!!}</td>
                       <td>{{$lu->coupe}}</td>
                       <td>{{$lu->viewcount}}</td>
                       <td>{{$lu->sale}}%</td>
@@ -101,6 +108,13 @@
                             {{$message}}
                           @enderror
                           <input type="text" class="form-control" name="price" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">{{__('msg.producer')}}</label>
+                          @error('producer')
+                            {{$message}}
+                          @enderror
+                          <input type="text" class="form-control" name="producer" id="exampleInputEmail1" aria-describedby="emailHelp">
                         </div>
                         <div class="form-group">
                           <label for="exampleInputEmail1">{{__('msg.Amount')}}</label>

@@ -67,6 +67,7 @@
         'messageDelete' => 'Do you want to delete?',
         'Productisoutofstock' => 'Product is out of stock',
         'View'          => 'View',
-        'ListStaff'     => 'List Staff'
+        'ListStaff'     => 'List Staff',
+        'producer'      => 'Producer'
     ];  
 ?>

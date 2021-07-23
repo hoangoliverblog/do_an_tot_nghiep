@@ -65,6 +65,7 @@
         'messageDelete' => 'Do you want to delete?',
         'Productisoutofstock' => 'Sản phẩm sắp hết hàng',
         'View'          => 'Lượt xem',
-        'ListStaff'     => 'Danh sách nhân viên'
+        'ListStaff'     => 'Danh sách nhân viên',
+        'producer'      => 'Nhà sản xuất'
     ];  
 ?>

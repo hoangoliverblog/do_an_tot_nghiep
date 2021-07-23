@@ -25,6 +25,7 @@ class CreateProductsTable extends Migration
             $table->string('coupe');
             $table->integer('sale');
             $table->integer('viewcount')->nullable();
+            $table->string('producer')->nullable();
             $table->timestamps();
         });
     }

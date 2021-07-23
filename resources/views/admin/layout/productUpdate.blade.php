@@ -20,9 +20,9 @@
                   {{$message}}
                 @enderror
                 <select name="id_loaisp" id="id_loaisp" class="form-control" id="exampleFormControlSelect1">
-                <option value="{{$lsp->id}}" selected="selected" >{{$lsp->loaisanpham->name}}</option>    
+                <option value="{{$lsp->id_loaisp}}" selected="selected" >{{$lsp->loaisanpham->name}}</option>    
                   @foreach ($list_lsp as $item)
-                  <option value="{{$item->id}}">{{$item->loaisanpham->name}}</option>    
+                  <option value="{{$item->id}}">{{$item->name}}</option>    
                   @endforeach
                 </select>
               </div>
@@ -39,6 +39,13 @@
                     {{$message}}
                   @enderror
                   <input type="text" class="form-control" value="{{$lsp->soluong}}" name="soluong" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">{{__('msg.producer')}}</label>
+                  @error('producer')
+                    {{$message}}
+                  @enderror
+                  <input type="text" class="form-control" value="{{$lsp->producer}}" name="producer" id="exampleInputEmail1" aria-describedby="emailHelp">
                 </div>
                 <div class="form-group">
                   <label for="exampleFormControlFile1">{{__('msg.Image')}}</label>

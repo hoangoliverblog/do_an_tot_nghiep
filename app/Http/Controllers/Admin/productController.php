@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\loaisanpham;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -53,7 +54,8 @@ class productController extends Controller
                     'id_loaisp' => 'required',
                     'price' => 'required|min:4|numeric',
                     'soluong' => 'required|numeric',
-                    'sale'  => 'numeric|min:0|max:100'
+                    'sale'  => 'numeric|min:0|max:100',
+                    'producer' =>'required'
                 ],
                 [
                     'name.required' => 'Tên sản phẩm không được để trống',
@@ -65,7 +67,8 @@ class productController extends Controller
                     'price.numeric' => 'Giá sản phẩm có định dạng là chữ số',
                     'soluong.required' => 'Nhập số lượng sản phẩm',
                     'soluong.numeric' => 'Số lượng có định dạng là kiểu chữ số',
-                    'sale.numeric' => 'Tỷ lệ giảm giá có định dạng là kiểu số'
+                    'sale.numeric' => 'Tỷ lệ giảm giá có định dạng là kiểu số',
+                    'producer.required' => 'Nhà sản xuất không được để trống'
                 ]
             );
 
@@ -94,6 +97,7 @@ class productController extends Controller
                     'coupe' => $request->coupe ?: 'trong',
                     'sale' => $request->sale ?: 0,
                     'viewcount'=>0,
+                    'producer'=> $request->producer,
                     'created_at' => new DateTime()
                 ]);
                 return redirect()->back();
@@ -111,7 +115,7 @@ class productController extends Controller
     {
         $user = Auth::user();
         $lsp = Product::find($id);
-        $list_lsp = Product::all();
+        $list_lsp = loaisanpham::all();
         $lus = Product::where('soluong','<','100')->paginate(10);
         return view('admin.layout.productUpdate', ['lsp' => $lsp, 'user' => $user, 'list_lsp' => $list_lsp,'lus'=>$lus]);
     }
@@ -145,7 +149,8 @@ class productController extends Controller
                     'id_loaisp' => 'required',
                     'price' => 'required|min:4|numeric',
                     'soluong' => 'required|numeric',
-                    'sale'  => 'numeric|min:0|max:100'
+                    'sale'  => 'numeric|min:0|max:100',
+                    'producer'  => 'required'
                 ],
                 [
                     'name.required' => 'Tên sản phẩm không được để trống',
@@ -158,7 +163,8 @@ class productController extends Controller
                     'price.max' => 'Giá sản phẩm nhỏ hơn 1 tỷ đồng',
                     'soluong.required' => 'Nhập số lượng sản phẩm',
                     'soluong.numeric' => 'Số lượng có định dạng là kiểu chữ số',
-                    'sale.numeric' => 'Tỷ lệ giảm giá có định dạng là kiểu số'
+                    'sale.numeric' => 'Tỷ lệ giảm giá có định dạng là kiểu số',
+                    'producer.required' => 'Tên nhà sản xuất không được để trống'
                 ]
             );
 
@@ -170,16 +176,17 @@ class productController extends Controller
 
                 $name = $this->uploadimg($request, 'img', $id);
                 DB::table('products')->where('id', $id)->update([
-                    'name' => $request->name,
-                    'id_loaisp' => $request->id_loaisp,
-                    'price' => $request->price,
-                    'soluong' => $request->soluong,
-                    'img' => $name,
-                    'thongtin' => $request->thongtin ?: 'trong',
-                    'desc' => $request->desc ?: 'trong',
-                    'coupe' => $request->coupe ?: 'trong',
-                    'sale' => $request->sale ?: 0,
-                    'updated_at' => new DateTime()
+                    'name'          => $request->name,
+                    'id_loaisp'     => $request->id_loaisp,
+                    'price'         => $request->price,
+                    'soluong'       => $request->soluong,
+                    'img'           => $name,
+                    'thongtin'      => $request->thongtin ?: 'trong',
+                    'desc'          => $request->desc ?: 'trong',
+                    'coupe'         => $request->coupe ?: 'trong',
+                    'sale'          => $request->sale ?: 0,
+                    'producer'      => $request->producer,
+                    'updated_at'    => new DateTime()
                 ]);
                 return redirect()->route('product.index');
             }

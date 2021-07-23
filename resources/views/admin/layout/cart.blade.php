@@ -15,6 +15,7 @@
           <thead>
             <tr>
               <th scope="col">{{__('msg.CartCode')}}</th>
+              <th scope="col">{{__('msg.UserName')}}</th>
               <th scope="col">{{__('msg.ProductName')}}</th>
               <th scope="col">{{__('msg.Amount')}}</th>
               <th scope="col">{{__('msg.Status')}}</th>
@@ -26,6 +27,7 @@
               @foreach ($lus as $lu)
                <tr>
                   <th scope="row">{{$lu->id}}</th>
+                      <td>{{$lu->user->name}}</td>
                       <td>{{$lu->name}}</td>
                       <td>{{$lu->soluong}}</td>
                       <td>{{$lu->status}}</td>

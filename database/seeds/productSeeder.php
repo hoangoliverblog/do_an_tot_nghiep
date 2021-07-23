@@ -22,6 +22,7 @@ class productSeeder extends Seeder
                     'coupe'=>'hadgakga',
                     'sale'=>5,
                     'viewcount'=>0,
+                    'producer'=> 'chanel',
                     'created_at'=>new DateTime()
                 ]);
                 DB::table('products')->insert([
@@ -35,6 +36,7 @@ class productSeeder extends Seeder
                     'coupe'=>'hadgakga',
                     'sale'=>5,
                     'viewcount'=>0,
+                    'producer'=> 'chanel',
                     'created_at'=>new DateTime()
                 ]);
                 DB::table('products')->insert([
@@ -48,6 +50,7 @@ class productSeeder extends Seeder
                     'coupe'=>'hadgakga',
                     'sale'=>5,
                     'viewcount'=>0,
+                    'producer'=> 'chanel',
                     'created_at'=>new DateTime()
                 ]);
         $faker = Faker\Factory::create();
@@ -63,6 +66,7 @@ class productSeeder extends Seeder
                 'coupe'=>$faker->password,
                 'sale'=>$faker->numberBetween($min = 0, $max = 90),
                 'viewcount'=>0,
+                'producer'=> 'chanel',
                 'created_at'=>new DateTime()
             ]);
         }
@@ -78,6 +82,7 @@ class productSeeder extends Seeder
                 'coupe'=>$faker->password,
                 'sale'=>$faker->numberBetween($min = 0, $max = 90),
                 'viewcount'=>0,
+                'producer'=> 'chanel',
                 'created_at'=>new DateTime()
             ]);
         }
@@ -93,6 +98,7 @@ class productSeeder extends Seeder
                 'coupe'=>$faker->password,
                 'sale'=>$faker->numberBetween($min = 0, $max = 90),
                 'viewcount'=>0,
+                'producer'=> 'chanel',
                 'created_at'=>new DateTime()
             ]);
         }

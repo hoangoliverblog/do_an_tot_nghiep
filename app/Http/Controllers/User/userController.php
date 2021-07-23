@@ -62,10 +62,11 @@ class userController extends Controller
     
     public function searchAllProductByName(Request $request){
         $keyword = $request->searchProduct;
-        $aryResult = DB::table('products')->where('name', 'like', $keyword.'%')->get();
-        // $users = DB::table('users')
-        //             ->whereNotBetween('votes', [1, 100])
-        //             ->get();// search by khoảng giá
+        $aryResult = DB::table('products')->where('name', 'like', $keyword.'%')->orwhere('producer', 'like', $keyword.'%')->get();
+        // $aryResult = DB::table('products')->join('loaisanphams', function ($join) {
+        //                                                                  $join->on('id_loaisp', '=', 'loaisanphams.id')
+        //                                                                     ->where('loaisanphams.id', 'like', 'nước hoa%');})->get();
+
         return view('user.layout.searchAll',['aryResult'=> $aryResult]);
     }
     
@@ -76,31 +77,38 @@ class userController extends Controller
         switch ($getDataSearch) {
         case 1:
             $ByPriceRangeMax = 100000 ;
+            $ByPriceRangeMin = 1;
             break;
         case 2:
-            $ByPriceRange = 200000 ;
+            $ByPriceRangeMax = 200000 ;
             $ByPriceRangeMin = 100000 ;
             break;
         case 3:
-            $ByPriceRange = 300000 ;
+            $ByPriceRangeMax = 300000 ;
             $ByPriceRangeMin = 200000 ;
             break;
         case 4:
-            $ByPriceRange = 500000 ;
+            $ByPriceRangeMax = 500000 ;
             $ByPriceRangeMin = 300000 ;
             break;
         case 5:
-            $ByPriceRange = 500000 ;
+            $ByPriceRangeMax = 500000 ;
             break;
-        default:
-            $ByPriceRangeMax = 0;
-            $ByPriceRangeMin = 0;
         }
         // $keyword = $request->searchProduct;
         // $aryResult = DB::table('products')->where('name', 'like', $keyword.'%')->get();
-        $aryResult = DB::table('products')
+        if(0 != $ByPriceRangeMin)
+        {
+            $aryResult = DB::table('products')
                     ->whereBetween('price', [$ByPriceRangeMin, $ByPriceRangeMax])                    
                     ->get();
+        }else
+        {
+            $aryResult = DB::table('products')
+                    ->where('price','>',$ByPriceRangeMax)                    
+                    ->get();
+        }
+        
         return view('user.layout.searchAll',['aryResult'=> $aryResult]);
         
     }

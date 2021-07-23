@@ -86,21 +86,21 @@
         <div class="x_content">
           <h4>Quản lý tài khoản người dùng</h4>
           <div class="widget_summary">
-            <div style="text-align:center">
-              <h3>Tổng quan người dùng</h3>
-            </div>
-            <div style="text-align:left">
-              <label for="">Số lượng user :</label>
-              <label for="">{{$aryToView['sumUser']}}</label> 
-            </div>
-            <div style="text-align:left">
-              <label for="">Tài khoản chưa kích hoạt :</label>
-              <label for="">{{$aryToView['sumUserNoneActive']}}</label>
-            </div>
-            <div style="text-align:left">
-              <label for="">Thêm mới trong tháng :</label>
-              <label for="">{{$aryToView['sumUserAddNewByMonth']}}</label>
-            </div>
+          </div>
+          <div style="text-align:center">
+            <h3>Tổng quan người dùng</h3>
+          </div>
+          <div style="text-align:left">
+            <label for="">Số lượng user :</label>
+            <label for="">{{$aryToView['sumUser']}}</label> 
+          </div>
+          <div style="text-align:left">
+            <label for="">Tài khoản chưa kích hoạt :</label>
+            <label for="">{{$aryToView['sumUserNoneActive']}}</label>
+          </div>
+          <div style="text-align:left">
+            <label for="">Thêm mới trong tháng :</label>
+            <label for="">{{$aryToView['sumUserAddNewByMonth']}}</label>
           </div>
 
           {{-- <div class="widget_summary">
@@ -195,14 +195,21 @@
           <table class="" style="width:100%">
             <tr>
               <th style="width:37%;">
-                <p>Top 5</p>
+                <p>Sản phẩm có nhiều lượt xem nhất</p>
               </th>
               <th>
                 <div class="col-lg-7 col-md-7 col-sm-7 ">
                   <p class="">Device</p>
                 </div>
-                <div class="col-lg-5 col-md-5 col-sm-5 ">
-                  <p class="">Progress</p>
+              </th>
+            </tr>
+            <tr>
+              <th style="width:37%;">
+                <p>Sản phẩm ít được quan tâm</p>
+              </th>
+              <th>
+                <div class="col-lg-7 col-md-7 col-sm-7 ">
+                  <p class="">Device</p>
                 </div>
               </th>
             </tr>
@@ -218,45 +225,6 @@
               <label for="">Sản phẩm của tháng:</label>
               <label for="">{{$aryToView['nameProductOfMonth']}}</label>
             </div>
-            <tr>
-              <td>
-                <canvas class="canvasDoughnut" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
-              </td>
-              <td>
-                <table class="tile_info">
-                  <tr>
-                    <td>
-                      <p><i class="fa fa-square blue"></i>IOS </p>
-                    </td>
-                    <td>30%</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p><i class="fa fa-square green"></i>Android </p>
-                    </td>
-                    <td>10%</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p><i class="fa fa-square purple"></i>Blackberry </p>
-                    </td>
-                    <td>20%</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p><i class="fa fa-square aero"></i>Symbian </p>
-                    </td>
-                    <td>15%</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p><i class="fa fa-square red"></i>Others </p>
-                    </td>
-                    <td>30%</td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
           </table>
         </div>
       </div>
