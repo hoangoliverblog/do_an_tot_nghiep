@@ -6,7 +6,6 @@
     <article class="card-body mx-auto" style="max-width: 400px;">
         <h4 class="card-title mt-3 text-center">Đăng nhập</h4>
         <p>
-            <a href="" class="btn btn-block btn-twitter"> <i class="fab fa-twitter"></i>google</a>
             <a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>Facebook</a>
         </p>
         <p class="divider-text">

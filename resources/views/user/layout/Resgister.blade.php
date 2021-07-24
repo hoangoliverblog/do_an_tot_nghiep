@@ -7,7 +7,6 @@
 	<h4 class="card-title mt-3 text-center">Tạo tài khoản</h4>
 	<p class="text-center">Tạo tài khoản miễn phí ngay tại đây </p>
 	<p>
-		<a href="" class="btn btn-block btn-twitter"> <i class="fab fa-twitter"></i>google</a>
 		<a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>Facebook</a>
 	</p>
 	<p class="divider-text">

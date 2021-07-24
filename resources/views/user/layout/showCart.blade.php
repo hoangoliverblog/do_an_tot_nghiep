@@ -30,7 +30,13 @@
               </td>
               <th scope="row">{{$item->name}}</th>
               <td>{{$item->soluong}}</td>
-              <td>{{$item->sum}}</td>
+              <td>
+                @if ($item->sum < 99999)
+                {{$item->sum /1000 . '.000'}}  
+                @else
+                {{$item->sum /1000}}
+                @endif
+              </td>
               <td>{{$item->created_at}}</td>
               <td>
                   <span><a onclick="return edit()" href="{{route('user.showBuy',['id'=>$item->id])}}" style="color:#43c943"><i class="fas fa-edit"></i></a></span>

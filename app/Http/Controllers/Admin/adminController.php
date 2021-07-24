@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
 use App\Models\Product;
+use App\Models\Comment;
+use App\Models\hoadon;
+use App\Models\xeploai;
 use Illuminate\Support\Facades\Validator;
 class adminController extends Controller
 {
@@ -69,6 +72,23 @@ class adminController extends Controller
                 $nameProductOfMonth = $key; // sản phẩm của tháng
             }
         }
+
+
+        $productViewCount  = DB::table('products')->pluck('viewcount');
+        foreach ($productViewCount as $key => $item) {
+           $aryProductViewCount[] = $item;
+        }
+        $numberViewCountMax = max($aryProductViewCount);
+        $numberViewCountMin = min($aryProductViewCount);
+        $sumProductViewCountMax = array_sum($aryProductViewCount);
+        $nameProductViewCountMax = DB::table('products')->where('viewcount','=',$numberViewCountMax)->pluck('name');
+        $nameProductViewCountMin = DB::table('products')->where('viewcount','=',$numberViewCountMin)->pluck('name');
+        foreach ($nameProductViewCountMax as $item) {
+            $aryNameProductViewCountMax[] = $item;
+         }
+         foreach ($nameProductViewCountMin as $item) {
+            $aryNameProductViewCountMin[] = $item;
+         }
         //Doanh thu
         $sumRevenue = DB::table('hoadons')->pluck('sum');
         foreach ($sumRevenue as $item) {
@@ -77,6 +97,7 @@ class adminController extends Controller
         $sumRevenueByMonth = array_sum($aryRevenue);
 
         $numberOfUnpaidOrders   = DB::table('hoadons')->where('status','=','chưa thanh toán')->count();
+        $topHoaDon   = hoadon::where('status','=','chưa thanh toán')->paginate(5);
         $quantitySoldInTheMonth = DB::table('hoadons')
                                     ->where('created_at','>',$date)
                                     ->where('status','=','đã thanh toán')
@@ -99,9 +120,14 @@ class adminController extends Controller
          }
         $idProductReviewsMax = max($aryProductReviews);
         $idProductReviewsMin = min($aryProductReviews);
+
+        $nameProductReviewsMax = xeploai::where('level','=',$idProductReviewsMax);
+        $nameProductReviewsMin = xeploai::where('level','=',$idProductReviewsMin);
+        $topProduct            = Product::paginate(5);
         //Bình luận khách hàng
         $sumComment = DB::table('comments')->where('created_at','>',$date)->count();
         $sumGoodComment = DB::table('comments')->where('created_at','>',$date)->where('content', 'like', 'tot%')->count();
+        $commentView = Comment::paginate(3);
         //ary -> view dashboarh
         $aryToView = [
             'sumUser'               =>$sumUser,
@@ -116,10 +142,21 @@ class adminController extends Controller
             'idProductReviewsMax'      => $idProductReviewsMax,
             'idProductReviewsMin'      => $idProductReviewsMin,
             'sumComment'            => $sumComment,
-            'sumGoodComment'        => $sumGoodComment
+            'sumGoodComment'        => $sumGoodComment,
+            'nameProductViewCountMax' => $aryNameProductViewCountMax,
+            'nameProductViewCountMin' => $aryNameProductViewCountMin,
+            'sumProductViewCountMax'      => $sumProductViewCountMax,
 
         ];
-        return view('admin.layout.home',['aryToView'=>$aryToView,'lus'=>$lus]);
+        return view('admin.layout.home',[
+            'aryToView'=>$aryToView,
+            'lus'=>$lus,
+            'commentView'=>$commentView,
+            'nameProductReviewsMax'  => $nameProductReviewsMax,
+            'nameProductReviewsMin'  => $nameProductReviewsMin,
+            'topProduct'             => $topProduct,
+            'topHoaDon'              => $topHoaDon
+        ]);
     }
 
     public function checklogin(adminLoginRequest $adminLoginRequest){

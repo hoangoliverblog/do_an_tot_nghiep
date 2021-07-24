@@ -60,9 +60,19 @@
                             <h6><i class="far fa-star"></i>0 đánh giá/Bài viết</h6>
                             <h3>{{$product->name}}</h3>
                             <h4>
-                              <del>{{$product->price}}</del>
+                              <del>
+                                 @if ($product->price < 99999)
+                                {{$product->price/1000 . '.000'}}
+                                @else
+                                {{$product->price/1000}}
+                                @endif
+                              </del>
                               @if(isset($product->sale) & $product->sale > 0)
-                                {{$product->price - $product->price * $product->sale /100}}  
+                                @if ($product->price - $product->price * $product->sale /100 < 99999)
+                                {{($product->price - $product->price * $product->sale /100)/1000 . '00'}}
+                                @else
+                                {{($product->price - $product->price * $product->sale /100)/1000 }}
+                                @endif 
                                 <span>Giảm {{$product->sale}}, tiết kiệm</span>
                               @endif
                             </h4>

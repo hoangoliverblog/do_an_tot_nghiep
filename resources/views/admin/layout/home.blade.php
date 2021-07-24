@@ -92,15 +92,15 @@
           </div>
           <div style="text-align:left">
             <label for="">Số lượng user :</label>
-            <label for="">{{$aryToView['sumUser']}}</label> 
+            <label for="" style="font-weight:bold">{{$aryToView['sumUser']}}</label> 
           </div>
           <div style="text-align:left">
             <label for="">Tài khoản chưa kích hoạt :</label>
-            <label for="">{{$aryToView['sumUserNoneActive']}}</label>
+            <label for=""style="font-weight:bold">{{$aryToView['sumUserNoneActive']}}</label>
           </div>
           <div style="text-align:left">
             <label for="">Thêm mới trong tháng :</label>
-            <label for="">{{$aryToView['sumUserAddNewByMonth']}}</label>
+            <label for=""style="font-weight:bold">{{$aryToView['sumUserAddNewByMonth']}}</label>
           </div>
 
           {{-- <div class="widget_summary">
@@ -195,35 +195,39 @@
           <table class="" style="width:100%">
             <tr>
               <th style="width:37%;">
-                <p>Sản phẩm có nhiều lượt xem nhất</p>
+                <p>Sản phẩm có nhiều lượt xem nhất :</p>
               </th>
-              <th>
+              <th style="padding-left: 1rem">
                 <div class="col-lg-7 col-md-7 col-sm-7 ">
-                  <p class="">Device</p>
+                  <p class="">
+                    {{$aryToView['nameProductViewCountMax'][0]}}
+                  </p>
                 </div>
               </th>
             </tr>
             <tr>
               <th style="width:37%;">
-                <p>Sản phẩm ít được quan tâm</p>
+                <p>Sản phẩm ít được quan tâm nhất :</p>
               </th>
-              <th>
+              <th style="padding-left: 1rem">
                 <div class="col-lg-7 col-md-7 col-sm-7 ">
-                  <p class="">Device</p>
+                  <p class="">
+                    {{$aryToView['nameProductViewCountMin'][0]}}
+                  </p>
                 </div>
               </th>
             </tr>
             <div style="text-align:left">
               <label for="">Loại sản phẩm được yêu thích :</label>
-              <label for="">{{$aryToView['nameProductLike']}}</label> 
+              <label for="" style="font-weight:bold">{{$aryToView['nameProductLike']}}</label> 
             </div>
             <div style="text-align:left">
               <label for="">Số sản phẩm chưa được thanh toán:</label>
-              <label for="">{{$aryToView['sumProductNotPay']}}</label>
+              <label for="" style="font-weight:bold">{{$aryToView['sumProductNotPay']}}</label>
             </div>
             <div style="text-align:left">
               <label for="">Sản phẩm của tháng:</label>
-              <label for="">{{$aryToView['nameProductOfMonth']}}</label>
+              <label for="" style="font-weight:bold">{{$aryToView['nameProductOfMonth']}}</label>
             </div>
           </table>
         </div>
@@ -252,40 +256,37 @@
         </div>
         <div style="text-align:left">
           <h2 style="display:inline-block">Tổng doanh thu :</h2>
-          <label for="">{{$aryToView['sumRevenueByMonth']}} VNĐ</label> 
+          <label for="" style="font-weight:bold">
+            @if (strlen($aryToView['sumRevenueByMonth'] < 6))
+            {{substr($aryToView['sumRevenueByMonth'],0,-3) . '.' . substr($aryToView['sumRevenueByMonth'], -3)}} VNĐ
+            @else
+            {{ substr($aryToView['sumRevenueByMonth'],0,-9) . '.' . substr($aryToView['sumRevenueByMonth'],1,-6) . '.' . substr($aryToView['sumRevenueByMonth'],4,-3) . '.' . substr($aryToView['sumRevenueByMonth'], -3) }} VNĐ
+            @endif
+          </label> 
         </div>
         <div style="text-align:left">
           <label for="">Số đơn hàng còn chưa thanh toán:</label>
-          <label for="">{{$aryToView['numberOfUnpaidOrders']}}</label>
+          <label for="" style="font-weight:bold">{{$aryToView['numberOfUnpaidOrders']}}</label>
         </div>
         <div style="text-align:left">
           <label for="">Số lượng đã bán trong tháng:</label>
-          <label for="">{{$aryToView['sumInTheMonth']}}</label>
+          <label for="" style="font-weight:bold">{{$aryToView['sumInTheMonth']}}</label>
         </div>
         <div class="x_content">
           <div class="dashboard-widget-content">
             <ul class="quick-list">
-              <li><i class="fa fa-calendar-o"></i><a href="#">Settings</a>
-              </li>
-              <li><i class="fa fa-bars"></i><a href="#">Subscription</a>
-              </li>
-              <li><i class="fa fa-bar-chart"></i><a href="#">Auto Renewal</a> </li>
-              <li><i class="fa fa-line-chart"></i><a href="#">Achievements</a>
-              </li>
-              <li><i class="fa fa-bar-chart"></i><a href="#">Auto Renewal</a> </li>
-              <li><i class="fa fa-line-chart"></i><a href="#">Achievements</a>
-              </li>
-              <li><i class="fa fa-area-chart"></i><a href="#">Logout</a>
-              </li>
+                @foreach ($topHoaDon as $item)
+                <li><i class="fa fa-calendar-o"></i><a href="#">{{$item->sanpham->name}}</a>
+                </li>
+                @endforeach
             </ul>
 
             <div class="sidebar-widget">
-                <h4>Profile Completion</h4>
                 <canvas width="150" height="80" id="chart_gauge_01" class="" style="width: 160px; height: 100px;"></canvas>
                 <div class="goal-wrapper">
-                  <span id="gauge-text" class="gauge-value pull-left">0</span>
-                  <span class="gauge-value pull-left">%</span>
-                  <span id="goal-text" class="goal-value pull-right">100%</span>
+                  <span id="gauge-text" class="gauge-value pull-left"></span>
+                  <span class="gauge-value pull-left"></span>
+                  <span id="goal-text" class="goal-value pull-right"></span>
                 </div>
             </div>
           </div>
@@ -328,62 +329,22 @@
                 <label for="">Số lượng đánh giá tốt trong tháng:</label>
                 <label for="">{{$aryToView['sumGoodComment']}}</label>
               </div>
+              @foreach ($commentView as $item)
               <li>
                 <div class="block">
                   <div class="block_content">
                     <h2 class="title">
-                                      <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
-                                  </h2>
+                        <a>{{$item->product->name}}</a>
+                    </h2>
                     <div class="byline">
-                      <span>13 hours ago</span> by <a>Jane Smith</a>
+                      <span>by <a>{{$item->user->name}}</a>
                     </div>
-                    <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
+                    <p class="excerpt">{{$item->content}}</a>
                     </p>
                   </div>
                 </div>
               </li>
-              <li>
-                <div class="block">
-                  <div class="block_content">
-                    <h2 class="title">
-                                      <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
-                                  </h2>
-                    <div class="byline">
-                      <span>13 hours ago</span> by <a>Jane Smith</a>
-                    </div>
-                    <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
-                    </p>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="block">
-                  <div class="block_content">
-                    <h2 class="title">
-                                      <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
-                                  </h2>
-                    <div class="byline">
-                      <span>13 hours ago</span> by <a>Jane Smith</a>
-                    </div>
-                    <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
-                    </p>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="block">
-                  <div class="block_content">
-                    <h2 class="title">
-                                      <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
-                                  </h2>
-                    <div class="byline">
-                      <span>13 hours ago</span> by <a>Jane Smith</a>
-                    </div>
-                    <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
-                    </p>
-                  </div>
-                </div>
-              </li>
+              @endforeach
             </ul>
           </div>
         </div>
@@ -419,37 +380,25 @@
             <div class="x_content">
               <div class="dashboard-widget-content">
                 <div class="col-md-4 hidden-small">
-                  <h2 class="line_30">125.7k Views from 60 countries</h2>
+                  <h2 class="line_30">Tổng số lượt xem :{{$aryToView['sumProductViewCountMax']}}</h2>
                   <div style="text-align:left">
-                    <h2 style="display:inline-block">Cao nhất:</h2>
-                    <label for="">{{$aryToView['idProductReviewsMax']}}</label> 
+                    <h2 style="display:inline-block">Đánh giá cao nhất :</h2>
+                    <label for="">
+                      {{$aryToView['nameProductLike']}}
+                    </label> 
                   </div>
                   <div style="text-align:left">
-                    <label for="">Thấp nhất:</label>
-                    <label for="">{{$aryToView['idProductReviewsMin']}}</label>
+                    <label for="">Sản phẩm nổi bật:</label>
+                    <label for="">{{$aryToView['nameProductOfMonth']}}</label>
                   </div>
                   <table class="countries_list">
                     <tbody>
-                      <tr>
-                        <td>United States</td>
-                        <td class="fs15 fw700 text-right">33%</td>
-                      </tr>
-                      <tr>
-                        <td>France</td>
-                        <td class="fs15 fw700 text-right">27%</td>
-                      </tr>
-                      <tr>
-                        <td>Germany</td>
-                        <td class="fs15 fw700 text-right">16%</td>
-                      </tr>
-                      <tr>
-                        <td>Spain</td>
-                        <td class="fs15 fw700 text-right">11%</td>
-                      </tr>
-                      <tr>
-                        <td>Britain</td>
-                        <td class="fs15 fw700 text-right">10%</td>
-                      </tr>
+                      @foreach ($topProduct as $item)
+                        <tr>
+                          <td>{{$item->name}}</td>
+                          <td class="fs15 fw700 text-right">{{$item->viewcount}}</td>
+                        </tr>
+                      @endforeach
                     </tbody>
                   </table>
                 </div>

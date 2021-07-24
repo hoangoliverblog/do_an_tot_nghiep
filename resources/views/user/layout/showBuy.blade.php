@@ -65,11 +65,21 @@
 	                    	  <div class="NEW-Sanpham">
                             <h3>{{$product->name}}</h3>
                             <h4>
-                              <del>{{$product->price}}</del>
-                              @if(isset($product->sale) & $product->sale > 0)
-                                {{$product->price - $product->price * $product->sale /100}}  
-                                <span>Giảm {{$product->sale}}, tiết kiệm</span>
-                              @endif
+                              <del>
+                                @if ($product->price < 99999)
+                               {{$product->price/1000 . '.000'}}
+                               @else
+                               {{$product->price/1000}}
+                               @endif
+                             </del>
+                             @if(isset($product->sale) & $product->sale > 0)
+                               @if ($product->price - $product->price * $product->sale /100 < 99999)
+                               {{($product->price - $product->price * $product->sale /100)/1000 . '00'}}
+                               @else
+                               {{($product->price - $product->price * $product->sale /100)/1000 }}
+                               @endif 
+                               <span>Giảm {{$product->sale}}, tiết kiệm</span>
+                             @endif
                             </h4>
                             <p>{!!$product->thongtin!!}</p> 
                             @if (!isset($user->email))

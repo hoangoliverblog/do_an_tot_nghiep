@@ -22,9 +22,24 @@
                                         <p>{!!$item->desc!!}</p>
                                     </div>
                                     <div class="product_price">
-                                        <label><del>{{$item->price ?? ''}}</del></label>
-                                        @if(isset($item->sale))
-                                            <label>{{$item->price - $item->price * $item->sale /100}}</label>
+                                        <label>
+                                            <del>
+                                                {{-- {{$item->price ?? ''}} --}}
+                                                @if ($item->price < 99999)
+                                                {{$item->price/1000 . '.000'}}
+                                                @else
+                                                {{$item->price/1000}}
+                                                @endif
+                                            </del>
+                                        </label>
+                                        @if(isset($item->sale) & $item->sale > 0)
+                                            <label>
+                                                @if ($item->price - $item->price * $item->sale /100 < 99999)
+                                                {{($item->price - $item->price * $item->sale /100)/1000 . '00'}}
+                                                @else
+                                                {{($item->price - $item->price * $item->sale /100)/1000 }}
+                                                @endif
+                                            </label>
                                         @endif 
                                     </div>
                                     <div class="product_btn">
