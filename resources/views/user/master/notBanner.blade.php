@@ -107,26 +107,22 @@
                                         </div>
                                         <div class="list_product_name">
                                             <ul>
-                                                <li><a href=""><i class="fas fa-angle-right"></i>link liên kết 1</a></li>
-                                                <li><a href=""><i class="fas fa-angle-right"></i>link liên kết 1</a></li>
-                                                <li><a href=""><i class="fas fa-angle-right"></i>link liên kết 1</a></li>
-                                                <li><a href=""><i class="fas fa-angle-right"></i>link liên kết 1</a></li>
-                                                <li><a href=""><i class="fas fa-angle-right"></i>link liên kết 1</a></li>
-                                                <li><a href=""><i class="fas fa-angle-right"></i>link liên kết 1</a></li>
-                                                <li><a href=""><i class="fas fa-angle-right"></i>link liên kết 1</a></li>
-                                                <li><a href=""><i class="fas fa-angle-right"></i>link liên kết 1</a></li>
-                                                <li><a href=""><i class="fas fa-angle-right"></i>link liên kết 1</a></li>
-                                                <li><a href=""><i class="fas fa-angle-right"></i>link liên kết 1</a></li>
-                                                <li><a href=""><i class="fas fa-angle-right"></i>link liên kết 1</a></li>
-                                                <li><a href=""><i class="fas fa-angle-right"></i>link liên kết 1</a></li>
-                                                <li><a href=""><i class="fas fa-angle-right"></i>link liên kết 1</a></li>
-                                                <li><a href=""><i class="fas fa-angle-right"></i>link liên kết 1</a></li>
-                                                <li><a href=""><i class="fas fa-angle-right"></i>link liên kết 1</a></li>
-                                                <li><a href=""><i class="fas fa-angle-right"></i>link liên kết 1</a></li>
-                                                <li><a href=""><i class="fas fa-angle-right"></i>link liên kết 1</a></li>
-                                                <li><a href=""><i class="fas fa-angle-right"></i>link liên kết 1</a></li>
-                                                <li><a href=""><i class="fas fa-angle-right"></i>link liên kết 1</a></li>
-                                                <li><a href=""><i class="fas fa-angle-right"></i>link liên kết 1</a></li>
+                                                <li><a href=""><i class="fas fa-angle-right"></i>Sản phẩm nước hoa</a></li>
+                                                <li><a href=""><i class="fas fa-angle-right"></i>Sản phẩm mỹ phẩm</a></li>
+                                                <li><a href=""><i class="fas fa-angle-right"></i>Sản phẩm bộ sản phẩm</a></li>
+                                                <li><a href=""><i class="fas fa-angle-right"></i>Sản phẩm son môi</a></li>
+                                                <li><a href=""><i class="fas fa-angle-right"></i>Sản phẩm nước hoa</a></li>
+                                                <li><a href=""><i class="fas fa-angle-right"></i>Sản phẩm mỹ phẩm</a></li>
+                                                <li><a href=""><i class="fas fa-angle-right"></i>Sản phẩm bộ sản phẩm</a></li>
+                                                <li><a href=""><i class="fas fa-angle-right"></i>Sản phẩm son môi</a></li>
+                                                <li><a href=""><i class="fas fa-angle-right"></i>Sản phẩm nước hoa</a></li>
+                                                <li><a href=""><i class="fas fa-angle-right"></i>Sản phẩm mỹ phẩm</a></li>
+                                                <li><a href=""><i class="fas fa-angle-right"></i>Sản phẩm bộ sản phẩm</a></li>
+                                                <li><a href=""><i class="fas fa-angle-right"></i>Sản phẩm son môi</a></li>
+                                                <li><a href=""><i class="fas fa-angle-right"></i>Sản phẩm nước hoa</a></li>
+                                                <li><a href=""><i class="fas fa-angle-right"></i>Sản phẩm mỹ phẩm</a></li>
+                                                <li><a href=""><i class="fas fa-angle-right"></i>Sản phẩm bộ sản phẩm</a></li>
+                                                <li><a href=""><i class="fas fa-angle-right"></i>Sản phẩm son môi</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -138,7 +134,7 @@
                                             <div class="new_product_menu">
                                                 <div class="new_product_menu_img">
                                                     <img src="{{asset('lib/img/final_logo.jpg')}}" alt="photo">
-                                                    <p>Tên sản phẩm là gì</p>
+                                                    <p>Sản phẩm nổi bật?</p>
                                                 </div>
                                             </div>
                                         </div>

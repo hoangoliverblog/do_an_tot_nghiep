@@ -56,8 +56,8 @@ class userController extends Controller
                 DB::table('products')->where('id',$id)->update(['viewcount'=> $numberViewCount + 1]);
             }
         }
-
-        return view('user.layout.sanpham',['user'=>$user,'product' => $product,'comment'=>$comment]);
+        $newProduct = Product::paginate(3);
+        return view('user.layout.sanpham',['user'=>$user,'product' => $product,'comment'=>$comment,'newProduct'=>$newProduct]);
     }
     
     public function searchAllProductByName(Request $request){
@@ -355,12 +355,13 @@ class userController extends Controller
     }
 
     public function showBuy($id,Request $request){
+        $newProduct = Product::paginate(3);
         $product = DB::table('products')->find($id);
         $user = Auth::user() ?? '';
         if ($request->session()->has('countProductInCart')) {
             View::share('countProductInCart', $request->session()->get('countProductInCart', ''));
         }
-        return view('user.layout.showBuy',['product'=>$product,'user'=>$user]);
+        return view('user.layout.showBuy',['product'=>$product,'user'=>$user,'newProduct'=>$newProduct]);
     }
     public function buyProduct($id , Request $request){
     

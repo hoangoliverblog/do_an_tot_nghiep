@@ -33,16 +33,18 @@
                     	<div class="content-left-title">
 	                        <h6>Hàng mới về</h6>
 	                    </div>
-	                    <div class="COntent-left">
-	                    	<div class="CONtent-left">
-	                    		<img src="{{asset('img/1623332171_nuoc-hoa-ban-chay-nhat.png')}}">
-	                    	</div>
-	                    	<div class="CONTent-left">
-	                    		<p>Tinh Chất Dưỡng Da Chiết Xuất Trà Xanh Innisfree Green Tea</p>
-	                    		<h6>Seed Serum 30ml</h6>
-	                    		<h6 class="gia"><del>349.000đ</del>245.000đ</h6>
-	                    	</div>
-	                    </div>
+                      @foreach ($newProduct as $item)
+                        <div class="COntent-left" style="margin-bottom:0.6rem">
+                          <div class="CONtent-left">
+                            <img src="{{asset('img')}}{{'/'.$item->img}}" alt="photo">
+                          </div>
+                          <div class="CONTent-left">
+                            <p>{{$item->thongtin}}</p>
+                            <h6>{{$item->name}}</h6>
+                            <h6 class="gia"><del>{{$item->price}}</del>{{$item->price - ($item->sale * $item->price)/100}}</h6>
+                          </div>
+                        </div>
+                      @endforeach
                     </div>
                 </div>
                 <div class="col-md-9 content-right">
