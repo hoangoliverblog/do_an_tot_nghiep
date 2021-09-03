@@ -102,5 +102,37 @@ class productSeeder extends Seeder
                 'created_at'=>new DateTime()
             ]);
         }
+        for ($i=0; $i < 15; $i++) { 
+            DB::table('products')->insert([
+                'name'=>$faker->name,
+                'id_loaisp'=>'4',
+                'price'=>$faker->numberBetween($min = 1000, $max = 900000),
+                'soluong'=>$faker->numberBetween($min = 1, $max = 900),
+                'img'=>"7_nuoc-hoa-ban-chay-nhat.png",
+                'thongtin'=>$faker->text,
+                'desc'=>$faker->text,
+                'coupe'=>$faker->password,
+                'sale'=>$faker->numberBetween($min = 0, $max = 90),
+                'viewcount'=>0,
+                'producer'=> 'chanel',
+                'created_at'=>new DateTime()
+            ]);
+        }
+        for ($i=0; $i < 15; $i++) { 
+            DB::table('products')->insert([
+                'name'=>$faker->name,
+                'id_loaisp'=>'5',
+                'price'=>$faker->numberBetween($min = 1000, $max = 900000),
+                'soluong'=>$faker->numberBetween($min = 1, $max = 900),
+                'img'=>"7_nuoc-hoa-ban-chay-nhat.png",
+                'thongtin'=>$faker->text,
+                'desc'=>$faker->text,
+                'coupe'=>$faker->password,
+                'sale'=>$faker->numberBetween($min = 0, $max = 90),
+                'viewcount'=>0,
+                'producer'=> 'chanel',
+                'created_at'=>new DateTime()
+            ]);
+        }
     }
 }

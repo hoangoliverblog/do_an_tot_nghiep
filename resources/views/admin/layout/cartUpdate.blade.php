@@ -37,7 +37,14 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">{{__('msg.Status')}}</label>
-                    <input type="text" class="form-control" name="status" id="exampleFormControlFile1" value="{{$lsp->status}}">
+                    <select name="status" class="custom-select">
+                      <option value="Đơn hàng đã đặt" selected>Đơn hàng đã đặt</option>
+                      <option value="Đã giao cho đơn vị vận chuyển">Đã giao cho đơn vị vận chuyển</option>
+                      <option value="Đơn hàng đã nhận">Đơn hàng đã nhận</option>
+                      <option value="Đơn hàng đã giao">Đơn hàng đã giao</option>
+                      <option value="Đã hủy">Hủy đơn hàng</option>
+                    </select>
+                    {{-- <input type="text" class="form-control" name="status" id="exampleFormControlFile1" value="{{$lsp->status}}"> --}}
                     @error('status')
                     {{$message}}
                     @enderror

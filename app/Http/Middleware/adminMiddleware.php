@@ -17,8 +17,13 @@ class adminMiddleware
      */
     public function handle($request, Closure $next)
     {
+
         if(Auth::check() & isset(Auth::user()->role_id) == 1)
         {
+            if(Auth::user()->role_id != 1)
+            {
+                return redirect()->route('Admin.login');
+            }
             return $next($request);
         }
         else

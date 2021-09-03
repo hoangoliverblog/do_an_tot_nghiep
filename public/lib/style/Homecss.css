@@ -364,8 +364,9 @@
     color : pink;
 }
 .product_price label del{
-  color : pink ;
+  color :#cdcbcb ;
   padding-right: 5px;
+  font-size: 13px;
   display: inline-block;
 } 
 .product_price label del:hover{

@@ -59,7 +59,7 @@
                                     </i>
                                 </a>
                             </span>
-                            <div style="padding : 1rem 0.1rem 0.3rem 0.1rem">
+                            <div style="padding : 1rem 0.1rem 0.3rem 0.1rem;margin-left: 32rem">
                                 <form action="{{route('user.searchByPriceRange')}}" method="POST">
                                 @csrf
                                 <label for="">Tìm kiếm theo giá :</label>

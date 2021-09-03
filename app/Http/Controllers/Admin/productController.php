@@ -75,7 +75,7 @@ class productController extends Controller
             if ($validator->fails()) {
                 return redirect()->back()
                     ->withErrors($validator)
-                    ->withInput();
+                    ->withInput()->with('msg','Thông tin nhập vào chưa chính xác, vui lòng nhập lại.');
             } else {
 
                 if(isset($request->img))
@@ -85,7 +85,10 @@ class productController extends Controller
                 {
                     $name = 'trong';
                 }
-                
+                if($request->soluong < 0)
+                {
+                    return redirect()->back()->with('msg','Số lượng nhập đang nhỏ hơn hoặc bằng 0.');
+                }
                 DB::table('products')->insert([
                     'name' => $request->name,
                     'id_loaisp' => $request->id_loaisp,

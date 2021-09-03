@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\hoadon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\Product;
 class hoadonController extends Controller
 {
     /**
@@ -85,6 +86,14 @@ class hoadonController extends Controller
      */
     public function destroy($id)
     {
+        // $getSoluongProduct = hoadon::find($id);
+
+        // $getSoLuongProduct = Product::find($getSoluongProduct->pr_id);
+        // $numberProductLastUpdate = $getSoLuongProduct->soluong + $getSoluongProduct;
+
+        // DB::table('products')->where('id',$id)->update([
+        //     'soluong' => $numberProductLastUpdate
+        // ]);
         hoadon::where('id',$id)->delete();
         return redirect()->back();
     }

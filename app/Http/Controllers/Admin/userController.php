@@ -9,6 +9,7 @@ use DateTime;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\Product;
 class userController extends Controller
 {
     /**
@@ -116,7 +117,8 @@ class userController extends Controller
     {
         $lu = User::find($id);
         $user = Auth::user();
-        return view('admin.layout.userUpdate',['lu'=>$lu,'user'=>$user]);
+        $lus = Product::where('soluong','<','100')->paginate(10);
+        return view('admin.layout.userUpdate',['lu'=>$lu,'user'=>$user,'lus'=>$lus]);
     }
 
     /**

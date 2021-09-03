@@ -401,10 +401,25 @@ class userController extends Controller
             if($validator->fails()){
                 return redirect()->back()
                         ->withErrors($validator)
-                        ->withInput();
+                        ->withInput()->with('msg','Vui lòng nhập lại thông tin cá nhân của bạn !');
             }else
             { 
-
+                $getSoLuongProduct = Product::find($id);
+                if($request->soluong > $getSoLuongProduct->soluong )
+                {
+                    return redirect()->back()->with('msg','Số lượng mua đang lớn hơn số lượng sản phẩm đang có trong kho.'); 
+                }
+                if($request->soluong <=0 )
+                {
+                    return redirect()->back()->with('msg','Bạn cần nhập lại số lượng đang nhỏ hơn hoặc bằng 0.'); 
+                }
+                if(Auth::user()->phone == null)
+                {
+                    if($request->phone == "" || $request->address =="")
+                    {
+                        return redirect()->back()->with('msg','Vui lòng nhập lại thông tin cá nhân của bạn !'); 
+                    }
+                }
                 $pr_id       = $id ;
                 $user_id     = Auth::user()->id ?? 10;
                 $email       = $request->email ?? Auth::user()->email;
@@ -414,6 +429,10 @@ class userController extends Controller
                 $product     = DB::table('products')->find($id);
                 $zipcode     = $request->zipcode;
                 $sum         = $product->price * (int)$request->soluong;
+                $numberProductLastUpdate = $getSoLuongProduct->soluong - $request->soluong;
+                DB::table('products')->where('id',$id)->update([
+                    'soluong' => $numberProductLastUpdate
+                ]);
                 DB::table('hoadons')->insert([
                     'pr_id'      => $pr_id,
                     'user_id'    => $user_id,
@@ -467,7 +486,7 @@ class userController extends Controller
         if ($request->session()->has('countProductInCart')) {
             View::share('countProductInCart', $request->session()->get('countProductInCart', ''));
         }
-        return view('user.layout.showCart',['data'=>$cart,'user'=>$user]);
+        return view('user.layout.showCart',['data'=>$cart,'user'=>$user,'id'=>$id]);
         // return redirect()->route('user.showCart',['id'=>$id]);
     }
 

@@ -60,6 +60,20 @@
                             </span>
                         </div>
                     </div>
+                    <div style="padding : 1rem 0.1rem 0.3rem 0.1rem;margin-left: 15rem">
+                        <form action="{{route('user.searchByPriceRange')}}" method="POST">
+                        @csrf
+                        <label for="">Tìm kiếm theo giá :</label>
+                        <select name="searchByPriceRange" id="searchByPriceRange" style="padding : 0.4rem 1rem;border: 1px solid rgb(67, 201, 67);padding:10px 18px">
+                            <option value="1">Dưới 100.000 nghìn</option>
+                            <option value="2">Từ 1-200.000 nghìn</option>
+                            <option value="3">Từ 2-300.000 nghìn</option>
+                            <option value="4">Từ 3-500.000 nghìn</option>
+                            <option value="5">Trên 500.000 nghìn</option>
+                        </select>
+                        <input type="submit" value="Submit" style="background-color:transparent;height:44px;display:inline-block;border: 1px solid rgb(67, 201, 67);padding:0.1rem 1.3rem;margin-left:-0.3rem">
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -252,9 +266,15 @@ function minus(){
     input.value = lastUpdateValue;
 }
 function sum(){
+    // inputProductSoluong = document.getElementById('productsoluong');
     input = document.getElementById('soluong');
     lastUpdateValue = Number(input.value) + 1;
-    input.value = lastUpdateValue;
+    // if(input.value >= inputProductSoluong.value)
+    // {
+    //     lastUpdateValue = inputProductSoluong.value ;
+    // }
+    return input.value = lastUpdateValue;
+    
 }
 </script>
 </body>

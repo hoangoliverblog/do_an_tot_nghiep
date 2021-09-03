@@ -257,12 +257,43 @@
         <div style="text-align:left">
           <h2 style="display:inline-block">Tổng doanh thu :</h2>
           <label for="" style="font-weight:bold">
+            @if (strlen($aryToView['sumRevenue'] < 6))
+            {{substr($aryToView['sumRevenue'],0,-3) . '.' . substr($aryToView['sumRevenue'], -3)}} VNĐ
+            @else
+            {{ substr($aryToView['sumRevenue'],0,-9) . '.' . substr($aryToView['sumRevenue'],1,-6) . '.' . substr($aryToView['sumRevenue'],4,-3) . '.' . substr($aryToView['sumRevenue'], -3) }} VNĐ
+            @endif
+          </label> 
+        </div>
+        <div style="text-align:left">
+          <label for="">Tổng thu trong năm nay:</label>
+          <label for="" style="font-weight:bold">
+            @if (strlen($aryToView['sumRevenueByYear'] < 6))
+            {{substr($aryToView['sumRevenueByYear'],0,-3) . '.' . substr($aryToView['sumRevenueByYear'], -3)}} VNĐ
+            @else
+            {{ substr($aryToView['sumRevenueByYear'],0,-9) . '.' . substr($aryToView['sumRevenueByYear'],1,-6) . '.' . substr($aryToView['sumRevenueByYear'],4,-3) . '.' . substr($aryToView['sumRevenueByYear'], -3) }} VNĐ
+            @endif
+          </label>
+        </div>
+        <div style="text-align:left">
+          <label for="">Tổng thu trong 1 tháng gần nhất:</label>
+          <label for="" style="font-weight:bold">
             @if (strlen($aryToView['sumRevenueByMonth'] < 6))
             {{substr($aryToView['sumRevenueByMonth'],0,-3) . '.' . substr($aryToView['sumRevenueByMonth'], -3)}} VNĐ
+            {{ substr($aryToView['sumRevenueByMonth'],0,-9) . '.' . substr($aryToView['sumRevenueByMonth'],1,-6) . '.' . substr($aryToView['sumRevenueByMonth'],4,-3) . '.' . substr($aryToView['sumRevenueByMonth'], -3) }} VNĐ
             @else
             {{ substr($aryToView['sumRevenueByMonth'],0,-9) . '.' . substr($aryToView['sumRevenueByMonth'],1,-6) . '.' . substr($aryToView['sumRevenueByMonth'],4,-3) . '.' . substr($aryToView['sumRevenueByMonth'], -3) }} VNĐ
             @endif
-          </label> 
+          </label>
+        </div>
+        <div style="text-align:left">
+          <label for="">Tổng thu trong ngày gần nhất:</label>
+          <label for="" style="font-weight:bold">
+            @if (strlen($aryToView['sumRevenueByDay'] < 6))
+            {{substr($aryToView['sumRevenueByDay'],0,-3) . '.' . substr($aryToView['sumRevenueByDay'], -3)}} VNĐ
+            @else
+            {{ substr($aryToView['sumRevenueByDay'],0,-9) . '.' . substr($aryToView['sumRevenueByDay'],1,-6) . '.' . substr($aryToView['sumRevenueByDay'],4,-3) . '.' . substr($aryToView['sumRevenueByDay'], -3) }} VNĐ
+            @endif
+          </label>
         </div>
         <div style="text-align:left">
           <label for="">Số đơn hàng còn chưa thanh toán:</label>
@@ -282,7 +313,7 @@
             </ul>
 
             <div class="sidebar-widget">
-                <canvas width="150" height="80" id="chart_gauge_01" class="" style="width: 160px; height: 100px;"></canvas>
+                <canvas width="150" height="10" id="chart_gauge_01" class="" style="width: 160px; height: 30px;"></canvas>
                 <div class="goal-wrapper">
                   <span id="gauge-text" class="gauge-value pull-left"></span>
                   <span class="gauge-value pull-left"></span>

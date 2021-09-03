@@ -60,9 +60,11 @@
                       <li><a href="{{route('product.index')}}">{{__('msg.ListProduct')}}</a></li>
                       <li><a href="{{route('xeploai.index')}}">{{__('msg.ProductRating')}}</a></li>
                       <li><a href="{{route('comment.index')}}">{{__('msg.CustomerComments')}}</a></li>
-                      <li><a href="{{route('Productisoutofstock.index')}}">{{__('msg.Productisoutofstock')}}@if(count($lus) >= 1)
+                      <li><a href="{{route('Productisoutofstock.index')}}">{{__('msg.Productisoutofstock')}}
+                      @if(count($lus) >= 1)
                         <i class='fas fa-exclamation-triangle' style="color: rgb(247, 107, 27)"></i>
-                    @endif</a></li>
+                      @endif
+                      </a></li>
                     </ul>
                   </li>
                 <li><a><i class="fa fa-desktop"></i>{{__('msg.Bill')}}<span class="fa fa-chevron-down"></span></a>

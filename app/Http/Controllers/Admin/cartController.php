@@ -43,7 +43,7 @@ class cartController extends Controller
      */
     public function store(Request $request)
     {
-       
+        $user = Auth::user();
         if ($request->isMethod('post')) {
             $validator = Validator::make(
                 $request->all(),
@@ -74,9 +74,9 @@ class cartController extends Controller
                     ->withErrors($validator)
                     ->withInput();
             } else {
-
                 DB::table('carts')->insert([
                     'hd_id' => $request->id_hd,
+                    'user_id' => $user->id,
                     'name' => $request->name,
                     'soluong' => $request->soluong,
                     'sum' => $request->tongtien,
@@ -154,6 +154,30 @@ class cartController extends Controller
                     ->withErrors($validator)
                     ->withInput();
             } else {
+                
+                $cartAllItem = Cart::find($id);
+                $idProduct   = $cartAllItem->hoadon->sanpham->id;
+                $productCountSoluong = Product::find($idProduct); 
+
+                $getSoLuongProduct = $productCountSoluong->soluong;// số lượng hiện tại trong kho
+                $requestNumber = $request->soluong; 
+                $intRequestNumber = (int)$requestNumber;// số lượng sau khi nhập lên
+                $cartCountSoluong = $cartAllItem->soluong; // số lượng đã thêm vào giỏ hàng
+                if($getSoLuongProduct <= $intRequestNumber)
+                {
+                    return redirect()->route('cart.index');
+                }
+                if($cartCountSoluong >= $intRequestNumber)
+                {
+                    $newUpdateSoLuongProduct = $cartCountSoluong - $intRequestNumber;
+                    $numberProductLastUpdate = $getSoLuongProduct + $newUpdateSoLuongProduct;
+                }else{
+                    $newUpdateSoLuongProduct = $intRequestNumber - $cartCountSoluong;
+                    $numberProductLastUpdate = $getSoLuongProduct - $newUpdateSoLuongProduct;
+                }
+                DB::table('products')->where('id','=',$idProduct)->update([
+                    'soluong' => $numberProductLastUpdate
+                ]);
                 DB::table('carts')->where('id', $id)->update([
                     'hd_id' => $request->id_hd,
                     'name' => $request->name,
@@ -175,6 +199,16 @@ class cartController extends Controller
      */
     public function destroy($id)
     {
+        $cartAllItem = Cart::find($id);
+        $idProduct   = $cartAllItem->hoadon->sanpham->id;
+        $productCountSoluong = Product::find($idProduct); 
+
+        $getSoLuongProduct = $productCountSoluong->soluong;// số lượng hiện tại trong kho
+        $cartCountSoluong = $cartAllItem->soluong; // số lượng đã thêm vào giỏ hàng
+        $numberProductLastUpdate = $getSoLuongProduct + $cartCountSoluong ;    
+        DB::table('products')->where('id','=',$idProduct)->update([
+            'soluong' => $numberProductLastUpdate
+        ]);
         cart::where('id',$id)->delete();
         return redirect()->back();
     }

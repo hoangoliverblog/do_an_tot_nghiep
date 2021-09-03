@@ -31,6 +31,7 @@
                                                 @else
                                                 {{$item->price/1000}}
                                                 @endif
+                                                vnđ
                                             </del>
                                         </label>
                                         @if(isset($item->sale) & $item->sale > 0)
@@ -40,6 +41,7 @@
                                                 @else
                                                 {{($item->price - $item->price * $item->sale /100)/1000 }}
                                                 @endif
+                                                vnđ
                                             </label>
                                         @endif 
                                     </div>
@@ -70,6 +72,7 @@
                                         @else
                                         {{$item->price/1000 }}
                                         @endif
+                                        vnđ
                                     </del>
                                 </label>
                                 @if(isset($item->sale) & $item->sale > 0)
@@ -79,6 +82,7 @@
                                         @else
                                         {{($item->price - $item->price * $item->sale /100)/1000 }}
                                         @endif
+                                        vnđ
                                     </label>
                                 @endif 
                             </div>
@@ -118,6 +122,7 @@
                                                 @else
                                                 {{$item->price/1000 }}
                                                 @endif
+                                                vnđ
                                             </del>
                                         </label>
                                         @if(isset($item->sale) & $item->sale > 0)
@@ -131,6 +136,7 @@
                                                 @else
                                                  {{($item->price - $item->price * $item->sale /100)/1000 }}
                                                 @endif
+                                                vnđ
                                             </label>
                                         @endif 
                                     </div>

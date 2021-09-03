@@ -109,11 +109,22 @@
                                     <input type="text" class="form-control" id="inputZip" name="zipcode">
                                   </div>
                                 </div>
-                            @endif                               
+                            @endif        
+                            @if(isset($user->email) && !isset($user->phone) && !isset($user->address))
+                            <div class="form-group ">
+                              <label for="inputPassword4" style="float: left;">Số điện thoại</label>
+                              <input type="text" class="form-control" id="inputPassword4" name="phone">
+                            </div>
+                            <div class="form-group">
+                              <label for="inputAddress" style="float: left;">Địa chỉ</label>
+                              <input type="text" class="form-control" id="inputAddress" name="address">
+                            </div>
+                            @endif                       
                             <div>
                                 <h4>Số lượng</h4>
+                                <input type="hidden" id="productsoluong" value="{{$product->soluong}}">
                                 <span class="minus" id="minus" onclick="minus()">-</span>
-                                <input type="text" name="soluong" value="1" readonly>
+                                <input type="text" name="soluong" id="soluong" value="1">
                                 <span class="sum" id="sum" onclick="sum()">+</span>
                             </div>
                             <div>

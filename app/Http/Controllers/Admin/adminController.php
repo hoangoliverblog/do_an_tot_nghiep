@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\adminLoginRequest;
 use DateTime;
+use DateTimeZone;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
@@ -38,11 +39,15 @@ class adminController extends Controller
          view()->share('user', Auth::user());
         }
         //Tổng quan người dùng
-        $date = new DateTime();
-        $date = $date->modify('-1 month');
+        $date = new DateTime('now', new DateTimezone('Asia/Ho_Chi_Minh'));
+        $dateMonth = $date->modify('-1 month');
+        $dateYear = new DateTime('now', new DateTimezone('Asia/Ho_Chi_Minh'));
+        $dateYear = $dateYear->modify('-1 year');
+        $dateDay = new DateTime('now', new DateTimezone('Asia/Ho_Chi_Minh'));
+        $dateDay = $dateDay->modify('-1 Day');
         $sumUser = DB::table('users')->count() ?? 0;
         $sumUserNoneActive = DB::table('users')->where('status','=','noneactive')->count() ?? 0;
-        $sumUserAddNewByMonth = DB::table('users')->where('created_at','>',$date)->count() ?? 0;
+        $sumUserAddNewByMonth = DB::table('users')->where('created_at','>',$dateMonth)->count() ?? 0;
         //Tổng quan giỏ hàng
         $productMoreLike  = DB::table('carts')->pluck('name');
         foreach ($productMoreLike as $key => $item) {
@@ -59,7 +64,7 @@ class adminController extends Controller
         }
         $sumProductNotPay = DB::table('carts')->where('status','=','chưa thanh toán')->count() ?? 0; 
 
-        $productOfMonth  = DB::table('carts')->where('created_at','>',$date)->pluck('name');
+        $productOfMonth  = DB::table('carts')->where('created_at','>',$dateMonth)->pluck('name');
         foreach ($productOfMonth as $key => $item) {
            $sumProductOfMonth[] = $item;
         }
@@ -94,12 +99,32 @@ class adminController extends Controller
         foreach ($sumRevenue as $item) {
             $aryRevenue[] = $item;
          }
-        $sumRevenueByMonth = array_sum($aryRevenue);
+        $sumRevenue = array_sum($aryRevenue) ?? ""; // tổng doanh thu
+
+        $sumRevenueDay = DB::table('hoadons')->where('created_at','>',$dateDay)->pluck('sum');
+        $sumByDay = [];
+        foreach ($sumRevenueDay as $item) {
+            $sumByDay[] = $item;
+        }
+        $sumRevenueByDay = array_sum($sumByDay) ?? ""; // ngày gần nhất
+        
+        $sumRevenueMonth = DB::table('hoadons')->where('created_at','>',$dateMonth)->pluck('sum');
+        foreach ($sumRevenueMonth as $item) {
+            $sumByMonth[] = $item;
+        }
+        $sumRevenueByMonth = array_sum($sumByMonth) ?? ""; // tháng gần nhất
+
+        $sumRevenueYear = DB::table('hoadons')->where('created_at','>',$dateYear)->pluck('sum');
+        foreach ($sumRevenueYear as $item) {
+            $sumByYear[] = $item;
+        }
+        $sumRevenueByYear = array_sum($sumByYear) ?? ""; // năm gần nhất
+        
 
         $numberOfUnpaidOrders   = DB::table('hoadons')->where('status','=','chưa thanh toán')->count();
-        $topHoaDon   = hoadon::where('status','=','chưa thanh toán')->paginate(5);
+        $topHoaDon   = hoadon::where('status','=','chưa thanh toán')->paginate(2);
         $quantitySoldInTheMonth = DB::table('hoadons')
-                                    ->where('created_at','>',$date)
+                                    ->where('created_at','>',$dateMonth)
                                     ->where('status','=','đã thanh toán')
                                     ->get() ?? [];
         if(count($quantitySoldInTheMonth) == 0)
@@ -125,8 +150,8 @@ class adminController extends Controller
         $nameProductReviewsMin = xeploai::where('level','=',$idProductReviewsMin);
         $topProduct            = Product::paginate(5);
         //Bình luận khách hàng
-        $sumComment = DB::table('comments')->where('created_at','>',$date)->count();
-        $sumGoodComment = DB::table('comments')->where('created_at','>',$date)->where('content', 'like', 'tot%')->count();
+        $sumComment = DB::table('comments')->where('created_at','>',$dateMonth)->count();
+        $sumGoodComment = DB::table('comments')->where('created_at','>',$dateMonth)->where('content', 'like', 'tot%')->count();
         $commentView = Comment::paginate(3);
         //ary -> view dashboarh
         $aryToView = [
@@ -136,16 +161,19 @@ class adminController extends Controller
             'nameProductLike'       => $nameProductLike,
             'sumProductNotPay'      => $sumProductNotPay,
             'nameProductOfMonth'    => $nameProductOfMonth,
-            'sumRevenueByMonth'     => $sumRevenueByMonth,
+            'sumRevenue'     => $sumRevenue,
             'numberOfUnpaidOrders'  => $numberOfUnpaidOrders,
             'sumInTheMonth'         => $sumInTheMonth,
-            'idProductReviewsMax'      => $idProductReviewsMax,
-            'idProductReviewsMin'      => $idProductReviewsMin,
+            'idProductReviewsMax'   => $idProductReviewsMax,
+            'idProductReviewsMin'   => $idProductReviewsMin,
             'sumComment'            => $sumComment,
             'sumGoodComment'        => $sumGoodComment,
             'nameProductViewCountMax' => $aryNameProductViewCountMax,
             'nameProductViewCountMin' => $aryNameProductViewCountMin,
-            'sumProductViewCountMax'      => $sumProductViewCountMax,
+            'sumProductViewCountMax'  => $sumProductViewCountMax,
+            'sumRevenueByDay'       => $sumRevenueByDay,
+            'sumRevenueByMonth'     => $sumRevenueByMonth,
+            'sumRevenueByYear'      => $sumRevenueByYear,
 
         ];
         return view('admin.layout.home',[

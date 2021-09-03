@@ -27,10 +27,24 @@
               @foreach ($lus as $lu)
                <tr>
                   <th scope="row">{{$lu->id}}</th>
-                      <td>{{$lu->user->name}}</td>
+                      <td>{{$lu->user->name ?? "Noname"}}</td>
                       <td>{{$lu->name}}</td>
                       <td>{{$lu->soluong}}</td>
-                      <td>{{$lu->status}}</td>
+                      <td style="text-align:center;font-weight:bold;font-size:13px;padding-top:40px;background-color: 
+                        @if($lu->status == 'Đơn hàng đã đặt')
+                          #cdcbcb
+                          @elseif($lu->status == 'Đã giao cho đơn vị vận chuyển')
+                          yellow
+                          @elseif($lu->status == 'Đơn hàng đã nhận')
+                          green;color:white;
+                          @elseif($lu->status == 'Đơn hàng đã giao')
+                          gray;color:white;
+                          @elseif($lu->status == 'Đã hủy')
+                          red;color:white;
+                          @endif
+                      ">
+                        {{$lu->status}}
+                      </td>
                       <td>{{$lu->created_at}}</td>
                       <td>
                       <span><a onclick="return edit()" href="{{route('cart.show',[$lu->id])}}"><i class="fas fa-edit"></i></a></span>
@@ -87,7 +101,12 @@
                       </div>
                       <div class="form-group">
                         <label for="exampleInputEmail1">{{__('msg.Status')}}</label>
-                        <input type="text" class="form-control" name="status" id="exampleFormControlFile1">
+                        <select name="status" class="custom-select" readonly>
+                          <option value="Đơn hàng đã đặt" selected>Đơn hàng đã đặt</option>
+                          {{-- <option value="Đã giao cho đơn vị vận chuyển">Đã giao cho đơn vị vận chuyển</option>
+                          <option value="Đơn hàng đã nhận">Đơn hàng đã nhận</option>
+                          <option value="Đơn hàng đã giao">Đơn hàng đã giao</option> --}}
+                        </select>
                         @error('status')
                         {{$message}}
                         @enderror

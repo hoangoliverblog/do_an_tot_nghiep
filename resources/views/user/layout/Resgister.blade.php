@@ -7,7 +7,7 @@
 	<h4 class="card-title mt-3 text-center">Tạo tài khoản</h4>
 	<p class="text-center">Tạo tài khoản miễn phí ngay tại đây </p>
 	<p>
-		<a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>Facebook</a>
+        <a href="" class="btn btn-block btn-facebook" style="background-color: #d2362a"> <i></i>Google</a>
 	</p>
 	<p class="divider-text">
         <span class="bg-light">OR</span>

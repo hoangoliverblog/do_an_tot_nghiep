@@ -10,6 +10,11 @@
         <div id="abc"></div>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">{{__('msg.MoreProduct')}}</button>
     </div>
+    @if (\Session::has('msg'))
+    <div class="alert alert-success">
+        <h4>{!! \Session::get('msg') !!}</h4>
+    </div>
+     @endif
       <table class="table-primary"></table>
       <table class="table-secondary"></table>
       <table class="table-success"></table>

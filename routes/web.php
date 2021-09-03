@@ -63,7 +63,9 @@ Route::group(['namespace'=>'User'],function () {
     Route::post('searchAllProduct','ajaxController@searchAllProduct')->name('ajax.searchAllProduct');
     Route::get('showPayMent','userController@showPayMent')->name('user.showPayMent');
     Route::post('createPayment','userController@createPayment')->name('user.createPayment');                                        
-    Route::get('payReturn','userController@payReturn')->name('user.payReturn');                                        
+    Route::get('payReturn','userController@payReturn')->name('user.payReturn');
+    Route::get('auth/google/url','GoogleController@loginUrl')->name('login.google');
+    Route::get('auth/google/callback','GoogleController@loginCallback')->name('login.google.callback');                                        
 });
 Route::group(['prefix'=>'Admin','namespace'=>'Ajax','middleware'=>'admin'],function () {
     Route::post('searchuser','ajaxController@searchuser')->name('ajax.searchuser');   
