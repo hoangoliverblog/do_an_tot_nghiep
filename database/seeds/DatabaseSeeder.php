@@ -20,6 +20,6 @@ class DatabaseSeeder extends Seeder
          $this->call(xeploaiSeeder::class);
          $this->call(hoadonSeeder::class);
          $this->call(chitiethoadonSeeder::class);
-         $this->call(StaffSeeder::class);
+        //  $this->call(StaffSeeder::class);
     }
 }
