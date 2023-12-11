@@ -24,7 +24,7 @@
                                     <div class="product_price">
                                         <label><del>{{number_format($item->price, 0, '', ',') ?? ''}}</del></label>
                                         @if(isset($item->sale))
-                                            <label>{{number_format($item->price - $item->price * $item->sale /100, 0, '', ',')}}</label>
+                                            <label>{{number_format($item->price - $item->price * $item->sale /100, 0, '', ',')}} VNĐ</label>
                                         @endif 
                                     </div>
                                     <div class="product_btn">
