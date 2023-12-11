@@ -30,7 +30,7 @@
               </td>
               <th scope="row">{{$item->name}}</th>
               <td>{{$item->soluong}}</td>
-              <td>{{$item->sum}}</td>
+              <td>{{number_format($item->sum, 0, '', ',')}}</td>
               <td>{{$item->created_at}}</td>
               <td>
                   <span><a onclick="return edit()" href="{{route('user.showBuy',['id'=>$item->id])}}" style="color:#43c943"><i class="fas fa-edit"></i></a></span>

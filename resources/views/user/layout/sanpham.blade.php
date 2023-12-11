@@ -60,9 +60,9 @@
                             <h6><i class="far fa-star"></i>0 đánh giá/Bài viết</h6>
                             <h3>{{$product->name}}</h3>
                             <h4>
-                              <del>{{$product->price}}</del>
+                              <del>{{number_format($product->price, 0, '', ',')}}</del>
                               @if(isset($product->sale) & $product->sale > 0)
-                                {{$product->price - $product->price * $product->sale /100}}  
+                                {{number_format($product->price - $product->price * $product->sale /100, 0, '', ',')}}  
                                 <span>Giảm {{$product->sale}}, tiết kiệm</span>
                               @endif
                             </h4>
