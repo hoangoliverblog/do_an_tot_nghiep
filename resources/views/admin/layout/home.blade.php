@@ -64,7 +64,7 @@
       </div>
       <div style="text-align:left;color:white">
         <label for="">Thấp nhất:</label>
-        <label for="">mỹ phẩm</label>
+        <label for="">rau củ</label>
       </div>
     </div>
     <div class="col-md-3" style="background-color: #3a26e9;height:10rem;border-radius:10px;margin:3rem 1rem">

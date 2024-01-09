@@ -6,7 +6,7 @@
                 
                 <div class="wapper_product">
                     <div class="sale_product">
-                        <span><i class="fas fa-archway"></i>Mua ngay sản phẩm chính hẵng với Shop mỹ phẩm 365</span>
+                        <span><i class="fas fa-archway"></i>Mua ngay sản phẩm chính hẵng với Shop rau củ 365</span>
                     </div>
                     <div class="title_product">
                         <h3>Danh sách bộ sản phẩm đính kèm</h3>

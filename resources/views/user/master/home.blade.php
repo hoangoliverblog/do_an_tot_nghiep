@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{asset('lib/style/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{asset('lib/style/owl.theme.default.css')}}">
     <link rel="stylesheet" href="{{asset('lib/style/Homecss.css')}}">
-    <title>Mỹ phẩm 365</title>
+    <title>Rau củ 365</title>
 </head>
 <body>
     <div class="hiden_icon">
@@ -48,7 +48,7 @@
                     </div>
                     <div class="hot_new" >
                         <div class="hot_new_cart">
-                            <span><i class="fas fa-female"></i><a href="">Bí quyết làm đẹp</a></span>
+                            <span><i class="fas fa-female"></i><a href="">Chi tiết sản phẩm</a></span>
                             <span>
                                 <a href="{{route('user.showCart',[$user->id ?? 'default'])}}">
                                     <i class="fas fa-shopping-cart">
@@ -104,7 +104,7 @@
                                     </div>
                                     <div class="col-xl-6 col-md-6 col-sm-6">
                                         <div class="logo_product_name">
-                                            <span>Danh sách mỹ phẩm</span>
+                                            <span>Danh sách rau củ</span>
                                         </div>
                                         <div class="list_product_name">
                                             <ul>
@@ -148,9 +148,9 @@
                             </div>
                         </li>
                         <li>
-                        <a href="{{route('cosmetics.show')}}">Mỹ phẩm</a>
+                        <a href="{{route('cosmetics.show')}}">Rau củ</a>
                         </li>
-                        <li><a href="{{route('perfume.show')}}">Nước hoa</a></li>
+                        <li><a href="{{route('perfume.show')}}">Hoa quả</a></li>
                         <li><a href="{{route('Trademark.show')}}">Thương hiệu</a></li>
                         <li><a href="{{route('ProductSets.show')}}">Bộ sản phẩm</a></li>
                     </ul>

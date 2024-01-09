@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Mỹ phẩm 365</title>
+    <title>rau củ 365</title>
 </head>
 <body>  
     <table width="100%" border="0" cellpadding="0" cellspacing="0" style="font-family:arial;max-width:600px;color:#333333;text-align:center;border-bottom-width:2px;border-bottom-style:solid;border-bottom-color:#c9c9c9;border-top-left-radius:5px;border-top-right-radius:5px;border-top-width:5px;border-top-style:solid;border-top-color:#1775bc;margin-top:50px;background-image:initial;background-size:initial;background-origin:initial;background-clip:initial;background-position:initial;background-repeat:initial;background:#fff">
 		<tbody>
 		<tr>
 		<td style="padding:30px 0px 0px">
-		<h1><a href="https://thegioiskinfood.com" style="color:#333333;text-decoration:none" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://thegioiskinfood.com&amp;source=gmail&amp;ust=1624517551614000&amp;usg=AFQjCNGDl1LAx-bdeJwAOFtAGwP3hIzxgg">Shop mỹ phẩm 365 </a></h1>
+		<h1><a href="https://thegioiskinfood.com" style="color:#333333;text-decoration:none" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://thegioiskinfood.com&amp;source=gmail&amp;ust=1624517551614000&amp;usg=AFQjCNGDl1LAx-bdeJwAOFtAGwP3hIzxgg">Shop rau củ 365 </a></h1>
 		<hr style="width:570px;margin:0px auto;border-top-style:solid;border-top-color:#c9c9c9;border-bottom-style:none"></td>
 		</tr>
 		<tr>
 		<td align="left" style="padding:20px;line-height:24px">
 		<p>Chào <b>{{$data['name']}} </b>,</p>
-		<p>Cám ơn bạn đã đặt hàng tại <b>Shop mỹ phẩm 365</b>! Chúng tôi gửi email này cho bạn để xác nhận đơn hàng vừa đặt</p>
+		<p>Cám ơn bạn đã đặt hàng tại <b>Shop rau củ 365</b>! Chúng tôi gửi email này cho bạn để xác nhận đơn hàng vừa đặt</p>
 		<table width="100%" style="padding:10px">
 		<tbody>
 		<tr>

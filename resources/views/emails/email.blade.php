@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Mỹ phẩm 365</title>
+    <title>rau củ 365</title>
 </head>
 <body>  
 <h2>Xin chào bạn!</h2>

@@ -18,7 +18,7 @@ class loaisanphamSeeder extends Seeder
             'name'=>'quần áo'
         ]);
         DB::table('loaisanphams')->insert([
-            'name'=>'mỹ phẩm'
+            'name'=>'rau củ'
         ]);
         DB::table('loaisanphams')->insert([
             'name'=>'bộ sản phẩm'

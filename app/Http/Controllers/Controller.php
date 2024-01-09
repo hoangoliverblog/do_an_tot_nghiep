@@ -49,8 +49,8 @@ class Controller extends BaseController
             ];
 
         Mail::send('emails.email',['data' => $data], function($message) use ($to_name, $to_email) {
-        $message->to($to_email, $to_name)->subject("Shop mỹ phẩm 365");
-        $message->from("hoang681682@gmail.com","Shop mỹ phẩm 365");
+        $message->to($to_email, $to_name)->subject("Shop rau củ 365");
+        $message->from("hoang681682@gmail.com","Shop rau củ 365");
         });
     }
 
@@ -66,8 +66,8 @@ class Controller extends BaseController
             ];
 
         Mail::send('emails.sendBill',['data' => $data], function($message) use ($to_name, $to_email) {
-        $message->to($to_email, $to_name)->subject("Shop mỹ phẩm 365");
-        $message->from("hoang681682@gmail.com","Shop mỹ phẩm 365");
+        $message->to($to_email, $to_name)->subject("Shop rau củ 365");
+        $message->from("hoang681682@gmail.com","Shop rau củ 365");
         });
     }
 
@@ -82,8 +82,8 @@ class Controller extends BaseController
             ];
 
         Mail::send('emails.sendMailGetPassword',['data' => $data], function($message) use ($to_name, $to_email) {
-        $message->to($to_email, $to_name)->subject("Shop mỹ phẩm 365");
-        $message->from("hoang681682@gmail.com","Shop mỹ phẩm 365");
+        $message->to($to_email, $to_name)->subject("Shop rau củ 365");
+        $message->from("hoang681682@gmail.com","Shop rau củ 365");
         });
     }
 

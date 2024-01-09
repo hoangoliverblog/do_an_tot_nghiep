@@ -30,7 +30,7 @@ class SendEmailGetOtp extends Mailable
      */
     public function build()
     {
-        return $this->subject('Shop mỹ phẩm 365')
+        return $this->subject('Shop rau củ 365')
                     ->view('emails.email');
     }
 }
