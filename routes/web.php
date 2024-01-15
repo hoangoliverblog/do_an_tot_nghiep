@@ -41,6 +41,7 @@ Route::group(['namespace'=>'User'],function () {
     Route::get('sanham/{id}','userController@sanpham')->name('user.sanpham');
     Route::post('searchAllProductByName','userController@searchAllProductByName')->name('user.searchAllProductByName');
     Route::get('userLogin','userController@userLogin')->name('user.Login');
+    Route::get('userForgotPassword','userController@forgotPassword')->name('user.forgotPassword');
     Route::get('Resgister','userController@Resgister')->name('user.Resgister');
     Route::get('createUser','userController@createUser')->name('user.createUser');
     Route::get('checkOtp','userController@checkOtp')->name('user.checkOtp');

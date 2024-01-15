@@ -41,7 +41,8 @@
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-block">Đăng nhập </button>
             </div> <!-- form-group// -->      
-            <p class="text-center">Bạn chưa có tài khoản, xin mời<a href="{{route('user.Resgister')}}">Tạo tài khoản</a> </p>                                                                 
+            <p class="text-center">Bạn chưa có tài khoản, xin mời<a href="{{route('user.Resgister')}}"> Tạo tài khoản</a> </p>                                                                 
+            <p class="text-center"><a href="{{route('user.forgotPassword')}}"> Quên mật khẩu</a> </p>                                                                 
         </form>
     </article id="login_form" >
     @endsection

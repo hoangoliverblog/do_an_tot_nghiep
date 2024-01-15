@@ -203,7 +203,7 @@
 	margin-bottom: 1rem;
 }
 .NEw-sanpham{
-	text-align: center;
+	text-align: left;
 	color: #ed145b;
 }
 .NEW-sanpham h3 span{
@@ -219,15 +219,16 @@
 .NEW-sanpham{
 	margin-top: 1rem;
 	margin-bottom: 1rem;
-	text-align: center;
+	text-align: left;	
 }
 
 /*****Card******/
 
 .NEW-Sanpham {
     width: 100%;
-    text-align: center;
-    padding: 2rem 0;
+    text-align: left;
+    padding: 0rem 0;
+	padding-left: 3rem;
 }
 
 .NEW-Sanpham h3{
@@ -241,7 +242,8 @@
     color:pink;
 }
 .NEW-Sanpham h4{
-    font-size: 18px; 
+    font-size: 15px; 
+	color: #928f8f;
 }
 .NEW-Sanpham h4 span{
     padding: 3px 5px;
@@ -254,20 +256,31 @@
 }
 
 .NEW-Sanpham .btn-add{
-    background-color: chartreuse;
-    padding: 3px 5px;
+    background-color: #43c943;
+	float: left;
+    /* padding: 3px 5px; */
     border-radius: 5px;
     color: white;
+    width: 46%;
+    height: 65px;
+	margin-right: 4%;
+	font-size: 18px;
 }
 .NEW-Sanpham .btn-add:hover{
     background-color: deeppink;
     color: black;
 }
 .NEW-Sanpham .btn-buy{
-    padding: 5px 8px;
+    padding: 23px 8px;
+    float: left;
+    display: inline-block;
     background-color: deeppink;
     border-radius: 5px;
-	color: black;
+    color: white;
+    width: 46%;
+    height: 65px;
+    text-align: center;
+	font-size: 18px;
 }
 .NEW-Sanpham .btn-buy:hover{
     background-color: chartreuse;
@@ -293,7 +306,10 @@
 .NEW-Sanpham div .sum:hover{
     background-color:coral
 }
-
+.NEW-Sanpham p{
+	font-size: 15px;
+	color: #928f8f;
+}
 /*===================End_New_Sản_Phẩm========================*/
 
 
@@ -305,7 +321,9 @@
 	text-align: center;
 }
 .Banner-my-pham{
-	width: 100%;
+	width: 50%;
+	float: left;
+	margin-top: 3rem;
 }
 .Banner-my-pham img{
 	width: 100%;

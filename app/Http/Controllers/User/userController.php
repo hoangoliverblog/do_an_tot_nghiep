@@ -16,12 +16,15 @@ use Illuminate\Support\Facades\DB;
 use DateTime;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Mail;
+use Swift_Mailer;
+use Swift_SmtpTransport;
+use Swift_Message;
 
 class userController extends Controller
 {
     public function index(Request $request){
 
-        $pr_new = Product::paginate(5);
+        $pr_new = Product::paginate(9);
 
         $sp_nb = Product::cursor()->filter(function ($pr) {
             return $pr->price < 100000;
@@ -520,5 +523,45 @@ class userController extends Controller
         }
 
         return view('payment.pay_return');
+    }
+
+    public function forgotPassword(Request $request)
+    {
+        if($request->isMethod('HEAD'))
+        {
+            $userMail    = $request->email;
+            $password = $request->password;
+            $re_password = $request->re_password;
+            if($password != $re_password)
+            {
+                return view('user.layout.Resgister')->with('message_pass','Nhập lại mật khẩu chưa chính xác'); 
+            }
+            $OTP = rand(100000,999999);
+            $request->session()->put('user_email',$userMail);
+            User::where('email', $userMail)->update([
+                'otp' => $OTP,
+            ]);
+
+            // $transport = new Swift_SmtpTransport('hoang681682@gmail.com', 587, 'tls');
+            // $transport->setUsername('');
+            // $transport->setPassword('password');
+
+            // // Tạo đối tượng Swift_Mailer sử dụng đối tượng transport đã tạo
+            // $mailer = new Swift_Mailer($transport);
+
+            // // Tạo đối tượng Swift_Message
+            // $message = new Swift_Message();
+
+            // // Thiết lập các thông tin khác của email
+            // $message->setSubject('Chủ đề email');
+            // $message->setFrom(['hoang681682@gmail.com' => 'Shop rau củ 365']);
+            // $message->setTo(['hoang682681@gmail.com' => 'Người nhận']);
+
+            // Gửi email
+            // $mailer->send($message);
+            return view('user.layout.codeOtp');
+
+        }
+        return view('user.layout.ForgotPassword');
     }
 }

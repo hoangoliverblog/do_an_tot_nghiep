@@ -55,6 +55,7 @@ class adminController extends Controller
     }
 
     public function checklogin(adminLoginRequest $adminLoginRequest){
+        
         if($adminLoginRequest->isMethod('post'))
         {
             if(Auth::attempt(['email' => $adminLoginRequest->email, 'password' => $adminLoginRequest->password,'role_id'=>'1']))

@@ -15,7 +15,7 @@
                         <ul>
                             <li>
                                 <span><i class="fas fa-angle-right"></i></span>
-                                <a href="">Tẩy trang</a>
+                                <a href="">Rau củ</a>
                             </li>
                             <li>
                                 <span><i class="fas fa-angle-right"></i></span>
@@ -51,21 +51,28 @@
                     <div class="Banner-my-pham">
                         <img src="{{asset('img')}}{{'/'.$product->img}}">
                     </div>
-                    <div class="row">
+                    <div class="row" style="width:50%;float:left;margin-top: 3rem;">
                     	<div class="col-md-12 sp-my-pham-nhat">
                         <form action="{{route('user.addToCart',['id'=>$product->id])}}" method="POST">
                           @csrf
                           @method('HEAD')
 	                    	  <div class="NEW-Sanpham">
-                            <h6><i class="far fa-star"></i>0 đánh giá/Bài viết</h6>
                             <h3>{{$product->name}}</h3>
-                            <h4>
-                              <del>{{number_format($product->price, 0, '', ',')}}</del>
-                              @if(isset($product->sale) & $product->sale > 0)
-                                {{number_format($product->price - $product->price * $product->sale /100, 0, '', ',')}}  
-                                <span>Giảm {{$product->sale}}, tiết kiệm</span>
+                            <h4>Giá bán: 
+                              <label style="color: red;font-size:23px">@if(isset($product->sale) & $product->sale > 0)
+                                {{number_format($product->price - $product->price * $product->sale /100, 0, '', ',')}} VNĐ
+                              @endif</label>
+                            </h4>
+                            <h4>Trạng thái: 
+                              @if(isset($product->soluong) & $product->soluong > 0)
+                                còn hàng
+                              @else
+                                hết hàng
                               @endif
                             </h4>
+                            <div class="evaluate">
+                                <h6><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>0 đánh giá</h6>
+                            </div>
                             <p>{!!$product->thongtin!!}</p>
                             <p>{!!$product->desc!!}</p>
                             <input type="hidden" name="soluong" value="1"  readonly>
@@ -77,6 +84,13 @@
                             <div>
                                 <button class="btn-add" type="submit">Thêm vào giỏ</button>
                                 <a href="{{route('user.showBuy',['id'=>$product->id])}}" class="btn-buy">Chọn mua</a>
+                            </div>
+                            <h3 style="margin: 7rem 0 0 0;">Nguồn gốc sản phẩm</h3>
+                            <div style="color: #928f8f; font-size : 15px">
+                                <label>Danh mục:         <span>Củ quả hữu cơ</span></label>
+                                <label>Xuất xứ:          <span>Hợp tác xã nông sản sạch</span></label>
+                                <label>Email liên hệ:    <span>support@gmail.com</span></label>
+                                <label>Phone:            <span>19008198</span></label>
                             </div>
 			    		        	  </div>                    
                         </form>

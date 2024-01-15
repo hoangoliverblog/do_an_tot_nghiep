@@ -17,7 +17,7 @@
                         <ul>
                             <li>
                                 <span><i class="fas fa-angle-right"></i></span>
-                                <a href="">Tẩy trang</a>
+                                <a href="">Rau củ</a>
                             </li>
                             <li>
                                 <span><i class="fas fa-angle-right"></i></span>

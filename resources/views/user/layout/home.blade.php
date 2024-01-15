@@ -11,8 +11,13 @@
                     <div class="title_product">
                         <h3>Sản phẩm mới</h3>
                     </div>
-                    <div class="container">
+                    <div class="container" style="background-color: #fdfbfb;">
                         <div class="row">
+                            <div class="col-md-4 col-sm-12 col-xs-6 product_body">
+                                <div style="height: 15rem">
+                                    <img style="height:100%" src="{{asset('img')}}{{'/7_nuoc-hoa-ban-chay-nhat.png'}}" alt="photo">
+                                </div>
+                            </div>
                             @foreach ($listsp as $item)
                                 <div class="col-md-3 col-sm-12 col-xs-6 product_body">
                                     <div class="product_img" style="height: 10rem">
@@ -20,6 +25,9 @@
                                     </div>
                                     <div class="product_des">
                                         <p>{!!$item->desc!!}</p>
+                                    </div>
+                                    <div class="evaluate">
+                                        <h6><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>0 đánh giá</h6>
                                     </div>
                                     <div class="product_price">
                                         <label><del>{{number_format($item->price, 0, '', ',') ?? ''}}</del></label>
@@ -45,6 +53,9 @@
                             <div class="product_des">
                                 <p>{!!$item->desc!!}</p>
                             </div>
+                            <div class="evaluate">
+                                        <h6><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>0 đánh giá</h6>
+                                    </div>
                             <div class="product_price">
                                 <label><del>{{number_format($item->price, 0, '', ',') ?? ''}}</del></label>
                                 @if(isset($item->sale))

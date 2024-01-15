@@ -346,16 +346,27 @@
     transition: 2s;
 }
 .product_des{
-    padding: 0.6rem 0 0 0.6rem;
-    font-size: 14px;
+    padding: 0 0 0 0.6rem;
+    font-size: 16px;
+    font-weight: 500;
     color:#212121;
 }
 .product_des p:hover{
     color: rgb(67, 201, 67);
     transition: 1.5s;
 }
+.evaluate i{
+    padding-right: 2px;
+    color: yellow;
+}
+.evaluate h6{
+    color: gray;
+    font-size: 13px;
+}
 .product_price{
-    text-align: center;
+    text-align: left;
+    font-weight: 600;
+    padding-left: 0.5rem;
 }
 .product_price label{ 
     color :  rgb(67, 201, 67);
@@ -364,7 +375,7 @@
     color : pink;
 }
 .product_price label del{
-  color : pink ;
+  color : red ;
   padding-right: 5px;
   display: inline-block;
 } 
